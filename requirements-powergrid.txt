@@ -1,0 +1,12 @@
+# Install alongside unified-marl for the SADMA PowerGrid bounded PPO engine.
+# Core unified_marl dependencies are listed here for a standalone environment.
+numpy>=1.24,<2
+torch>=2.1,<3
+PyYAML>=6,<7
+
+# Original PowerGrid environment runtime and its energy-model imports.
+pandapower>=2.14,<3
+pandas>=2.1,<3
+gym==0.26.2
+scikit-learn>=1.3,<2
+scipy>=1.10,<1.14

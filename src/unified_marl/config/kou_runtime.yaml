@@ -1,0 +1,16 @@
+training_updates: 100
+schedule_updates: 10000
+eval_interval_updates: 0
+eval_episodes: 2
+dataset_options:
+  reward_semantics: team
+  pairing: halves
+  label_key: labels
+  max_length: null
+policy_dir: null
+learner_log_interval: 1
+device: cpu
+use_cuda: false
+num_threads: 1
+action_type: Discrete
+seed: 1

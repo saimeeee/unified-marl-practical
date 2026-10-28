@@ -1,0 +1,22 @@
+# Explicit bundled inventory simulator, not external ReplenishmentEnv.
+# Included CSV files are illustrative data, not production observations.
+schema_version: 1
+name: qmix-inventory-smoke
+algorithm: pymarl/qmix
+env: inventory
+seed: 11
+device: cpu
+env_args:
+  agents_file: ../../src/unified_marl/applications/templates/warehouse_agents.csv
+  demand_file: ../../src/unified_marl/applications/templates/warehouse_demand.csv
+  horizon: 4
+  reward_scale: 10000.0
+training:
+  t_max: 24
+  max_updates: 2
+  batch_size: 2
+  buffer_size: 8
+  rnn_hidden_dim: 16
+evaluation:
+  episodes: 3
+  seed_count: 2

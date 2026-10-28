@@ -1,0 +1,36 @@
+# 3 algorithms x 2 actual simulation tasks x 2 training seeds = 12 short runs.
+# These budgets validate integration, not convergence or business performance.
+schema_version: 1
+name: practical-mpe-inventory
+plugins:
+  - unified_marl.contrib.huber_iql
+algorithms:
+  - pymarl/qmix
+  - pymarl/vdn
+  - name: example/huber_iql
+    training:
+      huber_delta: 1.0
+envs:
+  - name: mpe
+    env_args:
+      scenario: simple_spread
+      n_agents: 3
+      n_landmarks: 3
+      episode_limit: 25
+  - name: inventory
+    env_args:
+      agents_file: ../../src/unified_marl/applications/templates/warehouse_agents.csv
+      demand_file: ../../src/unified_marl/applications/templates/warehouse_demand.csv
+      horizon: 4
+      reward_scale: 10000.0
+seeds: [11, 23]
+device: cpu
+training:
+  t_max: 96
+  max_updates: 2
+  batch_size: 2
+  buffer_size: 8
+  rnn_hidden_dim: 16
+evaluation:
+  episodes: 3
+  seed_count: 2

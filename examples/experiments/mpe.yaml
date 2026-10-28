@@ -1,0 +1,21 @@
+# Short, real MPE training for integration checks; not a convergence benchmark.
+schema_version: 1
+name: qmix-mpe-simple-spread
+algorithm: pymarl/qmix
+env: mpe
+seed: 11
+device: cpu
+env_args:
+  scenario: simple_spread
+  n_agents: 3
+  n_landmarks: 3
+  episode_limit: 25
+training:
+  t_max: 96
+  max_updates: 2
+  batch_size: 2
+  buffer_size: 8
+  rnn_hidden_dim: 16
+evaluation:
+  episodes: 3
+  seed_count: 2

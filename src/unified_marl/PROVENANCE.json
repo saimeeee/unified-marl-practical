@@ -1,0 +1,2473 @@
+[
+  {
+    "source": "pymarl-master/pymarl-master/src/components/action_selectors.py",
+    "source_sha256": "01e85a7ca69fa5589a52bb96688dd15ef5cd052e6016cfa37cf560a3dcb0a57f",
+    "target": "src/unified_marl/components/action_selectors.py",
+    "target_sha256": "5cf21e583818cdc21e8fd464a79aa4c4dd256e7dc0727ddb96fd1b3aba6b82d6",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/components/episode_buffer.py",
+    "source_sha256": "26b2f8f442792f66709137a32e749107c6d1379beab064d1f42993943fc416d0",
+    "target": "src/unified_marl/components/episode_buffer.py",
+    "target_sha256": "069c318603c71ff2a2f8562a781fd652df27809c73ec92a95fa4e3ad128f2ea1",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/components/epsilon_schedules.py",
+    "source_sha256": "42bc0b063e1619f57b022b7fdf8bf007394fd63a78f2375a579372eb0a6abb93",
+    "target": "src/unified_marl/components/epsilon_schedules.py",
+    "target_sha256": "9bf266394693a9d31b3b80554e3396d79ce8d3e0217c2e89b9317cd9adce32d5",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/components/transforms.py",
+    "source_sha256": "0884dccb4d105a823c3487b09cfae0c47a09d5c1f044781f1d857cac3252157a",
+    "target": "src/unified_marl/components/transforms.py",
+    "target_sha256": "29bf96a61ab1f8163393116425996b584f9b7cd3215e434dcb1f093fe4e3d1b6",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/components/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/components/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/controllers/basic_controller.py",
+    "source_sha256": "9f9c7da6f6a42648c228c03008311490c42d0fadd335b5d647a5b203b8857c26",
+    "target": "src/unified_marl/controllers/basic_controller.py",
+    "target_sha256": "945bfc1f6fe15c57be9a515672a4b9bb9331559fb1040917fa6112e943f61b75",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/controllers/__init__.py",
+    "source_sha256": "5e5c5b78b2141934ac82ee248c832c2b7a0e4315ddf915f5a9a9424e8321d50b",
+    "target": "src/unified_marl/controllers/__init__.py",
+    "target_sha256": "81041d6af181f420ce1783cf05a5c30eee30ebb2eb85c9d635aff9a67b59062d",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/learners/coma_learner.py",
+    "source_sha256": "b1405cc36d850e0a250ecbf600d94f2d9c8e05f722701c9beffa778c8acd4b36",
+    "target": "src/unified_marl/learners/coma_learner.py",
+    "target_sha256": "fc6f6abc56a6461e9f0a782f54dc84977d54ac98d54f50a031227dbbac6daa0d",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/learners/qtran_learner.py",
+    "source_sha256": "c12ac82be6fb0f2891d9dfe184adb2fe5cdc7483782b5fce528f877149e19287",
+    "target": "src/unified_marl/learners/qtran_learner.py",
+    "target_sha256": "f6b4ccee27b6243e42991e9267d6ebb6d9621da01fee84f391485381603cc02b",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/learners/q_learner.py",
+    "source_sha256": "ffef0b0c7db6c11f47698805fddce1df10194ece359eaabe9978865ff577527e",
+    "target": "src/unified_marl/learners/q_learner.py",
+    "target_sha256": "7c69df1c56b34beef38159fed64a36106f08a3a4f4fdce07cc6620bfa70e8cc5",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/learners/__init__.py",
+    "source_sha256": "411f810e95e369b0ece215684bb4bccbaf4400b2a2d19f3609a395b611fca80c",
+    "target": "src/unified_marl/learners/__init__.py",
+    "target_sha256": "307f6d7961f1f61b9fb08b476d964ef93f46dc4e3cad93d39200411033473ef8",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/modules/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/modules/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/modules/agents/rnn_agent.py",
+    "source_sha256": "c14fc450038da2446642cb0575b480f21b5c53faca72f7640faff788a6b80ec9",
+    "target": "src/unified_marl/modules/agents/rnn_agent.py",
+    "target_sha256": "3b291e3c3f7aaf8185d3ac5fd7ebcd78301da5c83ff6b0c90d02ea8bf6c5cf05",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/modules/agents/__init__.py",
+    "source_sha256": "54d556de2c22556999ff792d91ec1333835f8a99a9c432a70ca1e12070814100",
+    "target": "src/unified_marl/modules/agents/__init__.py",
+    "target_sha256": "167007f2ff1464f1a749d679b57542b791680892ee8efbc06abf17f9fe0d7134",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/modules/critics/coma.py",
+    "source_sha256": "5a8f502cacea8d58f907bfd84ae62f79424f994afaae1e784dcb57835278be0e",
+    "target": "src/unified_marl/modules/critics/coma.py",
+    "target_sha256": "4463f709087ca03fb913d68c8177df466f9d27af8c8cc9aa771c77c09ce22af9",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/modules/critics/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/modules/critics/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/modules/mixers/qmix.py",
+    "source_sha256": "3973679f5123119d5f0814193c8cebd01148ede57633c1135ae332f207525d18",
+    "target": "src/unified_marl/modules/mixers/qmix.py",
+    "target_sha256": "ede5fbb74650e00f2cdccabd55dc67ec260c335fbae5a9f313d3ad7e4aefecc3",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/modules/mixers/qtran.py",
+    "source_sha256": "b67b60eb5c39908aa6c9d8ecf5b67ef2a7da0ef0472b10cdf1eaa71674cb4a29",
+    "target": "src/unified_marl/modules/mixers/qtran.py",
+    "target_sha256": "5fe3fb66f94509a1616e43500c610efd492cdfe29a286c47fc3c5d7f0342afc4",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/modules/mixers/vdn.py",
+    "source_sha256": "1681c32585cda8065fc82e66cb0670282334067eeb4f2162f28f39d7876b813a",
+    "target": "src/unified_marl/modules/mixers/vdn.py",
+    "target_sha256": "05cd04721177ea52012904ce0a03731ca86014a11c497fb694a0c64ee5f40b2f",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/modules/mixers/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/modules/mixers/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/utils/rl_utils.py",
+    "source_sha256": "f675e6e831b28a022f61a9cd54a468e0e947d90cdbc4b0dc4a0b5c84e92d9715",
+    "target": "src/unified_marl/utils/rl_utils.py",
+    "target_sha256": "e0e9306ee19e24e50f06dabdc8c9704529b2298cf868ae8bbba371321148ae2a",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "pymarl-master/pymarl-master/src/envs/multiagentenv.py",
+    "source_sha256": "59325d8f10be7c15beb8df1f0c912d2d623151979aac0acd30841dc113f8a2d8",
+    "target": "src/unified_marl/envs/multiagentenv.py",
+    "target_sha256": "0a2606001eb0e7436d69d65a558950e9bec1086c1df0f1ef32a1f9832ec7ca97",
+    "evidence": "docs/evidence/stage2/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/components/action_selectors.py",
+    "source_sha256": "f9dbc6051114b31f255556c638a83ecd3ed093ac6e1de5e42ebdd8af5ec705b6",
+    "target": "src/unified_marl/algorithms/rghmf/components/action_selectors.py",
+    "target_sha256": "451f677e4915e1d52b318948795bc4bf4acfeb6e6618e47eaa39919da2f92d33",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/components/episode_buffer.py",
+    "source_sha256": "26b2f8f442792f66709137a32e749107c6d1379beab064d1f42993943fc416d0",
+    "target": "src/unified_marl/algorithms/rghmf/components/episode_buffer.py",
+    "target_sha256": "16f1f4bdbb01df0673366808e47eb6c2f8920128864a84bcce088de071678609",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/components/epsilon_schedules.py",
+    "source_sha256": "3a37fe95e641b8cb84c329ac655383aa84c4080569d1ef606660bb9e512b7473",
+    "target": "src/unified_marl/algorithms/rghmf/components/epsilon_schedules.py",
+    "target_sha256": "792a11d19ada8fd5b403e89629b653f43e37e136cb413c43be01ee5c49f51b4d",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/components/transforms.py",
+    "source_sha256": "0884dccb4d105a823c3487b09cfae0c47a09d5c1f044781f1d857cac3252157a",
+    "target": "src/unified_marl/algorithms/rghmf/components/transforms.py",
+    "target_sha256": "29bf96a61ab1f8163393116425996b584f9b7cd3215e434dcb1f093fe4e3d1b6",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/components/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/rghmf/components/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/controllers/basic_controller.py",
+    "source_sha256": "9f9c7da6f6a42648c228c03008311490c42d0fadd335b5d647a5b203b8857c26",
+    "target": "src/unified_marl/algorithms/rghmf/controllers/basic_controller.py",
+    "target_sha256": "d4c1a399cbf8e78360b9dad17e83c57a0cfbb5f64b9e17e59f3598ec7a282ea3",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/controllers/rode_controller.py",
+    "source_sha256": "d89bb41e10ebb88cf47553d359ee74cbb922ec6415c010a11e9da61632872428",
+    "target": "src/unified_marl/algorithms/rghmf/controllers/rode_controller.py",
+    "target_sha256": "8fce4058186b2ea52be5a8bd4aa02a6f8e021e0821f3af1c602de1c8b3cf1d30",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/controllers/__init__.py",
+    "source_sha256": "baa72c97238f5a22b3da52beeea3c38c2c1502cbdec470da57d98cb5a5e5e740",
+    "target": "src/unified_marl/algorithms/rghmf/controllers/__init__.py",
+    "target_sha256": "e93d93119fbf1f41284b8abec425a3a218c2591e99bcb9c5facc487484a93a81",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/learners/coma_learner.py",
+    "source_sha256": "b1405cc36d850e0a250ecbf600d94f2d9c8e05f722701c9beffa778c8acd4b36",
+    "target": "src/unified_marl/algorithms/rghmf/learners/coma_learner.py",
+    "target_sha256": "98fddea328da2d1ad34a363072ce34c512e9c25c83d6f5d700f80abd57c969e4",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/learners/qtran_learner.py",
+    "source_sha256": "c12ac82be6fb0f2891d9dfe184adb2fe5cdc7483782b5fce528f877149e19287",
+    "target": "src/unified_marl/algorithms/rghmf/learners/qtran_learner.py",
+    "target_sha256": "be766fa46747fd4ae92b6bcd54f2924d09f1702e48d246aee0a912645b5678e9",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/learners/q_learner.py",
+    "source_sha256": "ffef0b0c7db6c11f47698805fddce1df10194ece359eaabe9978865ff577527e",
+    "target": "src/unified_marl/algorithms/rghmf/learners/q_learner.py",
+    "target_sha256": "e1ea7671ecc9f879114a8ced0360d8ac5ec6be4f5690952a90812a9ab042a5fd",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/learners/rode_hmf_learner.py",
+    "source_sha256": "85f3505260589cefa66c8de89e090df449c21d2299b7d8215ed930c6e4552946",
+    "target": "src/unified_marl/algorithms/rghmf/learners/rode_hmf_learner.py",
+    "target_sha256": "e545c2bef1b5a603a57875eb795378ef8d027271261eacec2b8dd7c270a4a309",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/learners/rode_learner.py",
+    "source_sha256": "17331bd6124446f0d83061ee961b80e36dc4c8aa8319093cf7a5cd081f7169d6",
+    "target": "src/unified_marl/algorithms/rghmf/learners/rode_learner.py",
+    "target_sha256": "1a1317b24a7c2928b9000d04e52804b8cd35a7df3b2101c5dd7d6d10ce53560c",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/learners/__init__.py",
+    "source_sha256": "627033c628dd6051c12b619c853a85470e1ec17aea8b1427fcd26cf2b7449986",
+    "target": "src/unified_marl/algorithms/rghmf/learners/__init__.py",
+    "target_sha256": "34f31311fc4730e5de8c1835c14bd1024d1803f975ece204915131b2056ca6c2",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/rghmf/modules/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/action_encoders/obs_reward_encoder.py",
+    "source_sha256": "1666a8319df9c04c76bbb81e8b621dafd6e1d6d17b670e8adbced30b82274a12",
+    "target": "src/unified_marl/algorithms/rghmf/modules/action_encoders/obs_reward_encoder.py",
+    "target_sha256": "df7263d5d9feea9088cc07cd362451f4f12f9cebc35d03905092f6b631bb8652",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/action_encoders/__init__.py",
+    "source_sha256": "a8315667b56ab03dbb20becc8b53f48732ecc0c4abbde0bf0ca087de222af366",
+    "target": "src/unified_marl/algorithms/rghmf/modules/action_encoders/__init__.py",
+    "target_sha256": "72e8211c02f58aa27c54f3c2b91aeaa4a42ab06693e528a374f68eabcff2d10c",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/agents/rnn_agent.py",
+    "source_sha256": "c14fc450038da2446642cb0575b480f21b5c53faca72f7640faff788a6b80ec9",
+    "target": "src/unified_marl/algorithms/rghmf/modules/agents/rnn_agent.py",
+    "target_sha256": "3b291e3c3f7aaf8185d3ac5fd7ebcd78301da5c83ff6b0c90d02ea8bf6c5cf05",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/agents/rode_agent.py",
+    "source_sha256": "8205040e632d26a7b6d5cb1e61e3c970dc02affaf898e9feb0e2c3d311550c1f",
+    "target": "src/unified_marl/algorithms/rghmf/modules/agents/rode_agent.py",
+    "target_sha256": "41ee59cda6c3dfdd302435300c124a9192b679648101a9ba31a096233c65da66",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/agents/__init__.py",
+    "source_sha256": "c5b9cac743be951d5a1a04eb69610eb1ef3d13bdb65c8c8e25433cbe405a4f8a",
+    "target": "src/unified_marl/algorithms/rghmf/modules/agents/__init__.py",
+    "target_sha256": "b187b9ff079e9565002fec945ffe853419835ce02204a74098817fe5c7625fe8",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/base/networks.py",
+    "source_sha256": "c49aa0f576dabe3c217e99fb9993576e32b24303b7bb10db556de09c20783fcc",
+    "target": "src/unified_marl/algorithms/rghmf/modules/base/networks.py",
+    "target_sha256": "ceba107a6592c25735478a7db05c6fc3e82c7b357832fb4951715386111344fb",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/critics/coma.py",
+    "source_sha256": "5a8f502cacea8d58f907bfd84ae62f79424f994afaae1e784dcb57835278be0e",
+    "target": "src/unified_marl/algorithms/rghmf/modules/critics/coma.py",
+    "target_sha256": "4463f709087ca03fb913d68c8177df466f9d27af8c8cc9aa771c77c09ce22af9",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/critics/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/rghmf/modules/critics/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/mixers/qmix.py",
+    "source_sha256": "3973679f5123119d5f0814193c8cebd01148ede57633c1135ae332f207525d18",
+    "target": "src/unified_marl/algorithms/rghmf/modules/mixers/qmix.py",
+    "target_sha256": "ede5fbb74650e00f2cdccabd55dc67ec260c335fbae5a9f313d3ad7e4aefecc3",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/mixers/qtran.py",
+    "source_sha256": "b67b60eb5c39908aa6c9d8ecf5b67ef2a7da0ef0472b10cdf1eaa71674cb4a29",
+    "target": "src/unified_marl/algorithms/rghmf/modules/mixers/qtran.py",
+    "target_sha256": "5fe3fb66f94509a1616e43500c610efd492cdfe29a286c47fc3c5d7f0342afc4",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/mixers/vdn.py",
+    "source_sha256": "1681c32585cda8065fc82e66cb0670282334067eeb4f2162f28f39d7876b813a",
+    "target": "src/unified_marl/algorithms/rghmf/modules/mixers/vdn.py",
+    "target_sha256": "05cd04721177ea52012904ce0a03731ca86014a11c497fb694a0c64ee5f40b2f",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/mixers/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/rghmf/modules/mixers/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/roles/dot_role.py",
+    "source_sha256": "d5028fc15ccd5adfcf9d670ce5f6dd68524b3955f324a6a0325f77c3f9d6f269",
+    "target": "src/unified_marl/algorithms/rghmf/modules/roles/dot_role.py",
+    "target_sha256": "0a0d2b5a8847cc210ee01de466abc876f92de6b30bd23d056a4bb419e40345a7",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/roles/q_role.py",
+    "source_sha256": "c8a3a4415d8399bb49a8e83d9103ecfcb41af3119a083a305666cb3c1236904d",
+    "target": "src/unified_marl/algorithms/rghmf/modules/roles/q_role.py",
+    "target_sha256": "f9bd773017d971d0bfa89d41e28217bb1a1651028176467657e2284b0e71fd40",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/roles/__init__.py",
+    "source_sha256": "245634673aa93dbf483c7fcd1059f3148205d48027976b1974a3038cee38f7a4",
+    "target": "src/unified_marl/algorithms/rghmf/modules/roles/__init__.py",
+    "target_sha256": "bffd1e306c6fa3ff0bb6adb736c962610278667c58e100dd8cd062ec1a8d4a17",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/role_selectors/dot_selector.py",
+    "source_sha256": "149d59244afec1bb384ded14554599e1d38e82e279f059bf560e9c0b7193c5de",
+    "target": "src/unified_marl/algorithms/rghmf/modules/role_selectors/dot_selector.py",
+    "target_sha256": "6541390442b8b480a3a1bf8c0f303cbcd70fe8261fe2600c99722c9bd197b8e4",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/role_selectors/q_selector.py",
+    "source_sha256": "9dedca13f49babe68f654e6114b4ce06c52b10b1411f33c50a711dfc0dad4f5f",
+    "target": "src/unified_marl/algorithms/rghmf/modules/role_selectors/q_selector.py",
+    "target_sha256": "aa7f84c46d723d5ac56953dd7de2164528ce1a3cc77de5614f3d333fdec19977",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/modules/role_selectors/__init__.py",
+    "source_sha256": "a8bbf36f60ac2116dc1ca3fd815a48d1926c6f45b24c639e11dd9d8bed617379",
+    "target": "src/unified_marl/algorithms/rghmf/modules/role_selectors/__init__.py",
+    "target_sha256": "2bfe7e2b59960a72a38d1271718b99ba1de879b7ca829c211ba956c0f95732e6",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/utils/dict2namedtuple.py",
+    "source_sha256": "6f0ebf7235eaeadb95cdb100bbd3d67c93d421395ec7881e8f167b4056158364",
+    "target": "src/unified_marl/algorithms/rghmf/utils/dict2namedtuple.py",
+    "target_sha256": "f2c13999aa7a9d0a095124c85c9e18e3bee1e992015f6638c203eae685ee8611",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/utils/logging.py",
+    "source_sha256": "88509ae51203772fb3d1d197a44dde074b8275cc704a9db9cadc40784314b4a6",
+    "target": "src/unified_marl/algorithms/rghmf/utils/logging.py",
+    "target_sha256": "a68e9c156645da7f9ba9573ee86339cb2ab277d8f7ee912a03c12456d4c2e49e",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/utils/rl_utils.py",
+    "source_sha256": "f675e6e831b28a022f61a9cd54a468e0e947d90cdbc4b0dc4a0b5c84e92d9715",
+    "target": "src/unified_marl/algorithms/rghmf/utils/rl_utils.py",
+    "target_sha256": "e0e9306ee19e24e50f06dabdc8c9704529b2298cf868ae8bbba371321148ae2a",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/RGHMF/utils/timehelper.py",
+    "source_sha256": "9705deb0ea64cd501a4eef83f55179777bdd477a3cd602d1f3e82b5eebccac12",
+    "target": "src/unified_marl/algorithms/rghmf/utils/timehelper.py",
+    "target_sha256": "0c4d3cb43fc6ebdf99c7b27be60787f0fe7ea5cc37757e0ad486f03ec5c551e5",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/dqn_agents.py",
+    "source_sha256": "567b72c1b8343264c661c1e6deeebbc9174d7e2b52d501999721fd486feb7fc7",
+    "target": "src/unified_marl/algorithms/hmf/agent/dqn_agents.py",
+    "target_sha256": "98c9e994861fc0c2e6817dfca4d0abf58d6a3c1ad72d5be7ef65ef5fce938f44",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/hierarchical_agent.py",
+    "source_sha256": "369db30329dc13f83cd24b324895a0a264914d07ca54c606b50b15cea9ae0835",
+    "target": "src/unified_marl/algorithms/hmf/agent/hierarchical_agent.py",
+    "target_sha256": "f66a2229920657c570b7372b6ec52fc1440c7776b1a74ac93d809838aefc4b00",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/hierarchical_qmix_agent.py",
+    "source_sha256": "7b00654864cd75d03252d5b3fa7737cb193d2e366b0fbf8defeb4ab34b6bb0cd",
+    "target": "src/unified_marl/algorithms/hmf/agent/hierarchical_qmix_agent.py",
+    "target_sha256": "36650a50d8d9af701215b4bc74f29b194792a8f666c41437fc9b741562015193",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/hierarchical_roma_agents.py",
+    "source_sha256": "b2ed0b850c4d00114b66181464f887276c97e811c4960a38219a3c512a69080c",
+    "target": "src/unified_marl/algorithms/hmf/agent/hierarchical_roma_agents.py",
+    "target_sha256": "188cbf6f9d899ee594d917351c2f047081c103b8c8b168dfcd6aa4374c634867",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/hierarchical_vdac_agent.py",
+    "source_sha256": "510fa65cf5f5dd85ef2199c596bb2fed70e4df2cd2ca9cf1a2b53062edfb7692",
+    "target": "src/unified_marl/algorithms/hmf/agent/hierarchical_vdac_agent.py",
+    "target_sha256": "72ff646cc1f8da2cb0cd511ab2c40994821e41cc1984ed92268172283bc430fe",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/hierarchical_vdn_agents.py",
+    "source_sha256": "e4a91a190578354ad90063f8bd219eaf78d6436f27451fb801def4fab2697578",
+    "target": "src/unified_marl/algorithms/hmf/agent/hierarchical_vdn_agents.py",
+    "target_sha256": "f1c8efe1d699095bf8a146c0f91ca723aa0f3e445fda2195e0a6e39f93b4c447",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/hierarchical_vdn_agents_IPC.py",
+    "source_sha256": "53205a4be08b4a56f39b71fa466e7051bee958c70c2612f644d88e5f62784b06",
+    "target": "src/unified_marl/algorithms/hmf/agent/hierarchical_vdn_agents_IPC.py",
+    "target_sha256": "6d9c04ac6024a66b3ce5d092335a1036096f757a042d1195a574d4056a249efd",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/maddpg_agents.py",
+    "source_sha256": "278ca0e06c9a76835543383836285b0db0d5d43792ceda48b7d9dd7f1b5b4efb",
+    "target": "src/unified_marl/algorithms/hmf/agent/maddpg_agents.py",
+    "target_sha256": "3dd18423b161e06bd085d5a9a170535e1d3cde0f9b4732ad9f7f99a38d6c3e81",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/mfac_agents.py",
+    "source_sha256": "0a0126edc04bc393e4031ddb80f3c3b57ff433e22cc333fd304b37be50f6db08",
+    "target": "src/unified_marl/algorithms/hmf/agent/mfac_agents.py",
+    "target_sha256": "4390d393f5630d61f6334398e5e4e1f0b98322e600bb53b462307d24a763d8ca",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/mfq_agents.py",
+    "source_sha256": "567b72c1b8343264c661c1e6deeebbc9174d7e2b52d501999721fd486feb7fc7",
+    "target": "src/unified_marl/algorithms/hmf/agent/mfq_agents.py",
+    "target_sha256": "98c9e994861fc0c2e6817dfca4d0abf58d6a3c1ad72d5be7ef65ef5fce938f44",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/mfvfd_agents.py",
+    "source_sha256": "a6c19efa9f2ccb3af48008404f2eb8f13964bd04df9ba7bf2f44eab0ddbb61c1",
+    "target": "src/unified_marl/algorithms/hmf/agent/mfvfd_agents.py",
+    "target_sha256": "1cc9fd420f14fd31d20435d956d8592f7a7d5b0207933cf281f440c9c444e185",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/qmix_agents.py",
+    "source_sha256": "8e324ea8ead0fa4924a85081ee1ce0b071e2925755928e2b8179050ef18a3f8f",
+    "target": "src/unified_marl/algorithms/hmf/agent/qmix_agents.py",
+    "target_sha256": "651eb758c02da3cb279efb07976974ddb9101c6a58c7dd72e17e84792034771a",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/rode_action_encoder.py",
+    "source_sha256": "312bb20ae532cef747dbd7bffe459d407158806ff247353e5babb07e1e24ee72",
+    "target": "src/unified_marl/algorithms/hmf/agent/rode_action_encoder.py",
+    "target_sha256": "005452713a210a268c596c6df17b6e7527d2ded3192df61015127184c252d4d3",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/rode_agents.py",
+    "source_sha256": "a7971e73414ae757eecf1072f16562219f197ca7dc4adb9d40b49c573cea22fa",
+    "target": "src/unified_marl/algorithms/hmf/agent/rode_agents.py",
+    "target_sha256": "4680dab322223c41af5a309cb8dde226bc48d34943091654401ea640d2f68327",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/rode_selector.py",
+    "source_sha256": "c4c443bb6a89465e480888fad3bd8a0d2c41b619283e58e30c6a1e861b06f880",
+    "target": "src/unified_marl/algorithms/hmf/agent/rode_selector.py",
+    "target_sha256": "a6746836401aab74d199db1a0d231e07a9138b6b2f83bc51ddbdf6f7a8710147",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/roma_agent.py",
+    "source_sha256": "238df71eed5cd38786e84e8ea76a53fefe2bb02d9bb7bde316c972fc27fedd69",
+    "target": "src/unified_marl/algorithms/hmf/agent/roma_agent.py",
+    "target_sha256": "a19001e6bdc863957388eaf73afd4c484a2c5f463d14c3b7312f31be00da29fc",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/agent/vdn_agents.py",
+    "source_sha256": "7f3cdc11a8bc36d67dfaede370933d9fcead3b781319c2fe0b98f16fa1a8d9b2",
+    "target": "src/unified_marl/algorithms/hmf/agent/vdn_agents.py",
+    "target_sha256": "4ffc17e5364e8ac7775aea714b55d3efa8333fa44078052c3a5a2083ffed57e6",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/dqn.py",
+    "source_sha256": "773f99b531634329c4d6b0459f66cb372e05aeaabf529a1e69510fc3881b5577",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/dqn.py",
+    "target_sha256": "65f62a286a29a85f78374b4ab8582f853d3116940c3859c316d3f43057ff5e40",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/hierarchical.py",
+    "source_sha256": "80175436ea52ad26153f9a642063b8a482a8957b88ff76f367337124896a674b",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/hierarchical.py",
+    "target_sha256": "8231524dc89f11d2fd534222afea86afea1720bf509002821bf7c8ea38553b0e",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/hierarchical_qmix.py",
+    "source_sha256": "e078de83de6530553ef8a09c11e957ebc100661c84d478db68870312180f486a",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/hierarchical_qmix.py",
+    "target_sha256": "d1a1559b7b9624a9eaee3204fcbd66323d1e62571bd527f8af531d984c4bf6d8",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/hierarchical_vdac.py",
+    "source_sha256": "9f158d6028fcb6905f45b01652c4b851a1749b8012e1add81acbed2b8ae2ba41",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/hierarchical_vdac.py",
+    "target_sha256": "3f92d69b89752eadba7c86bcc0f2c82b0aa5da83d489f6ca86445210e4c12383",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/hierarchical_vdn copy.py",
+    "source_sha256": "2f3c66f84a1ea5ddb7d164af99a3fdbe0f07f969814d27bc6acb6eab843c6dcc",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/hierarchical_vdn copy.py",
+    "target_sha256": "f905dfe6078fa2e8064aa00ac6391ea500bd520d4fad2b18721361866afc0724",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/hierarchical_vdn.py",
+    "source_sha256": "ff5f9cd5022f845ae5596a611f53263f62e863b20330ec7429f65f48172ec7de",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/hierarchical_vdn.py",
+    "target_sha256": "206cdb72dfc77f2edfd098396c600bf954a0f0821b59e1b354b2509d38811de3",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/hierarchical_vdn_02_formulate_meanQ.py",
+    "source_sha256": "258e56c16ce2f0c4dac9e3d295b8b16b156c0564a45ede49a269c8f07e1d2d7f",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/hierarchical_vdn_02_formulate_meanQ.py",
+    "target_sha256": "c5d349fada2416282487857ff24fdfd13eb7338520a9d6ab06f091f423dfde36",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/hierarchical_vdn_02_formulate_meanQ_IPC.py",
+    "source_sha256": "403bef6cc28c4f7a6dbaf51cc83c8e8950c8290d8f20a0e81a56bc5e7cb40778",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/hierarchical_vdn_02_formulate_meanQ_IPC.py",
+    "target_sha256": "dff66d30e73c417e7b36f5923d6c22eab03349d3ea52f4fe8c190c31c5d6bad9",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/hierarchical_vdn_IPC.py",
+    "source_sha256": "b8d1c97a1fe5bb5e03825fe01246ad3ee3d818d6ca080a8b5afda8e6a0a13bf0",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/hierarchical_vdn_IPC.py",
+    "target_sha256": "1c2e1902a40d0a00ac1ecbd42bebdd133c0d41265917e2af0a60fbc14b5aa086",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/hierarchical_vdn_k_means.py",
+    "source_sha256": "e6f2b67437abfbc28b42922ca7b3ff7ae337da8ff048fdadfc811155fb4f9c71",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/hierarchical_vdn_k_means.py",
+    "target_sha256": "fb670ccbb4fd43656db3b8079a593c20fb9454ff40732bfad7cfbb7935349665",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/hierarchical_vdn_roma.py",
+    "source_sha256": "6292aed5929b75ac4ed404c4e0cb9d4014162a663028f673f07a7406aac33450",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/hierarchical_vdn_roma.py",
+    "target_sha256": "368ca075b8550c38dbb68f38690b950a6ef2a66d744af275e07a610c56dbbe5b",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/hierarchical_vdn_without_high_level.py",
+    "source_sha256": "b2e6571624e1b5c996e118d94f3376e04df0dd258f1a9e3a99817d5c48a6d74e",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/hierarchical_vdn_without_high_level.py",
+    "target_sha256": "dbe50c06044ae47e634bf1b52880d5f819e78cd9bd3bd15fdb481ba15f0578d8",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/maddpg.py",
+    "source_sha256": "9cc52eaf08406fb9d92832ec9d035af8e8e3b8a31048dda168a176bf8fd4ba31",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/maddpg.py",
+    "target_sha256": "f31c9581652be2c2db0580e3cb9b5ca8dc00e2366e0a73fe63321af30ebf195c",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/mfac.py",
+    "source_sha256": "81c0d67aa84b1b168aa566deb02e2e4f346b67b0df410ea82acb9740f09760b4",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/mfac.py",
+    "target_sha256": "15c9746cb1d0e93a9aefc96cf4e937d2c43bd302e04e1110fcae16930792c21f",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/mfq.py",
+    "source_sha256": "fd46c9885d252d40884998d3fbcca427264281c0a7a62ac348eaa35aca36f8a8",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/mfq.py",
+    "target_sha256": "8a2ad22c88d7c573d956ee87e5b7fe1b6513b70636f457d4f8cd3c5280fc1f1d",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/mfvfd.py",
+    "source_sha256": "10b7330757536ca80d4c509c899d4d55bbcece309ac5d59767b7870e5238da68",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/mfvfd.py",
+    "target_sha256": "b1a2d6b9414ecfa07131d98ae0cbb6119ded87ff7c80a92ef1e09885ab37007e",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/qmix.py",
+    "source_sha256": "cf864e6aba9300eccd3754bd038cb45bf43680b4b9b71162e9e50306493f3ff8",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/qmix.py",
+    "target_sha256": "776c8b55051aa1a9e24f6b70bd9fb0143d33425a7bc12d9098dd09947e14a442",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/vdn.py",
+    "source_sha256": "671b1e0fc7fbde8d7f2dde5227407b07005de496b05103df0b02d38e408522f8",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/vdn.py",
+    "target_sha256": "74115a198ac8f56cc1d46a38563eab6ade6109b38897a2cade62c54a433c3a14",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/algorithms/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/hmf/algorithms/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/buffer.py",
+    "source_sha256": "dc35bf70de1c9fd8831c07970a5d0d74790658584e3699edeff0a8d47f9f0f23",
+    "target": "src/unified_marl/algorithms/hmf/utils/buffer.py",
+    "target_sha256": "ebc81bce7702c5187ef94a5420f33cfa18fc64560fb01d520257536a17d6944a",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/buffer_mfq.py",
+    "source_sha256": "c36dac3042535fe265efda0154d032cc0154c2eff452550adc146b828a6f35c8",
+    "target": "src/unified_marl/algorithms/hmf/utils/buffer_mfq.py",
+    "target_sha256": "335b3a0f78d9662cce027bc23a1f8e5f290f4198bd8b7dc3460f694d665977d0",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/buffer_roma.py",
+    "source_sha256": "58e0c7c90b411999524a706983e1df7da745ae66151ebcb4b32b37dd5b195a0b",
+    "target": "src/unified_marl/algorithms/hmf/utils/buffer_roma.py",
+    "target_sha256": "fc786e141622af9d27ed428a65e470b964eb8bc6f214843011878b6484146ff5",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/create_map.py",
+    "source_sha256": "7ce7e897c0357b526ad08987e280dca5bdfff01648f7064204b54be7468ba6af",
+    "target": "src/unified_marl/algorithms/hmf/utils/create_map.py",
+    "target_sha256": "7ce7e897c0357b526ad08987e280dca5bdfff01648f7064204b54be7468ba6af",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/env_wrappers.py",
+    "source_sha256": "de69b0f06e1f2d4f647cadc0cfe53c2196a0c57d060415b75989c9e2c08470f2",
+    "target": "src/unified_marl/algorithms/hmf/utils/env_wrappers.py",
+    "target_sha256": "f0a518bf365a8c471e16ac6f3f51fa99dae51d275d420a6193c31f63fdaa8e4a",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/gnn.py",
+    "source_sha256": "ed178a00051c6605346b5cc0131662f795bc839fec31988e31f80c03654c6148",
+    "target": "src/unified_marl/algorithms/hmf/utils/gnn.py",
+    "target_sha256": "33df90c0e7e36d7297007c2b90c693083c9e65ec5d86ee141f4ab77463c32354",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/make_env.py",
+    "source_sha256": "860cfca40909beee8d8b4e486eebf7dc51898ccffd02c4b7d0af27780c0ffbcd",
+    "target": "src/unified_marl/algorithms/hmf/utils/make_env.py",
+    "target_sha256": "8bcb5b2fb674302b46c3799334e8745cdf3634b12ac20385bff7f3face6e5b40",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/misc.py",
+    "source_sha256": "88aeff6129e5f6ded4acdf749ad7a8fc82054f092d04ad6f8a5ddd3a0d59d4ab",
+    "target": "src/unified_marl/algorithms/hmf/utils/misc.py",
+    "target_sha256": "b7746ac7394ca865134b8381fbb7921058168e599dd11eb7663bcb16d04aad04",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/multiagentenv.py",
+    "source_sha256": "3e17a3c78277403654f26fc6ace22cb4d2be4de98dece06b3e6da239cbd77fcf",
+    "target": "src/unified_marl/algorithms/hmf/utils/multiagentenv.py",
+    "target_sha256": "995c3bbb9fa6f15a54dbb4a64fe5e7134c32168c2b48a6ffd5ed589c170dc368",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/networks.py",
+    "source_sha256": "3e2387e87f1b4f22a210aa55efd73621f55af99c624e780f3d77c0eefd588470",
+    "target": "src/unified_marl/algorithms/hmf/utils/networks.py",
+    "target_sha256": "17ae0d28f823ffee3aca18eebbc2f16c60be512212f5825bcb1bc30e98ac162d",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/noise.py",
+    "source_sha256": "96c8e9527ea7c2e00cf886e5d17206fdcb1e56c14ad9f300d2ae95cfcaa4976b",
+    "target": "src/unified_marl/algorithms/hmf/utils/noise.py",
+    "target_sha256": "25964ad0ae5021796fa2538f0113b12da81698b237b0a0d0acefd7a96e39ae78",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/ReplenishmentEnv.py",
+    "source_sha256": "6f38ae051d2ca7046caf2d5c78bc75b72315125857f84327627d31356cb57462",
+    "target": "src/unified_marl/algorithms/hmf/utils/ReplenishmentEnv.py",
+    "target_sha256": "272c4d2d48a09454a4ce6b647573269f31d0d16b04fa04c5121cc2404f7d6c0f",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/replenishment_env_wrappers.py",
+    "source_sha256": "0e89b9bf27de161dbb95ba28be1c542aa016b682380ad2e5888e54e7e709e6a6",
+    "target": "src/unified_marl/algorithms/hmf/utils/replenishment_env_wrappers.py",
+    "target_sha256": "d922af55c0f4ac221b095cf04d3b98bd2d1bc5ef451b25faae229cf727993e96",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/vec_env.py",
+    "source_sha256": "9fad81453513320697057928f84c30d6ea0cce5a1d531ab1bf54ff22d4a64eb2",
+    "target": "src/unified_marl/algorithms/hmf/utils/vec_env.py",
+    "target_sha256": "e621e1f8fa0c2180d6d3c791527cc0c2c3eecaff7e47f2ccd6fdcd2331242d96",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/large_scale/hmf_replenishment/utils/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/hmf/utils/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage3/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/learners/bcmapt_learner.py",
+    "source_sha256": "f17a409fb1e093f851088ff9ae7d46e67fc9bec50563247278a121ced1f9a692",
+    "target": "src/unified_marl/algorithms/kou/icq/learners/bcmapt_learner.py",
+    "target_sha256": "efadcd8722cf04594cd79041aba5f0a6aebbcd37ced781b54e2b9fab39e6005c",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/learners/bc_learner.py",
+    "source_sha256": "4612cb7589dc9702dd545ef13db36a8b019cae75c10341088cf7b2e45db0f66e",
+    "target": "src/unified_marl/algorithms/kou/icq/learners/bc_learner.py",
+    "target_sha256": "a899da65208a4bfc067456179c0724b035a8b7a4e7243677d416e116dccdf5b3",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/learners/cpl_learner.py",
+    "source_sha256": "bffb8bc292172de0f48c763f0eca4808f6dc54374c1266da96e9e14528b3dacf",
+    "target": "src/unified_marl/algorithms/kou/icq/learners/cpl_learner.py",
+    "target_sha256": "5056998bf0076860c95de190fc8e72ca157396e783a38038844addf87ecd7d4a",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/learners/cql_learner.py",
+    "source_sha256": "fe6bd39616792db3df2d7bc915656316e75cb43a628026f87f1aa6c61f141430",
+    "target": "src/unified_marl/algorithms/kou/icq/learners/cql_learner.py",
+    "target_sha256": "a50b15468c2727e36cb62f763dd2c9cccbd526956b821159adc5e52ac4554843",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/learners/dppo_learner.py",
+    "source_sha256": "32fe491bb3663f9128b6ab3b18d9bde30a0f995f80f49609dc77ef15084c6350",
+    "target": "src/unified_marl/algorithms/kou/icq/learners/dppo_learner.py",
+    "target_sha256": "c5026bcc39f4105d232bfafab8a83de7fd34cf5c4269f37d0976f2d68838e090",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/learners/iql_learner.py",
+    "source_sha256": "d0bc29142a7d3077e3861bd2c40c9d84a0aa4386e40263aeefe96fc123824519",
+    "target": "src/unified_marl/algorithms/kou/icq/learners/iql_learner.py",
+    "target_sha256": "9e32bc8789648726b373ad5c964c6c18fd8908940401de28ba188094415a035f",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/learners/madpo_aux_learner.py",
+    "source_sha256": "83e29a192fb4f0d75a1f9c5d3d4ee56178d0d6b0d6411f2c37b630637757c2ff",
+    "target": "src/unified_marl/algorithms/kou/icq/learners/madpo_aux_learner.py",
+    "target_sha256": "1c4943d70993174eed4f4cffa743774e4c8ec904fe87f3e8e7701dce4f2b92c8",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/learners/madpo_learner.py",
+    "source_sha256": "17f6602159c3f43d3c0e41d3df8762df6af792ab6a97033628b248727e9d049c",
+    "target": "src/unified_marl/algorithms/kou/icq/learners/madpo_learner.py",
+    "target_sha256": "4ee42d86764b5fea8e701f8034e5886a75a0cf8fa253caae3c541ec538b86125",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/learners/offpg_learner.py",
+    "source_sha256": "a730f60f0f3a4cb6ce8adfd24c946714a873a8b2c40aadcabcb1e7663dd30bf8",
+    "target": "src/unified_marl/algorithms/kou/icq/learners/offpg_learner.py",
+    "target_sha256": "daf8eb643be05503b7e31b83f1a3f4db6c04cddf6cf8bf0268bf790dbf437775",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/learners/q_learner.py",
+    "source_sha256": "dd72947c46956b9ac73eea3b654be5004faf92b0bc651d81f1a989243b1ac6f4",
+    "target": "src/unified_marl/algorithms/kou/icq/learners/q_learner.py",
+    "target_sha256": "34557bf310264ecccd1b0dbe4f02d4c20af39371527ab9e1f674f2f769ba4b13",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/learners/__init__.py",
+    "source_sha256": "d6bf04abbb9700cd1d7e304f96733da3816270ebd4a27e0bd13f76184058ce4b",
+    "target": "src/unified_marl/algorithms/kou/icq/learners/__init__.py",
+    "target_sha256": "77292f7ea1a0a9f75acf4db947767fe9c08a897f15c4bb0396655bdf61b3d9e6",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/controllers/basic_controller.py",
+    "source_sha256": "4e45de616c2c34227ce5a428e054425e780ac8eefcdec0ac10f6cf160b1984e9",
+    "target": "src/unified_marl/algorithms/kou/icq/controllers/basic_controller.py",
+    "target_sha256": "0051dfdaaabd4053b7e603f267f9aa374ea85879f6c1c58b66e313764ca8d9eb",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/controllers/cql_basic_controller.py",
+    "source_sha256": "7da6b6ea1a79f7969106d3aeb1cb8c9f441cded5e440b88d58c22fd3039fa817",
+    "target": "src/unified_marl/algorithms/kou/icq/controllers/cql_basic_controller.py",
+    "target_sha256": "c72cdb111fdfdccb3e1a46e5608c2bc0ea0f976b8be7239d54c026c270f3ebb1",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/controllers/n_controller.py",
+    "source_sha256": "f6227bad8ce1f76187928054748ca00bfa84278148337a81ac506938b1771ae3",
+    "target": "src/unified_marl/algorithms/kou/icq/controllers/n_controller.py",
+    "target_sha256": "c6c3c264caf98f9f29725e30f75c6ad2a49b66a525f26ab26210a2e75ed3db49",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/controllers/__init__.py",
+    "source_sha256": "80939f43b1c2a0e747ee6cadce226b89a2b1e7d9ffd0516d1c8c4167059fce75",
+    "target": "src/unified_marl/algorithms/kou/icq/controllers/__init__.py",
+    "target_sha256": "5bebd3571bbe86efc4662d851a42e43207a611117524aadad748e4d68db3e95e",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/agents/grnn_agent.py",
+    "source_sha256": "15bed7af14a9cb16edb338773c3126e99a548f29f34634925ce90268f35856fb",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/agents/grnn_agent.py",
+    "target_sha256": "574f504c7a25debffdf0f219e077f072f5965518e661620b6073cb78a38c2780",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/agents/n_rnn_agent.py",
+    "source_sha256": "6387c16475d32ce06e2d04ec8d3943ddd0a1e916b3396cadd0e17b077c34d7bc",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/agents/n_rnn_agent.py",
+    "target_sha256": "1075a9f6a8cfcfd08b5f5912eb8572f4ebe9791d0ff2b82237636999796f8a92",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/agents/rnn_agent.py",
+    "source_sha256": "28eb201f2994b6b45e977b65bd2caa560ee406a0fa5d76b8c1869a98a98c32c2",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/agents/rnn_agent.py",
+    "target_sha256": "2258586d5c2f3344fec309b066f7afc79039dfa895f83fcda81e6b90e10a1b66",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/agents/rnn_ns_agent.py",
+    "source_sha256": "2e477a2471efc14f4f5a50cf17d6d522d23f9e9b394dfe20ff777c008a6eb07c",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/agents/rnn_ns_agent.py",
+    "target_sha256": "bf2a6584eccfe154f3f6f564911dead58bee56390de993ca70d9b8e2a799b53b",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/agents/__init__.py",
+    "source_sha256": "352d31268ebd3275584c50adf63e265fbe689529e5dd03902730f7121e41824d",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/agents/__init__.py",
+    "target_sha256": "ecdfa9bb5b78a664a3025e63dcc5e6e937536ec225acd7a2d756953c95328ca2",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/critics/coma.py",
+    "source_sha256": "5a8f502cacea8d58f907bfd84ae62f79424f994afaae1e784dcb57835278be0e",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/critics/coma.py",
+    "target_sha256": "4463f709087ca03fb913d68c8177df466f9d27af8c8cc9aa771c77c09ce22af9",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/critics/doubleqv.py",
+    "source_sha256": "3efbb11a3b88c95ccfaa1e1a9ef89ce2a12a6196b960b750bea50494f6bee834",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/critics/doubleqv.py",
+    "target_sha256": "d39096e01698a968deb51bb5d1079329d002dffedd9f917649f17216c1035602",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/critics/offpg.py",
+    "source_sha256": "40c3dd4648c1011121aba54ecf5433f8fa253b3679effe95f1baabefbe9c4875",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/critics/offpg.py",
+    "target_sha256": "30b981ade39e5235750cb64ef6d9e922099a995eab3af4eaedeeb45806c5ed7a",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/mixers/nmix.py",
+    "source_sha256": "fd90fcb83c89958254591a45ffb11fa0f896afdf428cf334921f9b031f0839d5",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/mixers/nmix.py",
+    "target_sha256": "4dd0b0713aec30aae82bc3e753041cb7e1c60dfb9889216c44a779c124b96af5",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/mixers/qatten.py",
+    "source_sha256": "33bc8e2985fc8ef265c1d0d09fe1615d4f083da83bdb62ca48fcb0f81db29d06",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/mixers/qatten.py",
+    "target_sha256": "1bf49ba9aa73334eb8db7a3380d3f33785172dc2261daa35d91319266be3fc48",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/mixers/qmix.py",
+    "source_sha256": "509a7e9e38df84e9f310389b1fa8e2f3e7c96ed1ed82d13e2e2127b92a3b6c46",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/mixers/qmix.py",
+    "target_sha256": "4817d6822e77a229141034240d8fbfc3c019691294f24bb23255ed78b36de031",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/mixers/time_atten.py",
+    "source_sha256": "b9be424a10162cda5392ea6883125722ede52f662ef353822a16a811962536a6",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/mixers/time_atten.py",
+    "target_sha256": "72355d0a6e091351b3cd6db8609381ba1f4d7263a3b83837dfb6ffc92f4ea2c1",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/modules/mixers/vdn.py",
+    "source_sha256": "1681c32585cda8065fc82e66cb0670282334067eeb4f2162f28f39d7876b813a",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/mixers/vdn.py",
+    "target_sha256": "05cd04721177ea52012904ce0a03731ca86014a11c497fb694a0c64ee5f40b2f",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/action_selectors.py",
+    "source_sha256": "044f6834ad6888e79034f9f3383d031e65a217eb238bd07b765403253a099b1d",
+    "target": "src/unified_marl/algorithms/kou/icq/components/action_selectors.py",
+    "target_sha256": "d435ba03067d361ae89b5ae08c90b2d709123357f409e82502a402a039dea4c5",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/epsilon_schedules.py",
+    "source_sha256": "42bc0b063e1619f57b022b7fdf8bf007394fd63a78f2375a579372eb0a6abb93",
+    "target": "src/unified_marl/algorithms/kou/icq/components/epsilon_schedules.py",
+    "target_sha256": "9bf266394693a9d31b3b80554e3396d79ce8d3e0217c2e89b9317cd9adce32d5",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/reward_model.py",
+    "source_sha256": "3931687eacd0874464d348307824ed79d55580797007918c9f10660e3085446a",
+    "target": "src/unified_marl/algorithms/kou/icq/components/reward_model.py",
+    "target_sha256": "7e8c2bcad726a35c3b9a8d389af98edaee4090f39a2f712bf1185b8563d06f09",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/utils/dict2namedtuple.py",
+    "source_sha256": "6f0ebf7235eaeadb95cdb100bbd3d67c93d421395ec7881e8f167b4056158364",
+    "target": "src/unified_marl/algorithms/kou/icq/utils/dict2namedtuple.py",
+    "target_sha256": "f2c13999aa7a9d0a095124c85c9e18e3bee1e992015f6638c203eae685ee8611",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/utils/offpg_utils.py",
+    "source_sha256": "cb35d3d5c5e519360c26340762e06281fc136977855aa98e76937b423b17d7dc",
+    "target": "src/unified_marl/algorithms/kou/icq/utils/offpg_utils.py",
+    "target_sha256": "dbc8aa4fef63b1eda942e85ee1bcda12260c8dee28667fbf81f02a4422f2132a",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/utils/rl_utils.py",
+    "source_sha256": "f899d7d3a7276b016568a0e57c1890a6e2f0b4387c6ee948581744c06d195b7d",
+    "target": "src/unified_marl/algorithms/kou/icq/utils/rl_utils.py",
+    "target_sha256": "9f245e8478a6bd33868bb9311dae33d1d99c28ca9df835cf232a383397d5cb9b",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/utils/th_utils.py",
+    "source_sha256": "aedd65d2fb12d581f49e4e35673022df3f8d00e1ae4828f6d047f00328229f80",
+    "target": "src/unified_marl/algorithms/kou/icq/utils/th_utils.py",
+    "target_sha256": "9f08b6fdc714b9c24fcf65638415327f5396a485bbafecd2beaa5fa8215d03ca",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/learners/dmaq_qatten_learner.py",
+    "source_sha256": "f4091bbec2095d3742a6d5ac0ab64a51f2b2b601727012b7fea81d61e9496ed8",
+    "target": "src/unified_marl/algorithms/kou/old/learners/dmaq_qatten_learner.py",
+    "target_sha256": "2e545947f080dd0d2f3301a1923c8266e8bec700e4e33af7c98eb8cd62159a41",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/learners/dmaq_qatten_learner_globalRM.py",
+    "source_sha256": "3513269408d39b794029e5a106e1cb3e8eb8989b7ee9bb654c49d402a51beef5",
+    "target": "src/unified_marl/algorithms/kou/old/learners/dmaq_qatten_learner_globalRM.py",
+    "target_sha256": "4c114748f3d0a538d9006b2d548036533e0a7156fc4c4ee0baae9676f2ea9efb",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/learners/max_q_learner.py",
+    "source_sha256": "f723f89f43174af7c70a12af6c59a348c773a623a6bab66baed4d744dd0cff6e",
+    "target": "src/unified_marl/algorithms/kou/old/learners/max_q_learner.py",
+    "target_sha256": "e077fe1509caf9aa4c4251090215b63c76b35a0cc844a43f4184775637d098b3",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/learners/max_q_learner_globalRM.py",
+    "source_sha256": "83032322b3d4b752f765fbcb519a85abd96e79439bf6363e9a6817b01c58777d",
+    "target": "src/unified_marl/algorithms/kou/old/learners/max_q_learner_globalRM.py",
+    "target_sha256": "975a8132ce20d5892847a2a3e546c3abf3c9abeadbc9e1bb946408ca8a1eb75d",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/learners/pref_qmix_learner.py",
+    "source_sha256": "79269670c2e4ad8d5eb815477d3a40f49d3daafe1b5c4b48dbde958285c051b0",
+    "target": "src/unified_marl/algorithms/kou/old/learners/pref_qmix_learner.py",
+    "target_sha256": "c9085b30fb6916843bf9aec28230958e5821a7bd4f5b7ce2d569c91c774bd5e9",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/learners/pref_qmix_learner_new.py",
+    "source_sha256": "5f1559ae0149415e9f799d4140b5967500565c941f1ba13c96d9574621832ddf",
+    "target": "src/unified_marl/algorithms/kou/old/learners/pref_qmix_learner_new.py",
+    "target_sha256": "fe16777a489360f59af2267a513cd428ae8e606621f1bd0e6b815eb1e2f73c57",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/learners/q_learner.py",
+    "source_sha256": "a0460ea83a51a95526a66127b871f9eefc7167375117c2500f5631b4c817e892",
+    "target": "src/unified_marl/algorithms/kou/old/learners/q_learner.py",
+    "target_sha256": "2d76ecd628ac4cce65b9eb2fc51b4012c2b1eeda39ce53f71536b16280de5dce",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/learners/q_learner_differ.py",
+    "source_sha256": "ccfa2d81628816a122fb9700161a39c8b99b45557ead315cb30f9ca189fa1797",
+    "target": "src/unified_marl/algorithms/kou/old/learners/q_learner_differ.py",
+    "target_sha256": "7072751f3835c4a31a51a060511ba999f91c7f6ffd08e6de56e62e707be06830",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/learners/q_learner_globalRM.py",
+    "source_sha256": "c6f5a19f6ca4014a75f9b923d119083a41b0ba7ae6081c78bcde4b3e1b9ee638",
+    "target": "src/unified_marl/algorithms/kou/old/learners/q_learner_globalRM.py",
+    "target_sha256": "c58e59e4b25cbd0d9b8ec36d397490f85db989ab0fe4e8ae0263089abb0ba927",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/learners/q_learner_new.py",
+    "source_sha256": "19f4168fc4caf042d0351a559b831993d4cb559184a416907444e88daf09e5a2",
+    "target": "src/unified_marl/algorithms/kou/old/learners/q_learner_new.py",
+    "target_sha256": "fb355f85f71d9f453dce74caf8cd64cd8aa11dfbf605bae207b64c659ad1c807",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/learners/__init__.py",
+    "source_sha256": "fa3e3f8ba3d7f10562188c02aa937c72a486949d153eacce176f32d9e3930ac5",
+    "target": "src/unified_marl/algorithms/kou/old/learners/__init__.py",
+    "target_sha256": "9ad887006ea46487e0c48a65485b69149075fe6b8f8da260b371b9c8b0a615b6",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/controllers/basic_controller.py",
+    "source_sha256": "857cd8462f02406c7a0104ba75159916d70f116fc20b2e6aa55a6fc880ecf052",
+    "target": "src/unified_marl/algorithms/kou/old/controllers/basic_controller.py",
+    "target_sha256": "85b92fd14ecf64ce5d4261cb01f637877159a2ab0774f68924e2971de4858514",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/controllers/central_basic_controller.py",
+    "source_sha256": "7b22ce44d25cf27fcca242a1ac4c5a030081854aec4bc2c04658ef6734263c01",
+    "target": "src/unified_marl/algorithms/kou/old/controllers/central_basic_controller.py",
+    "target_sha256": "15e5930c31e971bcf3f97da7b43a9c07752c2b14a9bd54e240707a2f3a6f99b1",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/controllers/maddpg_controller.py",
+    "source_sha256": "2e6629fd12b227ec77e5ebbbe982d392eb2cd5633c8968c08c3ae6c84d3a1c5e",
+    "target": "src/unified_marl/algorithms/kou/old/controllers/maddpg_controller.py",
+    "target_sha256": "45b721ba6712c679e5935327ba02868dedb6d5eb1cac02442841edf473348255",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/controllers/__init__.py",
+    "source_sha256": "7153f5391b9bf17055b430f06df2102e6c692a652f5527067aec2272253e3e2b",
+    "target": "src/unified_marl/algorithms/kou/old/controllers/__init__.py",
+    "target_sha256": "a45b3e403576a7e9c6f220d0de590c4d002712f27460a9a5769165b301ca71c0",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/old/modules/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/agents/central_rnn_agent.py",
+    "source_sha256": "d38df46e702e8a40b004b2171748630a43b16d05c1ca23a8e99ab585418de84c",
+    "target": "src/unified_marl/algorithms/kou/old/modules/agents/central_rnn_agent.py",
+    "target_sha256": "cf4e70e391150870f21e721364649384fe928c900306db8a28b3755570a1f015",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/agents/mlp_agent.py",
+    "source_sha256": "b88405d729d113d6e0367fbecb5b7039b1d86361480f43078d6fb19091ff8976",
+    "target": "src/unified_marl/algorithms/kou/old/modules/agents/mlp_agent.py",
+    "target_sha256": "e58374abe3d448f45d37537742ea2f959140d7ffc52be46879db5fd6827f867e",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/agents/mlp_ns_agent.py",
+    "source_sha256": "f9cd7671c8a24ed8235e3c054382d82660362e592dacd355c593d8dc35a83d57",
+    "target": "src/unified_marl/algorithms/kou/old/modules/agents/mlp_ns_agent.py",
+    "target_sha256": "04bf17e7576e03fe0aa631536a3350bebbc09c9df481fd26c92e1d0a1abda22b",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/agents/rnn_agent.py",
+    "source_sha256": "c14fc450038da2446642cb0575b480f21b5c53faca72f7640faff788a6b80ec9",
+    "target": "src/unified_marl/algorithms/kou/old/modules/agents/rnn_agent.py",
+    "target_sha256": "3b291e3c3f7aaf8185d3ac5fd7ebcd78301da5c83ff6b0c90d02ea8bf6c5cf05",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/agents/__init__.py",
+    "source_sha256": "3b68cad382ee10906ce73323963a73db00809c946b166d65375b53ef658d1171",
+    "target": "src/unified_marl/algorithms/kou/old/modules/agents/__init__.py",
+    "target_sha256": "f14f84f51d0388b056c7755bd5b1095039389de927e69fdf17a4e62549700630",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/critics/coma.py",
+    "source_sha256": "5a8f502cacea8d58f907bfd84ae62f79424f994afaae1e784dcb57835278be0e",
+    "target": "src/unified_marl/algorithms/kou/old/modules/critics/coma.py",
+    "target_sha256": "4463f709087ca03fb913d68c8177df466f9d27af8c8cc9aa771c77c09ce22af9",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/critics/maddpg_ns.py",
+    "source_sha256": "1323bb1f51ccf93d825230c5344784fb5f518d1dde5eec549f91991b71e69842",
+    "target": "src/unified_marl/algorithms/kou/old/modules/critics/maddpg_ns.py",
+    "target_sha256": "eee8319cd8f10aedfdbe8e9b866cb12c49040a7578551161870eb3c075cc1bbb",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/critics/__init__.py",
+    "source_sha256": "4389435828054806768083638d0e814796bc11522d1582bf128d0efe4b1b07a8",
+    "target": "src/unified_marl/algorithms/kou/old/modules/critics/__init__.py",
+    "target_sha256": "70ed10303fdb5ba6fcd8a1d51394477a5ee3c2422726cd7bc8b6249f0b8b84bf",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/mixers/dmaq_general.py",
+    "source_sha256": "dbd7fb7c37a05abd82155b10197069ca1c42dc5259717f8102f1a0b814cb3ec2",
+    "target": "src/unified_marl/algorithms/kou/old/modules/mixers/dmaq_general.py",
+    "target_sha256": "d1d33792f8e68cce1fecf9783cb5a26e9c8d4977b90af1bbc95ecc7dffe6d165",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/mixers/dmaq_qatten.py",
+    "source_sha256": "fae873edc85cb682dd2575b86cdf20eac9a76921f9fc952ac7abca2504ea5758",
+    "target": "src/unified_marl/algorithms/kou/old/modules/mixers/dmaq_qatten.py",
+    "target_sha256": "19021386a0723f6f0b4e0ffc5e3bbb299abce323f539c76ebacffed94641fd8a",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/mixers/dmaq_qatten_weight.py",
+    "source_sha256": "e095872b93ab0d94edd415d9a981123834356ac0c1bb5867401c18d578373c80",
+    "target": "src/unified_marl/algorithms/kou/old/modules/mixers/dmaq_qatten_weight.py",
+    "target_sha256": "9990482cc4d31baf180ecd28374aa358be85f9b3cbb173e0a078431f08d65c38",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/mixers/dmaq_si_weight.py",
+    "source_sha256": "2a4dbc53a0f72620c8ccaf600157cf1cc6060e857409ed8c330ec9bf088a3d5c",
+    "target": "src/unified_marl/algorithms/kou/old/modules/mixers/dmaq_si_weight.py",
+    "target_sha256": "6e728f6528fd710a8a39e7b05e01660a59116f2903003c4b0233aa7ef1d43f7c",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/mixers/qmix.py",
+    "source_sha256": "3973679f5123119d5f0814193c8cebd01148ede57633c1135ae332f207525d18",
+    "target": "src/unified_marl/algorithms/kou/old/modules/mixers/qmix.py",
+    "target_sha256": "ede5fbb74650e00f2cdccabd55dc67ec260c335fbae5a9f313d3ad7e4aefecc3",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/mixers/qmix_central_attention.py",
+    "source_sha256": "12d14ad749a2af82afee83b76d29a33f0f78d69f30a7e12b2f47a839a3893e82",
+    "target": "src/unified_marl/algorithms/kou/old/modules/mixers/qmix_central_attention.py",
+    "target_sha256": "99b786034be07e83b64929797e4e2bfd086de5e8d005cf268682d66ad81845ea",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/mixers/qmix_central_no_hyper.py",
+    "source_sha256": "e656d5a1830696f319c104c7609778b375470e7302890329c9bc31b8edd60866",
+    "target": "src/unified_marl/algorithms/kou/old/modules/mixers/qmix_central_no_hyper.py",
+    "target_sha256": "cb8ac453a2fac8f9831fd61473ca87aed5e68d3672d9259ea2bb5e77daf76ac1",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/mixers/qtran.py",
+    "source_sha256": "b67b60eb5c39908aa6c9d8ecf5b67ef2a7da0ef0472b10cdf1eaa71674cb4a29",
+    "target": "src/unified_marl/algorithms/kou/old/modules/mixers/qtran.py",
+    "target_sha256": "5fe3fb66f94509a1616e43500c610efd492cdfe29a286c47fc3c5d7f0342afc4",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/mixers/vdn.py",
+    "source_sha256": "1681c32585cda8065fc82e66cb0670282334067eeb4f2162f28f39d7876b813a",
+    "target": "src/unified_marl/algorithms/kou/old/modules/mixers/vdn.py",
+    "target_sha256": "05cd04721177ea52012904ce0a03731ca86014a11c497fb694a0c64ee5f40b2f",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/modules/mixers/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/old/modules/mixers/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/components/action_selectors.py",
+    "source_sha256": "a01546960ec0cece63e047dac129cb5a594ad9a8ce494588021d7da70b08b383",
+    "target": "src/unified_marl/algorithms/kou/old/components/action_selectors.py",
+    "target_sha256": "d28f02af03f7461b6cad5de7db6066d590cf4b4df872eb1b6bfe33823aca3a6e",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/components/epsilon_schedules.py",
+    "source_sha256": "42bc0b063e1619f57b022b7fdf8bf007394fd63a78f2375a579372eb0a6abb93",
+    "target": "src/unified_marl/algorithms/kou/old/components/epsilon_schedules.py",
+    "target_sha256": "9bf266394693a9d31b3b80554e3396d79ce8d3e0217c2e89b9317cd9adce32d5",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/components/preference.py",
+    "source_sha256": "eb597c55bf2c4abc958f03127ee7d0d4ce7b23a8428124ba3221240fb1c24abc",
+    "target": "src/unified_marl/algorithms/kou/old/components/preference.py",
+    "target_sha256": "5bafc2312903ab136ebbb27be63d9a0f5031398a9bb62fc1b58e112880dea333",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/components/reward_model.py",
+    "source_sha256": "c9012e95a189ee0a4c44ec33bbe084fe7a5b1509f6c4afdcfd972d1b5b8afbbb",
+    "target": "src/unified_marl/algorithms/kou/old/components/reward_model.py",
+    "target_sha256": "c3c591886e5533c07ad2d17d8d576ad25561adeb2bbad010fea917103d93c84c",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/components/reward_model_new.py",
+    "source_sha256": "066d48711d4d1dbed2d58ce1be40b2ffcdf5a4466ad92549dc14f3576364e5a6",
+    "target": "src/unified_marl/algorithms/kou/old/components/reward_model_new.py",
+    "target_sha256": "4c75da5a9f0b25f8b27c5a283bb820394804b4436901429393b1697e745e6670",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/utils/dict2namedtuple.py",
+    "source_sha256": "6f0ebf7235eaeadb95cdb100bbd3d67c93d421395ec7881e8f167b4056158364",
+    "target": "src/unified_marl/algorithms/kou/old/utils/dict2namedtuple.py",
+    "target_sha256": "f2c13999aa7a9d0a095124c85c9e18e3bee1e992015f6638c203eae685ee8611",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/utils/model.py",
+    "source_sha256": "9f81afba7042348bee563c53dc98f9cca9432d1d7ad81ac85829223babcf347f",
+    "target": "src/unified_marl/algorithms/kou/old/utils/model.py",
+    "target_sha256": "7b31b4bd523ed18f2cd892d3cf6d9a344dde74cf8903f0e47c00a61e0fed208e",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/utils/rl_utils.py",
+    "source_sha256": "f675e6e831b28a022f61a9cd54a468e0e947d90cdbc4b0dc4a0b5c84e92d9715",
+    "target": "src/unified_marl/algorithms/kou/old/utils/rl_utils.py",
+    "target_sha256": "e0e9306ee19e24e50f06dabdc8c9704529b2298cf868ae8bbba371321148ae2a",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/old_src/utils/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/old/utils/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/MAPT/mat/algorithms/reward_model/models/encoder_decoder_divide.py",
+    "source_sha256": "66b70d7b6893f30a939336eea3a9b23f80d556e30cbd4ec018fecce141bd1d47",
+    "target": "src/unified_marl/algorithms/kou/reward_models/encoder_decoder_divide.py",
+    "target_sha256": "bb937bb5045482c16dd4957e105b1cc20a2685b1d725c26d80efa8ca6bdbd949",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/MAPT/mat/algorithms/reward_model/models/lstm.py",
+    "source_sha256": "00e968e246e176d6a7af199db0fdb4905b8ad56a38440085529f754552395f28",
+    "target": "src/unified_marl/algorithms/kou/reward_models/lstm.py",
+    "target_sha256": "8202842221d74a4606d870786e9cf3a051bd8d2eea7aa1bc1ab626b87a77895c",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/MAPT/mat/algorithms/reward_model/models/MR.py",
+    "source_sha256": "953d4955ff354dc32528ef1f70ef2121279be42905cb4785dc8f8fd06149ea2b",
+    "target": "src/unified_marl/algorithms/kou/reward_models/MR.py",
+    "target_sha256": "75c684bc7b6e2ea4ebd95410516d2a7ed17f68bf70f2af9725e12e916d561894",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/MAPT/mat/algorithms/reward_model/models/MultiPrefTransformer.py",
+    "source_sha256": "d74f9cd6322fcf7aa1f5fcacf5da7313db596bb1e673e0199d4a5bf5ee77bb4d",
+    "target": "src/unified_marl/algorithms/kou/reward_models/MultiPrefTransformer.py",
+    "target_sha256": "b020f1bd61df9c639a03c48a361be5c07a903382c3d275887eb6371a5c826a76",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/MAPT/mat/algorithms/reward_model/models/NMR.py",
+    "source_sha256": "5cae24acc2ef054956af8c4b1e3916c851a104213fe0c57ba86cd4623ed186be",
+    "target": "src/unified_marl/algorithms/kou/reward_models/NMR.py",
+    "target_sha256": "7fb80aa903524c214711ff1bdd3cfe5c0c8e982a4dcadfd1187ec15b2437fa2a",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/MAPT/mat/algorithms/reward_model/models/ops.py",
+    "source_sha256": "0451aa84eaac27f5dc0b48dc93e090f248dcd3b4e98486c505f181f2234dbf37",
+    "target": "src/unified_marl/algorithms/kou/reward_models/ops.py",
+    "target_sha256": "ef8a229ece3555598e1cca90adc305281223485b53f40519124a670673a13cf4",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/MAPT/mat/algorithms/reward_model/models/PrefTransformer.py",
+    "source_sha256": "92de00ac294a009ab08baad151c42a45a8d4964ad5e31aa3c8300d480961a3c6",
+    "target": "src/unified_marl/algorithms/kou/reward_models/PrefTransformer.py",
+    "target_sha256": "13f8021cfcf03f6b62bd67d6f45e8d7abd8b1cd8ad6f3f910aaae15578006e62",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/MAPT/mat/algorithms/reward_model/models/q_function.py",
+    "source_sha256": "75859808e7453890ba34acab94df15d74e98151ef816a7fa2b606a0dd49bf8f0",
+    "target": "src/unified_marl/algorithms/kou/reward_models/q_function.py",
+    "target_sha256": "cf3760d38c442a44f300636aa3ad45e6f6e69c13af39e5bb269e99956a68d63d",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/MAPT/mat/algorithms/reward_model/models/torch_utils.py",
+    "source_sha256": "91cdab0130587d2c52d79b9cad11e7b7368fdcd0963684d20d11fca7790dfdc9",
+    "target": "src/unified_marl/algorithms/kou/reward_models/torch_utils.py",
+    "target_sha256": "ec6d3754c94d63b2ce9c575b40e6c60113e5a57a903ca7b001c174b8623e3dd2",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/MAPT/mat/algorithms/reward_model/models/trajectory_gpt2.py",
+    "source_sha256": "bc9a4fe68a04006935a767fa93673037953c5a76f67d76039f645ddc4ad8a24b",
+    "target": "src/unified_marl/algorithms/kou/reward_models/trajectory_gpt2.py",
+    "target_sha256": "ab3739943d2ef9c7b9469a0d9e840da2cc31e83f62cdf6af1ab04098b7d41796",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/get_preferences.py",
+    "source_sha256": "eae121653ac80667ec54fc8fc6760f585b6e51b65aca0a38ce14bef8260405d4",
+    "target": "src/unified_marl/datasets/prompts.py",
+    "target_sha256": "d895e40630bb18e2d80b0f43013c673d120be49fc9dcef94df1de3ca7d2cf8e8",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/make_diverse_preference.py",
+    "source_sha256": "e8ccb37fc7de12ff5752f327094b6c7492c0d0b0553fa4900dd9ce2eee848390",
+    "target": "src/unified_marl/datasets/segments.py",
+    "target_sha256": "14fa6e890a84cfeaf28c12517b18281d5f352b587270c4451408f4aa827f23a2",
+    "evidence": "docs/evidence/stage4/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/policy/__init__.py",
+    "source_sha256": "e2fd4c3e3efb413893706dd49f62214e610be47adecce928aba77186113a0e21",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/__init__.py",
+    "target_sha256": "a8874378bf2a7dd77bd61397343ec173ffa1a3eef052c811f5b8ba40eaccf8df",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/policy/base/base_controller.py",
+    "source_sha256": "d06fcaf49303006f1d1a0328b9d0ff125664b3557ef4d224313a5603990fc0d3",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/base/base_controller.py",
+    "target_sha256": "3166a66b86fa9dfc410181303735d7aba7abe4033ccecd08cc311316d7266a8e",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/policy/base/base_net.py",
+    "source_sha256": "763c2367ffbfe573f98441ff32606a7dadad164f2650c96715a3d0b214650dbb",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/base/base_net.py",
+    "target_sha256": "7351d69aa9e65df3480138503a37d203de43195b00784b37a2a53e3dbc0ff9d8",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/policy/base/base_policy.py",
+    "source_sha256": "5bdc1d3326060da62330789b85f8a96955bddb93bb07cec0ff2745ea4b672c09",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/base/base_policy.py",
+    "target_sha256": "07494d78e1bd4e4fa445af5716b86f02225166d759cabb033af3a104948eaaa6",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/policy/mappo/ppo_controller.py",
+    "source_sha256": "059f415931bd0ef788ef8ef22da9f4bb9b023f0be651aa7a13f8b849e198227d",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/mappo/ppo_controller.py",
+    "target_sha256": "86a821903e17e1b127451e75e7f48274b01ea0f9df49315a90cb197d82992c88",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/policy/mappo/ppo_net.py",
+    "source_sha256": "f496dfcb6a80c29d4e20fc34f27224b2024ec0169a0eff9ecf27403583f7a282",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/mappo/ppo_net.py",
+    "target_sha256": "4d97b945ff7c95089b0cda088706e88a573e5dde73055b6d9787fa75d8e7a6f4",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/policy/mappo/ppo_policy.py",
+    "source_sha256": "da248c83363cbd8aee5fc5dfb39798bc605dd365635d7025c39ed8fa9a580abe",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/mappo/ppo_policy.py",
+    "target_sha256": "83ca8ace6fe062d747af8750e693c5662d07c9abff73f42da4f25fb3654089ad",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/policy/qmix/q_controller.py",
+    "source_sha256": "d03026b484c850fb55bc60565b8b23b18ef9b1251aef348ad734441170d0a28d",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/qmix/q_controller.py",
+    "target_sha256": "cc2bc1b2988dab490f313e4fa3c835f0b3a4c63aef84ac1eab82ce07357fea32",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/policy/qmix/q_net.py",
+    "source_sha256": "93ca5983436c7e1d58d88923f989b8781afa0175a6df06b7ab08b20d26d938c7",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/qmix/q_net.py",
+    "target_sha256": "3600fc3eff4432f97b3275807071ab72954a1da8bd9f3bd53b8c2468b3ed0ade",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/policy/qmix/q_policy.py",
+    "source_sha256": "d5545c9456d6c6fd248caa5829ac6ef4c786214725d116bad9c83889c3f8f66c",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/qmix/q_policy.py",
+    "target_sha256": "546b3603fa64b2179d115c776d32f28e416f2027180cdcce146e734a2e795855",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/utils/utils.py",
+    "source_sha256": "550d75cc8e270049dff1142adacd04ad88d3983c6dc52f0027d3cc6339500452",
+    "target": "src/unified_marl/algorithms/sadma/native/utils/utils.py",
+    "target_sha256": "7a3ebadac9b762b00a2473fda99562a2f62f1f803c06f610561dfc312ced571b",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/utils/buffer.py",
+    "source_sha256": "b2afd67f40e681119fa1cc991840fd0ca97867547546d06888b06847e7561ebe",
+    "target": "src/unified_marl/algorithms/sadma/native/utils/buffer.py",
+    "target_sha256": "7409dd6ae69b1470b18e511790d3b889001a5e91460e6f70837547621b36228e",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "marl平台代码/王思哲/code/sadma/utils/scheme.py",
+    "source_sha256": "331569db8ffbb1ff2a85bcd29b404da79747130918b5a5f59981b071716026d1",
+    "target": "src/unified_marl/algorithms/sadma/native/utils/scheme.py",
+    "target_sha256": "803d6f5ec55ca0f0f94d20545ef3b6d294e06e0f1fe5cf40390214ae6ab1c63f",
+    "evidence": "docs/evidence/stage5/migration_sources.json"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/api.py",
+    "source_sha256": "9c30d461119f9e474f2c0640d7d872d8688e9add6729c256862dbdf33096696a",
+    "target": "src/unified_marl/api.py",
+    "target_sha256": "9c30d461119f9e474f2c0640d7d872d8688e9add6729c256862dbdf33096696a",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/checkpoints.py",
+    "source_sha256": "c4ec076928b6bfa6271c85df32984120f1820fdf0ca0ee454faf5a34c74c39b7",
+    "target": "src/unified_marl/checkpoints.py",
+    "target_sha256": "c4ec076928b6bfa6271c85df32984120f1820fdf0ca0ee454faf5a34c74c39b7",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/cli.py",
+    "source_sha256": "cb5c68c3888d1f2e989140549f690ab7aa3516960157f660f5dbefa9e9953c4a",
+    "target": "src/unified_marl/cli.py",
+    "target_sha256": "cb5c68c3888d1f2e989140549f690ab7aa3516960157f660f5dbefa9e9953c4a",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/registry.py",
+    "source_sha256": "9483ffccc92f897cbe8c59172a8f7b601047259b1f7f398d7a00881a93899e71",
+    "target": "src/unified_marl/registry.py",
+    "target_sha256": "9483ffccc92f897cbe8c59172a8f7b601047259b1f7f398d7a00881a93899e71",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/__init__.py",
+    "source_sha256": "a3b6230ad2da668b7591d0236f26c27074829d5cb2a23bcdc0129a43b80c0064",
+    "target": "src/unified_marl/__init__.py",
+    "target_sha256": "a3b6230ad2da668b7591d0236f26c27074829d5cb2a23bcdc0129a43b80c0064",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/__main__.py",
+    "source_sha256": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7",
+    "target": "src/unified_marl/__main__.py",
+    "target_sha256": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/__init__.py",
+    "source_sha256": "397b56decd4a72057ebdce83132577e352ffd05d52ebce4dadbdf1fa78bfb040",
+    "target": "src/unified_marl/algorithms/__init__.py",
+    "target_sha256": "397b56decd4a72057ebdce83132577e352ffd05d52ebce4dadbdf1fa78bfb040",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/default.yaml",
+    "source_sha256": "b43d314a15590d5cf8214306bf8f8ee1a43b376e64c66f6c8c699c76bce756d4",
+    "target": "src/unified_marl/config/default.yaml",
+    "target_sha256": "b43d314a15590d5cf8214306bf8f8ee1a43b376e64c66f6c8c699c76bce756d4",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/hmf.yaml",
+    "source_sha256": "bcd5e8221888587fa4162496255f3fc63d34b806ffbf9a3cc4a2901d1cce4839",
+    "target": "src/unified_marl/config/hmf.yaml",
+    "target_sha256": "bcd5e8221888587fa4162496255f3fc63d34b806ffbf9a3cc4a2901d1cce4839",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou_runtime.yaml",
+    "source_sha256": "59e8812c62d58293b4fe9cd5977bf9884bee222df567ba7b594638622722c468",
+    "target": "src/unified_marl/config/kou_runtime.yaml",
+    "target_sha256": "59e8812c62d58293b4fe9cd5977bf9884bee222df567ba7b594638622722c468",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma_runtime.yaml",
+    "source_sha256": "7c3fb2ab2ec6929f8b94c02bb74c194454331980f73e0119b0525cea7fc71b4c",
+    "target": "src/unified_marl/config/sadma_runtime.yaml",
+    "target_sha256": "7c3fb2ab2ec6929f8b94c02bb74c194454331980f73e0119b0525cea7fc71b4c",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/__init__.py",
+    "source_sha256": "aa963b502e825962a7aa262226c15cfe54620d1685fc1cb854bc198af3453d55",
+    "target": "src/unified_marl/config/__init__.py",
+    "target_sha256": "aa963b502e825962a7aa262226c15cfe54620d1685fc1cb854bc198af3453d55",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/datasets/episodes.py",
+    "source_sha256": "c114fdc7848af1e0e161e1b6e2d2fddc2c9d883a7c82d004e877fc4b0977cc6c",
+    "target": "src/unified_marl/datasets/episodes.py",
+    "target_sha256": "c114fdc7848af1e0e161e1b6e2d2fddc2c9d883a7c82d004e877fc4b0977cc6c",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/datasets/labels.py",
+    "source_sha256": "e780189a44ad91f589e1ebcc898b5d2a591a6857b40e3f89d524286bc71ded9c",
+    "target": "src/unified_marl/datasets/labels.py",
+    "target_sha256": "e780189a44ad91f589e1ebcc898b5d2a591a6857b40e3f89d524286bc71ded9c",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/datasets/__init__.py",
+    "source_sha256": "0340d7663dbf9005d028f94df9c83db687483bfcd4a9e980c5be5c796e08d599",
+    "target": "src/unified_marl/datasets/__init__.py",
+    "target_sha256": "0340d7663dbf9005d028f94df9c83db687483bfcd4a9e980c5be5c796e08d599",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/envs/cityflow.py",
+    "source_sha256": "bd44bcade227490ac8f3af34315ed25291e487e245fc2d2ad79d639952a214c6",
+    "target": "src/unified_marl/envs/cityflow.py",
+    "target_sha256": "bd44bcade227490ac8f3af34315ed25291e487e245fc2d2ad79d639952a214c6",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/envs/replenishment.py",
+    "source_sha256": "73e2e9bec2077349faf56e02b1647155de19f8a8d2563340bbdf6bff1be40838",
+    "target": "src/unified_marl/envs/replenishment.py",
+    "target_sha256": "73e2e9bec2077349faf56e02b1647155de19f8a8d2563340bbdf6bff1be40838",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/envs/smac.py",
+    "source_sha256": "b112da0ec5c95ca0f2212cfbd55de6c97f4a12a6b897f847109c3ee7cb2e5733",
+    "target": "src/unified_marl/envs/smac.py",
+    "target_sha256": "b112da0ec5c95ca0f2212cfbd55de6c97f4a12a6b897f847109c3ee7cb2e5733",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/envs/toy.py",
+    "source_sha256": "2ace9e2b1c664955577f320a25023bae81a9301062390cd832f140f89da9f7da",
+    "target": "src/unified_marl/envs/toy.py",
+    "target_sha256": "2ace9e2b1c664955577f320a25023bae81a9301062390cd832f140f89da9f7da",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/envs/__init__.py",
+    "source_sha256": "462710cbf3f9db7f5f4de48395ba43038d5089a482f02227fb657b839fc9adfd",
+    "target": "src/unified_marl/envs/__init__.py",
+    "target_sha256": "462710cbf3f9db7f5f4de48395ba43038d5089a482f02227fb657b839fc9adfd",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/execution/batches.py",
+    "source_sha256": "cbd3f84e14f58c353ef6f517d52436ccedc8abb5dc842982ae419c300766193d",
+    "target": "src/unified_marl/execution/batches.py",
+    "target_sha256": "cbd3f84e14f58c353ef6f517d52436ccedc8abb5dc842982ae419c300766193d",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/execution/evaluation.py",
+    "source_sha256": "72656dcb02604931d0cc7f9ba1ec84ee0175526088624f049ac95a687bd4f0be",
+    "target": "src/unified_marl/execution/evaluation.py",
+    "target_sha256": "72656dcb02604931d0cc7f9ba1ec84ee0175526088624f049ac95a687bd4f0be",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/execution/inference.py",
+    "source_sha256": "e7f4b3037ecba736ea76386c1c93d020995a9d7716c8658605b1d7f37240966c",
+    "target": "src/unified_marl/execution/inference.py",
+    "target_sha256": "e7f4b3037ecba736ea76386c1c93d020995a9d7716c8658605b1d7f37240966c",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/execution/protocol.py",
+    "source_sha256": "9410b78342717199a5e7933de55c802a95d95844263f69d4138d2453982d9300",
+    "target": "src/unified_marl/execution/protocol.py",
+    "target_sha256": "9410b78342717199a5e7933de55c802a95d95844263f69d4138d2453982d9300",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/execution/sampler.py",
+    "source_sha256": "787b01a985b55b8e9a8bc6891f2fd4d05030b2059cab661c1bd2f17a2909523d",
+    "target": "src/unified_marl/execution/sampler.py",
+    "target_sha256": "787b01a985b55b8e9a8bc6891f2fd4d05030b2059cab661c1bd2f17a2909523d",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/execution/settings.py",
+    "source_sha256": "68b3a83f890dceb4fdf6e55dd217ec84bab7184ad4f936c36b8a3a3a50b086fe",
+    "target": "src/unified_marl/execution/settings.py",
+    "target_sha256": "68b3a83f890dceb4fdf6e55dd217ec84bab7184ad4f936c36b8a3a3a50b086fe",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/execution/trainer.py",
+    "source_sha256": "2a900452547ff922e14f01b618cad0c7a2de8fa9089c3e8e82124e194b3f288c",
+    "target": "src/unified_marl/execution/trainer.py",
+    "target_sha256": "2a900452547ff922e14f01b618cad0c7a2de8fa9089c3e8e82124e194b3f288c",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/execution/__init__.py",
+    "source_sha256": "93e9a0de7b886a08c3a934d5a3d6b7b5c5eea17958f916ed0159d79f19bd80cf",
+    "target": "src/unified_marl/execution/__init__.py",
+    "target_sha256": "93e9a0de7b886a08c3a934d5a3d6b7b5c5eea17958f916ed0159d79f19bd80cf",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/learners/base.py",
+    "source_sha256": "21ce3d41009ea296ee4ebea2b194bc0b09dd9c5786b3cffcef481d0e3b15c2d5",
+    "target": "src/unified_marl/learners/base.py",
+    "target_sha256": "21ce3d41009ea296ee4ebea2b194bc0b09dd9c5786b3cffcef481d0e3b15c2d5",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/rewards/service.py",
+    "source_sha256": "2388b36360d4b7f18d7083b31950873e1fcb5bec350481d495a028160e7293a0",
+    "target": "src/unified_marl/rewards/service.py",
+    "target_sha256": "2388b36360d4b7f18d7083b31950873e1fcb5bec350481d495a028160e7293a0",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/rewards/__init__.py",
+    "source_sha256": "4a0a99eb70373e5ff1e5d72724ea6d06bafb6725cfee5caa09b3526f80350c0b",
+    "target": "src/unified_marl/rewards/__init__.py",
+    "target_sha256": "4a0a99eb70373e5ff1e5d72724ea6d06bafb6725cfee5caa09b3526f80350c0b",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/runners/episode_runner.py",
+    "source_sha256": "a516389890d8a70118bb15f9750eb62db9f2d52a78bd20351b1d664ea5a27ce1",
+    "target": "src/unified_marl/runners/episode_runner.py",
+    "target_sha256": "a516389890d8a70118bb15f9750eb62db9f2d52a78bd20351b1d664ea5a27ce1",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/runners/parallel_runner.py",
+    "source_sha256": "5e6cb403f889229c20fac680f97b5fe45078952b5730eeb28d849f26cd48170e",
+    "target": "src/unified_marl/runners/parallel_runner.py",
+    "target_sha256": "5e6cb403f889229c20fac680f97b5fe45078952b5730eeb28d849f26cd48170e",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/runners/__init__.py",
+    "source_sha256": "9885a307873ad60cd5e38d5d2a8e0c27cd98592caf1dbfac6af0f1a177a14381",
+    "target": "src/unified_marl/runners/__init__.py",
+    "target_sha256": "9885a307873ad60cd5e38d5d2a8e0c27cd98592caf1dbfac6af0f1a177a14381",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/trainers/offline.py",
+    "source_sha256": "7787093fe0df9e8f00e3d6650833b71457a8c7afa0aff895e5aca392544f6050",
+    "target": "src/unified_marl/trainers/offline.py",
+    "target_sha256": "7787093fe0df9e8f00e3d6650833b71457a8c7afa0aff895e5aca392544f6050",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/trainers/sadma.py",
+    "source_sha256": "eb63c4fb49b156fea907165456abd4d1bbbdc75d29065c631e5de20345f4e752",
+    "target": "src/unified_marl/trainers/sadma.py",
+    "target_sha256": "eb63c4fb49b156fea907165456abd4d1bbbdc75d29065c631e5de20345f4e752",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/trainers/__init__.py",
+    "source_sha256": "f1c385bc4c4ef1abf3a0c42c3fcca2a76f94d09435a360a4196184ab7cf47bee",
+    "target": "src/unified_marl/trainers/__init__.py",
+    "target_sha256": "f1c385bc4c4ef1abf3a0c42c3fcca2a76f94d09435a360a4196184ab7cf47bee",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/utils/logging.py",
+    "source_sha256": "66617cffb2cf458298485a2eddfe066c3d5c624f741b95ab0f4f2d52b90c1e8c",
+    "target": "src/unified_marl/utils/logging.py",
+    "target_sha256": "66617cffb2cf458298485a2eddfe066c3d5c624f741b95ab0f4f2d52b90c1e8c",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/utils/__init__.py",
+    "source_sha256": "06f7647190fa7701ad732a6cd116021bf4d41e70dd7a580c6e1d69b36c05e529",
+    "target": "src/unified_marl/utils/__init__.py",
+    "target_sha256": "06f7647190fa7701ad732a6cd116021bf4d41e70dd7a580c6e1d69b36c05e529",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/hmf/adapter.py",
+    "source_sha256": "a98560f100b04b5a9e3eb6710653e8453e981f45a0347bfeaf2226ff846ed4ad",
+    "target": "src/unified_marl/algorithms/hmf/adapter.py",
+    "target_sha256": "a98560f100b04b5a9e3eb6710653e8453e981f45a0347bfeaf2226ff846ed4ad",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/hmf/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/hmf/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/kou/adapter.py",
+    "source_sha256": "95d7946640240630214318281affdc7f4cbec18261900105b5ffaff60ca6c805",
+    "target": "src/unified_marl/algorithms/kou/adapter.py",
+    "target_sha256": "95d7946640240630214318281affdc7f4cbec18261900105b5ffaff60ca6c805",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/kou/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/rghmf/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/rghmf/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/sadma/adapter.py",
+    "source_sha256": "1be0db8f37c2c763c104a0176443d81e65caddd2f1380b4a58334eeb35229272",
+    "target": "src/unified_marl/algorithms/sadma/adapter.py",
+    "target_sha256": "1be0db8f37c2c763c104a0176443d81e65caddd2f1380b4a58334eeb35229272",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/sadma/__init__.py",
+    "source_sha256": "fe30bd99162e5e86505f9c513cd28437cb8fa56a49852adcb806ebf4aa4f9ec8",
+    "target": "src/unified_marl/algorithms/sadma/__init__.py",
+    "target_sha256": "fe30bd99162e5e86505f9c513cd28437cb8fa56a49852adcb806ebf4aa4f9ec8",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/hmf/agent/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/hmf/agent/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/kou/icq/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/icq/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/kou/old/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/old/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/kou/reward_models/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/reward_models/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/kou/icq/components/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/icq/components/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/kou/icq/modules/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/kou/icq/utils/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/icq/utils/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/kou/icq/modules/critics/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/critics/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/kou/icq/modules/mixers/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/icq/modules/mixers/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/kou/old/components/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/kou/old/components/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/rghmf/utils/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/rghmf/utils/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/rghmf/modules/base/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/rghmf/modules/base/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/sadma/native/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/sadma/native/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/sadma/native/utils/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/sadma/native/utils/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/sadma/native/policy/base/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/base/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/sadma/native/policy/mappo/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/mappo/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/algorithms/sadma/native/policy/qmix/__init__.py",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target": "src/unified_marl/algorithms/sadma/native/policy/qmix/__init__.py",
+    "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/algs/coma.yaml",
+    "source_sha256": "08afabf026ed3e02237dcbc14bfde4f45503f8a5396770024470b3657ae46517",
+    "target": "src/unified_marl/config/algs/coma.yaml",
+    "target_sha256": "08afabf026ed3e02237dcbc14bfde4f45503f8a5396770024470b3657ae46517",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/algs/iql.yaml",
+    "source_sha256": "1c7e333f280c8c0fd397deefcd256850adf81bebdc4e36e923809a08924489dc",
+    "target": "src/unified_marl/config/algs/iql.yaml",
+    "target_sha256": "1c7e333f280c8c0fd397deefcd256850adf81bebdc4e36e923809a08924489dc",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/algs/iql_beta.yaml",
+    "source_sha256": "0659b889c652d8b81fe86304a3ad4eca538bb2a600468b7678295e6d9c827c49",
+    "target": "src/unified_marl/config/algs/iql_beta.yaml",
+    "target_sha256": "0659b889c652d8b81fe86304a3ad4eca538bb2a600468b7678295e6d9c827c49",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/algs/qmix.yaml",
+    "source_sha256": "ab4acb8475048617952cdb90f131fdc8f61d3ab113a7c90df64884fe88761dc8",
+    "target": "src/unified_marl/config/algs/qmix.yaml",
+    "target_sha256": "ab4acb8475048617952cdb90f131fdc8f61d3ab113a7c90df64884fe88761dc8",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/algs/qmix_beta.yaml",
+    "source_sha256": "0f0e1bba2ced186270807b44cb6be4471dc3fd089d03f0c3b1e228fb69b25332",
+    "target": "src/unified_marl/config/algs/qmix_beta.yaml",
+    "target_sha256": "0f0e1bba2ced186270807b44cb6be4471dc3fd089d03f0c3b1e228fb69b25332",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/algs/qtran.yaml",
+    "source_sha256": "4ec9d05391fa91a392ac54369ca19a21bc9acd3032f6e65dbf7410a5dccf61f2",
+    "target": "src/unified_marl/config/algs/qtran.yaml",
+    "target_sha256": "4ec9d05391fa91a392ac54369ca19a21bc9acd3032f6e65dbf7410a5dccf61f2",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/algs/vdn.yaml",
+    "source_sha256": "4c0daa0cc1893d059d063a563393c7479c30c720c241a870d27473b385907054",
+    "target": "src/unified_marl/config/algs/vdn.yaml",
+    "target_sha256": "4c0daa0cc1893d059d063a563393c7479c30c720c241a870d27473b385907054",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/algs/vdn_beta.yaml",
+    "source_sha256": "4f8560e036ba7bd63e387e1ad06d6ca6602b7f4866e1b4fd82dffa4ee144d30d",
+    "target": "src/unified_marl/config/algs/vdn_beta.yaml",
+    "target_sha256": "4f8560e036ba7bd63e387e1ad06d6ca6602b7f4866e1b4fd82dffa4ee144d30d",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/envs/replenishment.yaml",
+    "source_sha256": "24de16c1e1c9e50e5a645d408ab3e5c769ddd357ccbe20e6b063c6c63d3a35dc",
+    "target": "src/unified_marl/config/envs/replenishment.yaml",
+    "target_sha256": "24de16c1e1c9e50e5a645d408ab3e5c769ddd357ccbe20e6b063c6c63d3a35dc",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/envs/sc2.yaml",
+    "source_sha256": "a96a50c297f80ba3c44b01ddb93d4a2e6f2cd208215ca7b2dfdf82ce77920cbb",
+    "target": "src/unified_marl/config/envs/sc2.yaml",
+    "target_sha256": "a96a50c297f80ba3c44b01ddb93d4a2e6f2cd208215ca7b2dfdf82ce77920cbb",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/envs/sc2_beta.yaml",
+    "source_sha256": "dc8a4901fa4cb87c5d0d5fa2fea2e7b15c987870d473d48d96f5ea2831a4fc85",
+    "target": "src/unified_marl/config/envs/sc2_beta.yaml",
+    "target_sha256": "dc8a4901fa4cb87c5d0d5fa2fea2e7b15c987870d473d48d96f5ea2831a4fc85",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/envs/toy.yaml",
+    "source_sha256": "bbf5fdecff78dd69d0bb47f07f6ba28c4cd0c9f1d6c7e47caeff79743a231825",
+    "target": "src/unified_marl/config/envs/toy.yaml",
+    "target_sha256": "bbf5fdecff78dd69d0bb47f07f6ba28c4cd0c9f1d6c7e47caeff79743a231825",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/default.yaml",
+    "source_sha256": "1a7ca81a40c61383e8348f3804b4191827d4136fcb4da55602dfd1b6ffa403e1",
+    "target": "src/unified_marl/config/sadma/default.yaml",
+    "target_sha256": "1a7ca81a40c61383e8348f3804b4191827d4136fcb4da55602dfd1b6ffa403e1",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/ppo.yaml",
+    "source_sha256": "a19bb357e5e6c4d0b63113a2addabfe10677d657e655231b6b2b82737186df43",
+    "target": "src/unified_marl/config/sadma/ppo.yaml",
+    "target_sha256": "a19bb357e5e6c4d0b63113a2addabfe10677d657e655231b6b2b82737186df43",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/qmix.yaml",
+    "source_sha256": "37c11ce4a65fc80ad37de1914bc177fc4f7eb6476afcfc379ac368e635469aff",
+    "target": "src/unified_marl/config/sadma/qmix.yaml",
+    "target_sha256": "37c11ce4a65fc80ad37de1914bc177fc4f7eb6476afcfc379ac368e635469aff",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/wang/coma.yaml",
+    "source_sha256": "08afabf026ed3e02237dcbc14bfde4f45503f8a5396770024470b3657ae46517",
+    "target": "src/unified_marl/config/wang/coma.yaml",
+    "target_sha256": "08afabf026ed3e02237dcbc14bfde4f45503f8a5396770024470b3657ae46517",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/wang/default.yaml",
+    "source_sha256": "1d987363b674e0dd8bbda6d0f12a57d5adcbfa73c6eda335fa9b3e22cc089424",
+    "target": "src/unified_marl/config/wang/default.yaml",
+    "target_sha256": "1d987363b674e0dd8bbda6d0f12a57d5adcbfa73c6eda335fa9b3e22cc089424",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/wang/iql.yaml",
+    "source_sha256": "1c7e333f280c8c0fd397deefcd256850adf81bebdc4e36e923809a08924489dc",
+    "target": "src/unified_marl/config/wang/iql.yaml",
+    "target_sha256": "1c7e333f280c8c0fd397deefcd256850adf81bebdc4e36e923809a08924489dc",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/wang/iql_beta.yaml",
+    "source_sha256": "0659b889c652d8b81fe86304a3ad4eca538bb2a600468b7678295e6d9c827c49",
+    "target": "src/unified_marl/config/wang/iql_beta.yaml",
+    "target_sha256": "0659b889c652d8b81fe86304a3ad4eca538bb2a600468b7678295e6d9c827c49",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/wang/qmix.yaml",
+    "source_sha256": "ab4acb8475048617952cdb90f131fdc8f61d3ab113a7c90df64884fe88761dc8",
+    "target": "src/unified_marl/config/wang/qmix.yaml",
+    "target_sha256": "ab4acb8475048617952cdb90f131fdc8f61d3ab113a7c90df64884fe88761dc8",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/wang/qmix_beta.yaml",
+    "source_sha256": "0f0e1bba2ced186270807b44cb6be4471dc3fd089d03f0c3b1e228fb69b25332",
+    "target": "src/unified_marl/config/wang/qmix_beta.yaml",
+    "target_sha256": "0f0e1bba2ced186270807b44cb6be4471dc3fd089d03f0c3b1e228fb69b25332",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/wang/qtran.yaml",
+    "source_sha256": "4ec9d05391fa91a392ac54369ca19a21bc9acd3032f6e65dbf7410a5dccf61f2",
+    "target": "src/unified_marl/config/wang/qtran.yaml",
+    "target_sha256": "4ec9d05391fa91a392ac54369ca19a21bc9acd3032f6e65dbf7410a5dccf61f2",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/wang/rode.yaml",
+    "source_sha256": "a721087953f196e02ee64829cb08971814dcadbfb762ed55458e024d413151fc",
+    "target": "src/unified_marl/config/wang/rode.yaml",
+    "target_sha256": "a721087953f196e02ee64829cb08971814dcadbfb762ed55458e024d413151fc",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/wang/rode_hmf.yaml",
+    "source_sha256": "05c84afa90368bc5d1a760f89a8c516f21772740038700b90b8c2bcb11f55141",
+    "target": "src/unified_marl/config/wang/rode_hmf.yaml",
+    "target_sha256": "05c84afa90368bc5d1a760f89a8c516f21772740038700b90b8c2bcb11f55141",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/wang/vdn.yaml",
+    "source_sha256": "a7d3c664981e6e561187fb5ad062400460b965768ed7047e5574287278cd206a",
+    "target": "src/unified_marl/config/wang/vdn.yaml",
+    "target_sha256": "a7d3c664981e6e561187fb5ad062400460b965768ed7047e5574287278cd206a",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/wang/vdn_beta.yaml",
+    "source_sha256": "4f8560e036ba7bd63e387e1ad06d6ca6602b7f4866e1b4fd82dffa4ee144d30d",
+    "target": "src/unified_marl/config/wang/vdn_beta.yaml",
+    "target_sha256": "4f8560e036ba7bd63e387e1ad06d6ca6602b7f4866e1b4fd82dffa4ee144d30d",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/acpl_smac.yaml",
+    "source_sha256": "1afb3749346d55c7a1f900d6a03faedde4b96fab2ea6f19b5d2f95f822d30fba",
+    "target": "src/unified_marl/config/kou/icq/acpl_smac.yaml",
+    "target_sha256": "1afb3749346d55c7a1f900d6a03faedde4b96fab2ea6f19b5d2f95f822d30fba",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/bcmapt_smac.yaml",
+    "source_sha256": "1afc93fc92658716912d61ba023a450ef3dee23fcedb7134c32fb1381a584ad9",
+    "target": "src/unified_marl/config/kou/icq/bcmapt_smac.yaml",
+    "target_sha256": "1afc93fc92658716912d61ba023a450ef3dee23fcedb7134c32fb1381a584ad9",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/bc_smac.yaml",
+    "source_sha256": "6dfb81a35ba37041ca7a4edbb1fc13d14e8bc1b5a5e297b5a44be9fe796b57a7",
+    "target": "src/unified_marl/config/kou/icq/bc_smac.yaml",
+    "target_sha256": "6dfb81a35ba37041ca7a4edbb1fc13d14e8bc1b5a5e297b5a44be9fe796b57a7",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/cpl_smac.yaml",
+    "source_sha256": "d3710498021db9edab87baebbb2db8aa4cd27f3354833540f44d482cbba75464",
+    "target": "src/unified_marl/config/kou/icq/cpl_smac.yaml",
+    "target_sha256": "d3710498021db9edab87baebbb2db8aa4cd27f3354833540f44d482cbba75464",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/cql_smac.yaml",
+    "source_sha256": "30a153545f97acaf7dc745cd35a48b489db57a164d71f2d370aa921244554b19",
+    "target": "src/unified_marl/config/kou/icq/cql_smac.yaml",
+    "target_sha256": "30a153545f97acaf7dc745cd35a48b489db57a164d71f2d370aa921244554b19",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/default.yaml",
+    "source_sha256": "dd03e7489e63cbba8ceac54fde6a8ee6210a1e45aa2de804dbc2082a2b356606",
+    "target": "src/unified_marl/config/kou/icq/default.yaml",
+    "target_sha256": "dd03e7489e63cbba8ceac54fde6a8ee6210a1e45aa2de804dbc2082a2b356606",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/dppo_smac.yaml",
+    "source_sha256": "82b9c5415809d1d66596a8374665f3c667fa8bf2c9d5751c8cdc971fab8b082e",
+    "target": "src/unified_marl/config/kou/icq/dppo_smac.yaml",
+    "target_sha256": "82b9c5415809d1d66596a8374665f3c667fa8bf2c9d5751c8cdc971fab8b082e",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/hacpl_smac.yaml",
+    "source_sha256": "32fd604ead530a72507ae9406efe91d739f2bea7bf42e5e90e1cd68f0e242979",
+    "target": "src/unified_marl/config/kou/icq/hacpl_smac.yaml",
+    "target_sha256": "32fd604ead530a72507ae9406efe91d739f2bea7bf42e5e90e1cd68f0e242979",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/iql_smac.yaml",
+    "source_sha256": "15cfcac2c0b9c6eeaf4488c64a430128a0fa78f76ccb9fbb4a63450e41cf8471",
+    "target": "src/unified_marl/config/kou/icq/iql_smac.yaml",
+    "target_sha256": "15cfcac2c0b9c6eeaf4488c64a430128a0fa78f76ccb9fbb4a63450e41cf8471",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/madpo_aux_smac.yaml",
+    "source_sha256": "9248a9347d59af28c9045255a9ba72e2f11e646dcc61c7a7c0e83e8874387877",
+    "target": "src/unified_marl/config/kou/icq/madpo_aux_smac.yaml",
+    "target_sha256": "9248a9347d59af28c9045255a9ba72e2f11e646dcc61c7a7c0e83e8874387877",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/madpo_smac.yaml",
+    "source_sha256": "85ed8a38871e4a08209f6813b2c7462d9409b21fe04261574dde4e24abc95626",
+    "target": "src/unified_marl/config/kou/icq/madpo_smac.yaml",
+    "target_sha256": "85ed8a38871e4a08209f6813b2c7462d9409b21fe04261574dde4e24abc95626",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/maicpl_smac.yaml",
+    "source_sha256": "43ed75b9ccaa980f1d548376de2b109a707f6996ed344aa0fb77ae9f32252d6d",
+    "target": "src/unified_marl/config/kou/icq/maicpl_smac.yaml",
+    "target_sha256": "43ed75b9ccaa980f1d548376de2b109a707f6996ed344aa0fb77ae9f32252d6d",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/maidpo_smac.yaml",
+    "source_sha256": "83956a5794a4881150e3af42ebb7966fc09133d4bf7ba1872fc660ffb0a8b763",
+    "target": "src/unified_marl/config/kou/icq/maidpo_smac.yaml",
+    "target_sha256": "83956a5794a4881150e3af42ebb7966fc09133d4bf7ba1872fc660ffb0a8b763",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/offpg_smac.yaml",
+    "source_sha256": "207c1cf796cf6380e76c10d6f05bb6955ef1e96af578fcc935be1adc6be1f368",
+    "target": "src/unified_marl/config/kou/icq/offpg_smac.yaml",
+    "target_sha256": "207c1cf796cf6380e76c10d6f05bb6955ef1e96af578fcc935be1adc6be1f368",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/qmix.yaml",
+    "source_sha256": "5afebc7a4f82281b860b2af8b39a21bc9321b2b29ba911000d510e19ef2e29b5",
+    "target": "src/unified_marl/config/kou/icq/qmix.yaml",
+    "target_sha256": "5afebc7a4f82281b860b2af8b39a21bc9321b2b29ba911000d510e19ef2e29b5",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/qmix_smac.yaml",
+    "source_sha256": "d4aa6e55c89bb90660d198b5b69816ee451498645fea7db8cb0c5b619f488149",
+    "target": "src/unified_marl/config/kou/icq/qmix_smac.yaml",
+    "target_sha256": "d4aa6e55c89bb90660d198b5b69816ee451498645fea7db8cb0c5b619f488149",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/icq/vdn_smac.yaml",
+    "source_sha256": "4f8560e036ba7bd63e387e1ad06d6ca6602b7f4866e1b4fd82dffa4ee144d30d",
+    "target": "src/unified_marl/config/kou/icq/vdn_smac.yaml",
+    "target_sha256": "4f8560e036ba7bd63e387e1ad06d6ca6602b7f4866e1b4fd82dffa4ee144d30d",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/cw_qmix.yaml",
+    "source_sha256": "58ef43f05f4e65f0b50aae4f877d7c161c24b5fde21e8f19d08f0976bb8dc934",
+    "target": "src/unified_marl/config/kou/old/cw_qmix.yaml",
+    "target_sha256": "58ef43f05f4e65f0b50aae4f877d7c161c24b5fde21e8f19d08f0976bb8dc934",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/cw_qmix_w_globalRM.yaml",
+    "source_sha256": "3cab758695f69d85865cc13260e935fd5b835e479fb48a8fd9d41613fb9bc6da",
+    "target": "src/unified_marl/config/kou/old/cw_qmix_w_globalRM.yaml",
+    "target_sha256": "3cab758695f69d85865cc13260e935fd5b835e479fb48a8fd9d41613fb9bc6da",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/default.yaml",
+    "source_sha256": "0b29eb6488c908e28de04bb4f76aeedf65e522eadc227366b163734878cb510d",
+    "target": "src/unified_marl/config/kou/old/default.yaml",
+    "target_sha256": "0b29eb6488c908e28de04bb4f76aeedf65e522eadc227366b163734878cb510d",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/ow_qmix.yaml",
+    "source_sha256": "1827d00d91d9af462c9d955f18aa5c221ea38af381a0d54fe716c8d9bf664578",
+    "target": "src/unified_marl/config/kou/old/ow_qmix.yaml",
+    "target_sha256": "1827d00d91d9af462c9d955f18aa5c221ea38af381a0d54fe716c8d9bf664578",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/ow_qmix_w_globalRM.yaml",
+    "source_sha256": "010c287fe947e90b490f96519853f89e4792ea5d8d136fc066974ca7c5f7910b",
+    "target": "src/unified_marl/config/kou/old/ow_qmix_w_globalRM.yaml",
+    "target_sha256": "010c287fe947e90b490f96519853f89e4792ea5d8d136fc066974ca7c5f7910b",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/pref_qmix.yaml",
+    "source_sha256": "9f8e3d2f7bc69c2d206fe2ed1c4af0931caef6e1f6591ac7339511ac26001315",
+    "target": "src/unified_marl/config/kou/old/pref_qmix.yaml",
+    "target_sha256": "9f8e3d2f7bc69c2d206fe2ed1c4af0931caef6e1f6591ac7339511ac26001315",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/pref_qmix_new.yaml",
+    "source_sha256": "fecae5fc48f26057c9a6fbe5218a4f7881f3a77d661c0580dc117d7821c94682",
+    "target": "src/unified_marl/config/kou/old/pref_qmix_new.yaml",
+    "target_sha256": "fecae5fc48f26057c9a6fbe5218a4f7881f3a77d661c0580dc117d7821c94682",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/qmix.yaml",
+    "source_sha256": "ab4acb8475048617952cdb90f131fdc8f61d3ab113a7c90df64884fe88761dc8",
+    "target": "src/unified_marl/config/kou/old/qmix.yaml",
+    "target_sha256": "ab4acb8475048617952cdb90f131fdc8f61d3ab113a7c90df64884fe88761dc8",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/qmix_differ.yaml",
+    "source_sha256": "07d79780a6f586f1017347a7972667bbdb28bf81029e9bd95a1e4cfce7f93df1",
+    "target": "src/unified_marl/config/kou/old/qmix_differ.yaml",
+    "target_sha256": "07d79780a6f586f1017347a7972667bbdb28bf81029e9bd95a1e4cfce7f93df1",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/qmix_make_datasets.yaml",
+    "source_sha256": "39e31f66fcf4693f636524f3bf448b97f07bbf57a2838ce32d74a5a5ab4d14f1",
+    "target": "src/unified_marl/config/kou/old/qmix_make_datasets.yaml",
+    "target_sha256": "39e31f66fcf4693f636524f3bf448b97f07bbf57a2838ce32d74a5a5ab4d14f1",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/qmix_new.yaml",
+    "source_sha256": "54ff44d42371fd98c970b8d476a421b2fc0d8efbe91d3231c6cb1eb9b853cbfe",
+    "target": "src/unified_marl/config/kou/old/qmix_new.yaml",
+    "target_sha256": "54ff44d42371fd98c970b8d476a421b2fc0d8efbe91d3231c6cb1eb9b853cbfe",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/qmix_w_globalRM.yaml",
+    "source_sha256": "6f8d5c97f93ee182cd7d9e831782906abe2196aa2fb13f11750fd9027b4b2739",
+    "target": "src/unified_marl/config/kou/old/qmix_w_globalRM.yaml",
+    "target_sha256": "6f8d5c97f93ee182cd7d9e831782906abe2196aa2fb13f11750fd9027b4b2739",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/qplex.yaml",
+    "source_sha256": "f8002095d76798d7740e044444b8b701331ef8f3c79e540a677649a62ebfe2df",
+    "target": "src/unified_marl/config/kou/old/qplex.yaml",
+    "target_sha256": "f8002095d76798d7740e044444b8b701331ef8f3c79e540a677649a62ebfe2df",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/kou/old/qplex_w_globalRM.yaml",
+    "source_sha256": "e52cc46ac2650d3e1a217c7bca0a5688473a8da9553c69809947636a5407b799",
+    "target": "src/unified_marl/config/kou/old/qplex_w_globalRM.yaml",
+    "target_sha256": "e52cc46ac2650d3e1a217c7bca0a5688473a8da9553c69809947636a5407b799",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/wang/default.yaml",
+    "source_sha256": "1a7ca81a40c61383e8348f3804b4191827d4136fcb4da55602dfd1b6ffa403e1",
+    "target": "src/unified_marl/config/sadma/wang/default.yaml",
+    "target_sha256": "1a7ca81a40c61383e8348f3804b4191827d4136fcb4da55602dfd1b6ffa403e1",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/wang/ppo.yaml",
+    "source_sha256": "a19bb357e5e6c4d0b63113a2addabfe10677d657e655231b6b2b82737186df43",
+    "target": "src/unified_marl/config/sadma/wang/ppo.yaml",
+    "target_sha256": "a19bb357e5e6c4d0b63113a2addabfe10677d657e655231b6b2b82737186df43",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/wang/qmix.yaml",
+    "source_sha256": "37c11ce4a65fc80ad37de1914bc177fc4f7eb6476afcfc379ac368e635469aff",
+    "target": "src/unified_marl/config/sadma/wang/qmix.yaml",
+    "target_sha256": "37c11ce4a65fc80ad37de1914bc177fc4f7eb6476afcfc379ac368e635469aff",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_closed/default.yaml",
+    "source_sha256": "7f7a4048ab1329c465aef16b3b5a48b2ca799957ed64d6acd511817233a04672",
+    "target": "src/unified_marl/config/sadma/yi_closed/default.yaml",
+    "target_sha256": "7f7a4048ab1329c465aef16b3b5a48b2ca799957ed64d6acd511817233a04672",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_closed/ppo.yaml",
+    "source_sha256": "b615b0400931846f2e53f0ba3bf4cda675c09cb330d05dfc6d81cc36f964655a",
+    "target": "src/unified_marl/config/sadma/yi_closed/ppo.yaml",
+    "target_sha256": "b615b0400931846f2e53f0ba3bf4cda675c09cb330d05dfc6d81cc36f964655a",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_closed/qmix.yaml",
+    "source_sha256": "8e221f5d8fdf612c1317661328c10795d5415426da0e32114fa256f93daa8195",
+    "target": "src/unified_marl/config/sadma/yi_closed/qmix.yaml",
+    "target_sha256": "8e221f5d8fdf612c1317661328c10795d5415426da0e32114fa256f93daa8195",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_open/default.yaml",
+    "source_sha256": "7f7a4048ab1329c465aef16b3b5a48b2ca799957ed64d6acd511817233a04672",
+    "target": "src/unified_marl/config/sadma/yi_open/default.yaml",
+    "target_sha256": "7f7a4048ab1329c465aef16b3b5a48b2ca799957ed64d6acd511817233a04672",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_open/ppo.yaml",
+    "source_sha256": "706b425ddd5ce26317267bd99a1bd62857a3a0b929cf79f25be933f4960dccea",
+    "target": "src/unified_marl/config/sadma/yi_open/ppo.yaml",
+    "target_sha256": "706b425ddd5ce26317267bd99a1bd62857a3a0b929cf79f25be933f4960dccea",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_open/qmix.yaml",
+    "source_sha256": "3a1b35ded3dd075311822696ce3de6502b09507f396ff4add368d781081c49ba",
+    "target": "src/unified_marl/config/sadma/yi_open/qmix.yaml",
+    "target_sha256": "3a1b35ded3dd075311822696ce3de6502b09507f396ff4add368d781081c49ba",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/wang/envs/cityflow.yaml",
+    "source_sha256": "737f02a06300cb5a8f4b7f5d1ea8ec9ac0f3ebf70dbb9677fc2065c6b49374ac",
+    "target": "src/unified_marl/config/sadma/wang/envs/cityflow.yaml",
+    "target_sha256": "737f02a06300cb5a8f4b7f5d1ea8ec9ac0f3ebf70dbb9677fc2065c6b49374ac",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/wang/envs/replenishment.yaml",
+    "source_sha256": "26cb5d7e6399ce52dda18958ded68b3405b7ac31ad4de7eb9833ccdf6f65527c",
+    "target": "src/unified_marl/config/sadma/wang/envs/replenishment.yaml",
+    "target_sha256": "26cb5d7e6399ce52dda18958ded68b3405b7ac31ad4de7eb9833ccdf6f65527c",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/wang/envs/smac.yaml",
+    "source_sha256": "049a5cd2806f6a3d50ca88b283e9e18e85d4fd5b9d3a9db454354569b332fa09",
+    "target": "src/unified_marl/config/sadma/wang/envs/smac.yaml",
+    "target_sha256": "049a5cd2806f6a3d50ca88b283e9e18e85d4fd5b9d3a9db454354569b332fa09",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_closed/envs/cityflow.yaml",
+    "source_sha256": "68e090041a8a0e9c23d73b44353ceda8654e4019e03fabbef6b2dada08432130",
+    "target": "src/unified_marl/config/sadma/yi_closed/envs/cityflow.yaml",
+    "target_sha256": "68e090041a8a0e9c23d73b44353ceda8654e4019e03fabbef6b2dada08432130",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_closed/envs/powergrid.yaml",
+    "source_sha256": "7866dfa833f744f6a1b486ffbc92d346bbfb0480e271bc6e16742ff9892305f8",
+    "target": "src/unified_marl/config/sadma/yi_closed/envs/powergrid.yaml",
+    "target_sha256": "7866dfa833f744f6a1b486ffbc92d346bbfb0480e271bc6e16742ff9892305f8",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_closed/envs/replenishment.yaml",
+    "source_sha256": "d836cf24bf185db027bd036b23b85d460961113462ca2f49c17d79ad674b822b",
+    "target": "src/unified_marl/config/sadma/yi_closed/envs/replenishment.yaml",
+    "target_sha256": "d836cf24bf185db027bd036b23b85d460961113462ca2f49c17d79ad674b822b",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_closed/envs/smac.yaml",
+    "source_sha256": "f72b9816a7f078563ba5af80fd554b6913e1cb9b5e50943b41f45d502da80cee",
+    "target": "src/unified_marl/config/sadma/yi_closed/envs/smac.yaml",
+    "target_sha256": "f72b9816a7f078563ba5af80fd554b6913e1cb9b5e50943b41f45d502da80cee",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_open/envs/cityflow.yaml",
+    "source_sha256": "0257c18e6adc8ba09e43bde64338a677ec02b25f9f1dcfb408a96786751e9967",
+    "target": "src/unified_marl/config/sadma/yi_open/envs/cityflow.yaml",
+    "target_sha256": "0257c18e6adc8ba09e43bde64338a677ec02b25f9f1dcfb408a96786751e9967",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_open/envs/powergrid.yaml",
+    "source_sha256": "7866dfa833f744f6a1b486ffbc92d346bbfb0480e271bc6e16742ff9892305f8",
+    "target": "src/unified_marl/config/sadma/yi_open/envs/powergrid.yaml",
+    "target_sha256": "7866dfa833f744f6a1b486ffbc92d346bbfb0480e271bc6e16742ff9892305f8",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_open/envs/replenishment.yaml",
+    "source_sha256": "d836cf24bf185db027bd036b23b85d460961113462ca2f49c17d79ad674b822b",
+    "target": "src/unified_marl/config/sadma/yi_open/envs/replenishment.yaml",
+    "target_sha256": "d836cf24bf185db027bd036b23b85d460961113462ca2f49c17d79ad674b822b",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  },
+  {
+    "source": "unified-marl/src/unified_marl/config/sadma/yi_open/envs/smac.yaml",
+    "source_sha256": "f72b9816a7f078563ba5af80fd554b6913e1cb9b5e50943b41f45d502da80cee",
+    "target": "src/unified_marl/config/sadma/yi_open/envs/smac.yaml",
+    "target_sha256": "f72b9816a7f078563ba5af80fd554b6913e1cb9b5e50943b41f45d502da80cee",
+    "evidence": "New integration/adapter or resource; source-family component trace remains in MIGRATION_MATRIX.csv"
+  }
+]

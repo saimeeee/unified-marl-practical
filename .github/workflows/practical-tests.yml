@@ -1,0 +1,37 @@
+name: Practical v1 portable tests
+on:
+  push:
+    branches: [main]
+    paths:
+      - src/**
+      - tests/**
+      - tools/run_practical_regression.py
+      - tools/validate_practical_v1.py
+      - examples/**
+      - pyproject.toml
+      - .github/workflows/practical-tests.yml
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  practical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install CPU runtime and test dependencies
+        run: |
+          python -m pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==1.26.4 PyYAML==6.0.2 pytest==8.3.5 'setuptools>=77' wheel
+          python -m pip install --no-deps --no-build-isolation -e .
+      - name: Check portable experiments, plugins and MPE
+        env:
+          PYTHONPATH: src
+        run: >-
+          python -B tools/run_practical_regression.py
+          tests/test_experiments.py tests/test_plugins.py tests/test_mpe.py
+          tests/test_practical_validation.py -q --tb=short --disable-warnings

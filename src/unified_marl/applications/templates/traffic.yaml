@@ -1,0 +1,27 @@
+# 请使用你的真实 CityFlow 配置和路口/相位ID；这里的ID仅为格式示例。
+schema_version: 1
+application: traffic
+backend: cityflow_engine
+algorithm: ppo
+seed: 1
+device: cpu
+execution: local
+env_args:
+  cityflow_config_file: ./traffic_cityflow_config.json
+  control_interval: 10.0
+  yellow_time: 5.0
+  episode_limit: 360
+  thread_num: 1
+  queue_reward_scale: 1.0
+  phase_ids:
+    intersection_1_1: [1, 2, 3, 4]
+  yellow_phase_ids:
+    intersection_1_1: 0
+training:
+  t_max: 100000
+  max_updates: 100
+  train_batch_size: 4
+  train_buffer_size: 8
+  update_rate: 1
+  hidden_dim: 64
+output: {}

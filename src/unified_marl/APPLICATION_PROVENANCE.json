@@ -1,0 +1,136 @@
+{
+  "version": "0.8.0",
+  "entries": [
+    {
+      "target": "src/unified_marl/applications/__init__.py",
+      "target_sha256": "9d94faf5fecbe05122d234871f7d6f4b81451cb031ad07d3d273c653f194b245",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/cli.py",
+      "target_sha256": "cca5228ad6c1eb47c6de84f586dd28e565f6ee71bc236bba9200d11f5f7a0571",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/powergrid.py",
+      "target_sha256": "2855300bc902dead985aa9e1c7790bfa78df4cb080b4ad898eeed13b8e98c98f",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/powergrid_engine.py",
+      "target_sha256": "659d91833a56d9acc0cf88d6a5508e94f29981016224328155443e86d68acff8",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/service.py",
+      "target_sha256": "d8d0c48730ace7e33f189daf2a1c3a74bfe59e00d552fac77453244ddfbf4e62",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/templates/powergrid.yaml",
+      "target_sha256": "08f3501790710e0f5fa52a77e1ea6be9b2a99469f32e415c9265cd984778dc41",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/templates/traffic.yaml",
+      "target_sha256": "5826538367994d24dd19a56bc063a1bb47e856bfe1b36b7c3e43d083aa9243fc",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/templates/traffic_cityflow_config.json",
+      "target_sha256": "0c7ad80da1edb6983c1eb5df4bc9d7b829c57d24aaf019eb6823c31e4e698944",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/templates/traffic_state.json",
+      "target_sha256": "7d3d37de8b9a3fa40d0faf144a992069af51312b619b764043e8a46123f3d1ae",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/templates/warehouse.yaml",
+      "target_sha256": "93683d1cfdd73de8535a25b47d2bf47ea3543836981787e5dc9446761594837a",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/templates/warehouse_agents.csv",
+      "target_sha256": "78b2b678311efd55beaec12977f21491e7cb3a556080c4b55248c037bba2599c",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/templates/warehouse_demand.csv",
+      "target_sha256": "96e0b319728d627d7aa405b52ac72eed74a32766d256825e8f39215728c613c3",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/templates/warehouse_state.json",
+      "target_sha256": "faa93aa05cb455f0d1e353712e681a2cbac5b7c950f4db7955775311cc173665",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/traffic.py",
+      "target_sha256": "1ff4bf58e7529718aa28e2bc7bf741e98a9008f3c64026d0a7ea247e19a3d540",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/applications/warehouse.py",
+      "target_sha256": "75d139210572e8e367fd3075c040db9cf5518fe5ff31d4fb6d381dd0172ce553",
+      "origin": "engineering-0.8.0 new application implementation",
+      "validation": "static/config only; no experiments"
+    },
+    {
+      "target": "src/unified_marl/envs/inventory.py",
+      "target_sha256": "cc160836952d39671bfcb3a121dbd7b9c874b23c1041d78d2f971813bb69f9c1",
+      "origin": "new explicit engineering backend; not source-equivalent",
+      "validation": "static only"
+    },
+    {
+      "target": "src/unified_marl/envs/traffic_engine.py",
+      "target_sha256": "ee130ad2387f4d68c562ca39504d95c53f0aec40b297db59652e3fc6cf0f163c",
+      "origin": "new explicit engineering backend; not source-equivalent",
+      "validation": "static only"
+    },
+    {
+      "target": "src/unified_marl/envs/powergrid_native/__init__.py",
+      "target_sha256": "38e3d2ee1e8b0ab97ae183cbafbac94f56b58632dc4cdcc02f376880ec379bbe",
+      "validation": "static only; not runtime verified",
+      "origin": "new package support metadata"
+    },
+    {
+      "target": "src/unified_marl/envs/powergrid_native/energy_models.py",
+      "target_sha256": "d8474ba30e29bff9d1102ebbcfb00b76bac5580f0d096dc86ab8463139863bf1",
+      "validation": "static only; not runtime verified",
+      "source": "marl平台代码/易才润/论文/SADMA/sadma源代码开源版本/envs/powergrid/energy_models.py",
+      "source_sha256": "c430583dca6a3d651a32dcf7f7242a3eafbbc5d5aaf92adf3e5e99e9b4be2048",
+      "adaptation": "package imports, explicit asset paths, configurable building sampling, action names/order, errors instead of exit; source unchanged"
+    },
+    {
+      "target": "src/unified_marl/envs/powergrid_native/provenance.py",
+      "target_sha256": "74cf6f1e36d48aacef5d3f9776d99e5d7f58402bc14c04b1cab14e9e38f11c2a",
+      "validation": "static only; not runtime verified",
+      "origin": "new package support metadata"
+    },
+    {
+      "target": "src/unified_marl/envs/powergrid_native/smart_grid.py",
+      "target_sha256": "2856c659f1a60ca803f56bc84c82c762cfea3f107d7df2d37408fee22ba6c51a",
+      "validation": "static only; not runtime verified",
+      "source": "marl平台代码/易才润/论文/SADMA/sadma源代码开源版本/envs/powergrid/smart_grid.py",
+      "source_sha256": "22ba64004c9cc4337f435414cd46a97e7d08ba89da6303876b8a0f4cf6749e52",
+      "adaptation": "package imports, explicit asset paths, configurable building sampling, action names/order, errors instead of exit; source unchanged"
+    }
+  ],
+  "experiments_run": false
+}

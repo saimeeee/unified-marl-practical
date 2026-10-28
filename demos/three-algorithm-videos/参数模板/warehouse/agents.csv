@@ -1,0 +1,5 @@
+agent_id,warehouse_id,sku_id,initial_stock,capacity,mean_demand,lead_time,unit_price,unit_cost,holding_cost,shortage_cost
+WH1_SKU1,WH1,SKU1,26,100,10,1,10,4,0.15,5
+WH1_SKU2,WH1,SKU2,20,100,7,2,10,4,0.15,5
+WH2_SKU1,WH2,SKU1,31,100,13,1,10,4,0.15,5
+WH2_SKU2,WH2,SKU2,24,100,9,2,10,4,0.15,5

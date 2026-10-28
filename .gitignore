@@ -1,0 +1,24 @@
+# Environments, caches and all run outputs stay local.
+.venv*/
+.work/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+results/
+release-output*/
+wheelhouse/
+*.pt
+*.pth
+*.th
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.mp4
+*.zip
+*.whl
+.env
+.env.*

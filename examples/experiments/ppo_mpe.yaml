@@ -1,0 +1,22 @@
+# SADMA's delivered discrete PPO, consuming fresh rollouts.
+schema_version: 1
+name: sadma-ppo-mpe
+algorithm: sadma/ppo
+env: mpe
+seed: 11
+device: cpu
+env_args:
+  scenario: simple_spread
+  n_agents: 3
+  episode_limit: 12
+training:
+  t_max: 96
+  max_updates: 2
+  train_batch_size: 2
+  train_buffer_size: 8
+  update_rate: 2
+  hidden_dim: 16
+  mini_epochs: 2
+evaluation:
+  episodes: 3
+  seed_count: 2

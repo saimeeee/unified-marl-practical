@@ -1,0 +1,53 @@
+{
+  "version": "0.9.0.dev1",
+  "real_simulation_combinations": 12,
+  "real_simulation_passes": 12,
+  "environments": [
+    "inventory",
+    "mpe/simple_spread",
+    "traffic_engine/CityFlow"
+  ],
+  "algorithms": [
+    "pymarl/qmix",
+    "pymarl/vdn",
+    "sadma/ppo",
+    "example/huber_iql"
+  ],
+  "regression_passed": 319,
+  "regression_deselected": 1,
+  "final_targeted_passed": 54,
+  "test_counts_overlap": true,
+  "installed_cli_matrix_passed": 12,
+  "wheel_sha256": "2c564a1df7fd0fc24112dfd6ef0d76b9132266956ba6823be17685231caa3f5a",
+  "runtime_files_match": 387,
+  "source_reference_hashes_verified": 1228,
+  "limitations": [
+    "short-run validation, not convergence",
+    "SMAC and original ReplenishmentEnv not run",
+    "continuous generic protocol and remaining author branches deferred",
+    "installed dependencies reused read-only, not freshly provisioned"
+  ],
+  "standalone_source_tests": {
+    "tests": 99,
+    "passed": 98,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 38.265,
+    "skip_reason": "Original-delivery trajectory comparison requires files outside this repository",
+    "platform": "Windows, Python 3.12, existing CPU dependencies",
+    "files": [
+      "tests/test_experiments.py",
+      "tests/test_plugins.py",
+      "tests/test_mpe.py",
+      "tests/test_practical_validation.py"
+    ]
+  },
+  "scope": "Historical 319-test regression used original delivery folders. Independent source staging has no such folders. Short training validates the pipeline, not convergence.",
+  "wheel_readme": "Retained accepted wheel bytes; embedded README is the local-acceptance snapshot. Current instructions live in the repository and release guides.",
+  "historical_evidence_sha256": {
+    "results/practical-v1-tests/20261028T064948Z-3c753400/junit.xml": "c48e21ee7ec9f6d68c111564503d6f6abf63fdce9dca1c6c276199c0fb7a33c9",
+    "results/practical-v1-env/20261028T063806Z-36d57543/summary.json": "a9b50c03f17564320bde2f095adf2ac2c27598ad0367d0eac05a9235298a06b8",
+    "results/practical-v1-env/20261028T064617Z-810d47ed/summary.json": "0369599c9720482e850058fae66dc0c9137654303ffea407ba9eefa04f17c3db"
+  }
+}

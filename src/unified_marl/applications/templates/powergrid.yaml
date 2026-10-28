@@ -1,0 +1,25 @@
+# 使用真实建筑、气候、设备与网络数据；连续控制算法为新增 bounded_ppo。
+schema_version: 1
+application: powergrid
+algorithm: bounded_ppo
+seed: 1
+device: cpu
+execution: local
+env_args:
+  data_path: ./assets/Climate_Zone_1
+  buildings_states_actions_file: ./assets/buildings_state_action_space.json
+  climate_zone: Climate_Zone_1
+  hourly_timesteps: 4
+  houses_per_node: 6
+training:
+  updates: 100
+  horizon: 256
+  mini_epochs: 4
+  hidden_dim: 128
+  lr: 0.0003
+  gamma: 0.99
+  gae_lambda: 0.95
+  eps_clip: 0.2
+  entropy_coef: 0.0
+  critic_coef: 0.5
+output: {}

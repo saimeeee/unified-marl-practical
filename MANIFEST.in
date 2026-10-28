@@ -1,0 +1,27 @@
+include README.md WORK_ORDER.md LICENSE NOTICE pyproject.toml
+recursive-include licenses *.txt
+recursive-include src *.py *.yaml *.json *.csv
+recursive-include examples *.py *.yaml *.md *.csv *.json
+recursive-include delivery *.py *.ps1 *.sh *.md
+recursive-include tools *.py
+recursive-include tests *.py
+include docs/*.md docs/*.csv
+include docs/evidence/stage7/*.xml docs/evidence/stage7/pytest.log
+exclude docs/evidence/stage7/*.json
+include docs/evidence/stage7/summary.json docs/evidence/stage7/migration-audit.json
+prune .work
+prune .venv
+prune .venv-check
+prune .venv-release
+prune .venv-sdist
+prune .pytest_cache
+prune results
+prune build
+global-exclude __pycache__ *.py[cod] *.pt *.th *.pth *.npy *.npz *.pkl *.pickle
+
+include requirements-powergrid.txt
+include docs/evidence/release-082/*.md docs/evidence/release-082/*.json
+include docs/evidence/engineering-hotfix-082/*.xml
+include docs/evidence/engineering-hotfix-082/package-checks.json
+include docs/evidence/engineering-hotfix-082/installer-integration.json
+include docs/evidence/engineering-hotfix-082/missing-dependency-fixture.json

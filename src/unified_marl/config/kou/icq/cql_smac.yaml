@@ -1,0 +1,82 @@
+# --- QMIX specific parameters ---
+
+# use epsilon greedy action selector
+action_selector: "epsilon_greedy"
+epsilon_start: 1.0
+epsilon_finish: 0.05
+epsilon_anneal_time: 100000 # 500000 for 6h_vs_8z else 100000
+
+# runner: "episode"
+runner: "parallel"
+batch_size_run: 8 # batch_size_run=4, buffer_size = 2500, batch_size=64  for 3s5z_vs_3s6z
+t_max: 10050000
+
+buffer_size: 5000 
+batch_size: 128
+optimizer: 'adam'
+off_batch_size: 32  # batch_size_train
+pi_accuracy: 0.65
+
+# update the target network every {} episodes
+target_update_interval: 200
+
+# use the Q_Learner to train
+mac: "n_mac"
+agent: "n_rnn"
+agent_output_type: q
+
+learner: "cql_learner"
+mixer: "qmix"
+mixing_embed_dim: 32
+hypernet_embed: 64
+lr: 0.0005 # Learning rate for agents
+td_lambda: 0.8 # 0.3 for 6h_vs_8z else 0.6
+q_lambda: False
+
+# rnn layer normalization
+use_layer_norm: False
+
+# orthogonal init for DNN
+use_orthogonal: False
+gain: 0.01
+
+# Priority experience replay
+use_per: False
+per_alpha: 0.6
+per_beta: 0.4
+return_priority: False
+
+use_offline: True
+use_sarsa: False
+cql_alpha: 5.0
+global_cql_alpha: 1.0
+training_episodes: 5000
+
+#moderate softmax variant lambda
+moderate_lambda: False
+softmax_temp: 5
+e2e: False
+
+#macql
+raw_cql: False
+raw_sample_actions: 100
+
+data_dir: /home/limingyang/kouqian_code/MARLHF_for_dataset/ICQ-MA/save_models
+
+name: "CQL"
+
+offline_dataset_dir: "/home/limingyang/kouqian_code/MAOfflineDatasets/SMAC410_imbalanced_pref/10m_vs_11m/low_1000episode_policypool_new/500_150labeled.th" # 10m 
+offline_dataset_quality: low_1000episode_policypool_new # 10m 
+map_name: "10m_vs_11m" # 10m
+max_traj_length: 150 # 10m
+pref_segment_pairs: 500
+
+use_pref: False
+
+train_reward: False
+model_type: "MultiPrefTransformerDivide"
+action_type: "Discrete"
+reward_train_epoch: 100
+reward_batch_size: 128
+use_reward_hat: False
+train_predicter: False

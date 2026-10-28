@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unified-marl"
+version = "0.9.0.dev1"
+description = "Unified PyMARL, SADMA local/ZMQ, role, mean-field and offline preference APIs"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0 AND MIT AND LicenseRef-Wang-Delivery AND LicenseRef-Kou-Delivery AND LicenseRef-Yi-Closed-Delivery"
+license-files = ["LICENSE", "NOTICE", "licenses/*.txt"]
+dependencies = ["numpy>=1.24,<2", "torch>=2.1,<3", "PyYAML>=6,<7"]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "build", "wheel"]
+smac = ["smac @ git+https://github.com/oxwhirl/smac.git", "pysc2>=3"]
+role = ["scikit-learn>=1.3,<2"]
+hmf = ["gym==0.26.2", "cloudpickle>=2"]
+reward = ["ml-collections==1.1.0", "transformers==4.53.0", "scipy>=1.10,<2"]
+distributed = ["pyzmq==25.1.2"]
+powergrid = ["pandapower>=2.14,<3", "pandas>=2.1,<3", "gym==0.26.2", "scipy>=1.10,<1.14", "scikit-learn>=1.3,<2"]
+
+[project.scripts]
+unified-marl = "unified_marl.cli:main"
+unified-marl-app = "unified_marl.applications.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+unified_marl = ["config/**/*.yaml", "config/*.yaml", "PROVENANCE.json", "APPLICATION_PROVENANCE.json", "applications/templates/*.yaml", "applications/templates/*.csv", "applications/templates/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

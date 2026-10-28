@@ -1,0 +1,22 @@
+epsilon_start: 1.0
+epsilon_finish: 0.05
+epsilon_anneal_time: 100000
+
+train_buffer_size: 5000
+train_batch_size: 8
+update_rate: 1
+target_update_interval: 200
+
+agenet_type: rnn
+agent_inputs: ["obs", "agent_id", "last_action"]
+mixer: "q_mixer"
+mixing_embed_dim: 32
+hypernet_layers: 2
+hypernet_embed: 64
+lr: 0.001
+td_lambda: 0.6
+q_lambda: False
+
+use_orthogonal: True
+use_layer_norm: False
+gain: 0.01

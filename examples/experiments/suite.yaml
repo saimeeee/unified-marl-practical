@@ -1,0 +1,29 @@
+# A real, short training matrix for checking integration, not a benchmark.
+# Reports aggregate only the same algorithm/environment entry across seeds.
+schema_version: 1
+name: two-algorithms-two-environments
+algorithms:
+  - pymarl/qmix
+  - pymarl/vdn
+envs:
+  - name: toy
+    env_args:
+      n_agents: 2
+      episode_limit: 4
+  - name: inventory
+    env_args:
+      agents_file: ../../src/unified_marl/applications/templates/warehouse_agents.csv
+      demand_file: ../../src/unified_marl/applications/templates/warehouse_demand.csv
+      horizon: 4
+      reward_scale: 10000.0
+seeds: [11, 23]
+device: cpu
+training:
+  t_max: 24
+  max_updates: 2
+  batch_size: 2
+  buffer_size: 8
+  rnn_hidden_dim: 16
+evaluation:
+  episodes: 3
+  seed_count: 2

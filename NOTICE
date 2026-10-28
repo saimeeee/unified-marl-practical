@@ -1,0 +1,37 @@
+unified-marl contains code migrated from the user's supplied PyMARL distribution
+(pymarl-master/pymarl-master), licensed under Apache License, Version 2.0.
+The original license is preserved in LICENSE. The implementation keeps the
+supplied baseline network architectures, losses and update rules. Package
+imports, device/resource handling, public APIs, logging, configuration,
+checkpointing, deterministic testing environment and worker lifecycle handling
+are maintained by this integration project. Source provenance is recorded in
+docs/evidence/stage2/migration_sources.json.
+
+Wang Sizhe RGHMF and hmf_replenishment source files are included from the
+user-provided delivery, with provenance in docs/evidence/stage3/migration_sources.json.
+No license grant was identified in that delivery during the source audit.
+LicenseRef-Wang-Delivery denotes those supplied files with unspecified license
+terms; this notice does not place them under PyMARL's Apache-2.0 license or
+grant new redistribution rights. The current artifact is for the user's
+integration workspace. Original attribution and source comments are retained.
+
+Kou Qian ICQ-MA, old_src and the embedded MAPT reward-model closure are from
+the user-provided delivery. Provenance is in docs/evidence/stage4/migration_sources.json.
+No license grant for these algorithm/model files was identified in the supplied
+folders. LicenseRef-Kou-Delivery denotes their unspecified supplied terms;
+this integration does not apply PyMARL's license to them or grant additional
+redistribution rights. Unrelated MAPT simulator assets are not bundled.
+
+SADMA policy/controller/buffer/network sources use the Wang Sizhe delivery;
+the Yi Cairun open and closed configuration profiles are preserved separately.
+The Yi open and ZMQ deliveries are byte-identical for the compared Python,
+YAML and shell files; their provenance is retained, not counted as additional
+algorithms. Comparison and migration evidence is in docs/evidence/stage5/.
+LicenseRef-Yi-Closed-Delivery records unspecified terms in the user's supplied Yi
+closed configuration files. The Yi open and ZMQ distributions contain the MIT
+License, Copyright (c) 2024 XJTU; its complete text is preserved in
+licenses/SADMA-Yi-MIT.txt. Earlier stage reports that found no license for this
+open subset are superseded by this file audit. No license grant is inferred
+for the separate closed distribution or the Wang delivery solely from similarity.
+No new redistribution grant is implied. Local synchronous
+execution does not bundle the external CityFlow engine or continuous grid assets.

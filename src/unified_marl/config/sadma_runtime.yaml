@@ -1,0 +1,16 @@
+sadma_algorithm: qmix
+mac: sadma
+learner: sadma
+runner: episode
+batch_size_run: 1
+env_batch_size: 1
+num_env_runner: 1
+num_sample_worker: 1
+async_train: false
+asynchronous_env: false
+env_type: discrete
+max_updates: null
+num_threads: 1
+device: cpu
+train_device: cpu
+use_cuda: false

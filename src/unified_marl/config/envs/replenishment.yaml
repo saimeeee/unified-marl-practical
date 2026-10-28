@@ -1,0 +1,6 @@
+env: replenishment
+env_args:
+  task_type: Standard
+  mode: train
+  n_agents: 100
+  time_limit: 1460

@@ -1,0 +1,343 @@
+import torch
+import torch.nn.functional as F
+from gym.spaces import Box, Discrete
+from unified_marl.algorithms.hmf.utils.networks import LocalCritic
+from unified_marl.algorithms.hmf.utils.misc import soft_update, average_gradients, onehot_from_logits, gumbel_softmax
+from unified_marl.algorithms.hmf.agent.mfvfd_agents import Agent
+
+
+MSELoss = torch.nn.MSELoss()
+
+class MFVFD(object):
+    """
+    Wrapper class for DDPG-esque (i.e. also MADDPG) agents in multi-agent task
+    """
+    def __init__(self, agent_init_params, num_agents, n_heads, add_agentID, explore,
+                 act_dim, obs_dim,  grad_norm_clip, gamma=0.95, tau=0.01, lr=0.01, hidden_dim=64,
+                 discrete_action=False):
+        """
+        Inputs:
+            agent_init_params (list of dict): List of dicts with parameters to
+                                              initialize each agent
+                num_in_pol (int): Input dimensions to policy
+                num_out_pol (int): Output dimensions to policy
+                num_in_critic (int): Input dimensions to critic
+            alg_types (list of str): Learning algorithm for each agent (DDPG
+                                       or MADDPG)
+            gamma (float): Discount factor
+            tau (float): Target update rate
+            lr (float): Learning rate for policy and critic
+            hidden_dim (int): Number of hidden dimensions for networks
+            discrete_action (bool): Whether or not to use discrete action space
+        """
+        self.nagents = num_agents
+        self.explore = explore
+        self.agent = Agent(lr=lr, discrete_action=discrete_action,
+                               hidden_dim=hidden_dim, explore=self.explore,
+                               **agent_init_params)
+
+        self.agent_init_params = agent_init_params
+        self.gamma = gamma
+        self.tau = tau
+        self.lr = lr
+        self.discrete_action = discrete_action
+        self.add_agentID = add_agentID
+        self.critic_dev = 'cpu'  # device for critics
+        self.trgt_critic_dev = 'cpu'  # device for target critics
+        self.niter = 0
+
+        self.act_dim = act_dim
+        self.obs_dim = obs_dim
+
+        self.n_heads = n_heads
+        self.grad_norm_clip = grad_norm_clip
+        self.device = torch.device("cpu")
+
+    def scale_noise(self, scale):
+        """
+        Scale noise for each agent
+        Inputs:
+            scale (float): scale of noise
+        """
+
+        self.agent.scale_noise(scale)
+
+    def reset_noise(self):
+        self.agent.reset_noise()
+
+    def step(self, observations, explore=False):
+        """
+        Take a step forward in environment with all agents
+        Inputs:
+            observations: List of observations for each agent
+            explore (boolean): Whether or not to add exploration noise
+        Outputs:
+            actions: List of actions for each agent
+        """
+        return self.agent.step(observations, explore=explore)
+
+    def _get_mf_info_use_attention(self, info, info_dim, mask=False):
+
+        info = torch.reshape(info, (self.bsz, self.nagents, -1))
+
+        if mask == True:
+            atten_mask = self.agent_id_mask
+        else:
+            atten_mask = None
+        # u_obs_act = torch.sum(self.agent.attention(info,  mask=atten_mask, calculate_V=True), dim=0)
+        u_obs_act = self.agent.attention(info, mask=atten_mask, calculate_V=True)
+
+
+        return u_obs_act
+    def update(self, sample, use_next_acts, logger=None):
+        """
+        Update parameters of agent model based on sample from replay buffer
+        Inputs:
+            sample: tuple of (observations, actions, rewards, next
+                    observations, and episode end masks) sampled randomly from
+                    the replay buffer. Each is a list with entries
+                    corresponding to each agent
+            agent_i (int): index of agent to update
+            parallel (bool): If true, will average gradients across threads
+            logger (SummaryWriter from Tensorboard-Pytorch):
+                If passed in, important quantities will be logged
+            all : 表示每个agent的均值Q的联合信息输入
+            trgt: 表示目标网络的输入  eval
+            local: 表示个体网络的输入  mf: 表示均值场网络的输入
+            ind_act: 代表从局部神经网络得到的最优行为 option：代表从MF神经网络得到的最优行为
+                   act: 动作  obs:观测   vf_in -- >info
+        """
+        local_obs, local_acs, rewards, next_local_obs, last_local_acs, dones = sample
+        self.bsz = local_obs[0].shape[0]
+        local_obs = torch.reshape(torch.stack(local_obs, dim=1), (self.bsz * self.nagents, -1)).to(self.device)
+        local_acs = torch.reshape(torch.stack(local_acs, dim=1), (self.bsz * self.nagents, -1)).to(self.device)
+        next_local_obs = torch.reshape(torch.stack(next_local_obs, dim=1), (self.bsz * self.nagents, -1)).to(self.device)
+        last_local_acs = torch.reshape(torch.stack(last_local_acs, dim=1), (self.bsz * self.nagents, -1)).to(self.device)
+
+        low_rews = torch.reshape(torch.stack(rewards, dim=1), (self.bsz * self.nagents, -1)).to(self.device)
+        low_dones = torch.reshape(torch.stack(dones, dim=1), (self.bsz * self.nagents, -1)).to(self.device)
+        # agents_id = torch.tensor([[[i] for i in range(self.nagents)] for _ in range(self.bsz)])
+        # agents_id_onehot = torch.zeros(self.bsz, self.nagents, self.nagents).scatter_(2, agents_id, 1)
+        # agents_id_onehot = torch.reshape(agents_id_onehot, (self.bsz * self.nagents, -1))
+        # cat_agent_id = lambda x: torch.cat((x, agents_id_onehot), dim=-1) if self.add_agentID else x
+
+        self.batch_agent_id = torch.reshape(torch.tensor([[i for i in range(self.nagents)] for _ in range(self.bsz)]),
+                                            (self.bsz, self.nagents, -1))
+        self.agent_id_mask = (torch.zeros(self.bsz, self.nagents, self.nagents).scatter_(2, self.batch_agent_id, 1) * -1 + 1).type(
+            torch.bool).to(self.device)
+        """
+        更新local_critic 和 mf_critic 和 attention
+        """
+        self.agent.low_optimizer.zero_grad()
+        trgt_local_Q = self.agent.target_local_critic(next_local_obs)
+        trgt_local_act = onehot_from_logits(trgt_local_Q)
+        trgt_local_max_Q = torch.gather(trgt_local_Q,  dim=-1, index=torch.argmax(trgt_local_act, dim=-1, keepdim=True))
+        trgt_local_info = torch.cat((next_local_obs, trgt_local_act), dim=-1)
+        trgt_u_obs_act = self._get_mf_info_use_attention(trgt_local_info, self.act_dim + self.obs_dim, True)
+        trgt_u_obs_act = torch.reshape(trgt_u_obs_act, (self.bsz * self.nagents, -1))
+        trgt_mf_Q = self.agent.target_mf_critic(trgt_u_obs_act)
+        trgt_total_Q = trgt_mf_Q + trgt_local_max_Q
+        trgt_value = (low_rews + self.gamma * trgt_total_Q * (1 - low_dones))
+
+
+        eval_local_Q = torch.gather(self.agent.local_critic(local_obs), dim=-1,
+                                    index=torch.argmax(local_acs, dim=-1, keepdim=True))
+        eval_local_info = torch.cat((local_obs, local_acs), dim=-1)
+        eval_u_obs_act = self._get_mf_info_use_attention(eval_local_info, self.act_dim + self.obs_dim, True)
+        eval_u_obs_act = torch.reshape(eval_u_obs_act, (self.bsz * self.nagents, -1))
+        eval_mf_Q = self.agent.mf_critic(eval_u_obs_act)
+        eval_total_Q = eval_local_Q + eval_mf_Q
+
+        total_vf_loss = MSELoss(eval_total_Q, trgt_value.detach())
+        total_vf_loss.backward(retain_graph=True)
+        torch.nn.utils.clip_grad_norm_(self.agent.low_param, self.grad_norm_clip)
+        self.agent.low_optimizer.step()
+
+        # 限制mean-field Q
+        # # 方案一 ： trgt_local_info : next_local_obs + next_local_act
+        # # 方案二 :  trgt_local_info : local_obs + local_act(从网络中得到的)
+        '''方案二'''
+        # self.agent.high_optimizer.zero_grad()
+        #
+        # trgt_mf_Q = self.agent.target_mf_critic(cat_agent_id(eval_u_obs_act))
+        # eval_local_Q = self.agent.local_critic(cat_agent_id(local_obs))
+        # eval_local_act = onehot_from_logits(eval_local_Q)
+        # trgt_local_info = torch.cat((local_obs, eval_local_act), dim=-1)
+        #
+        # trgt_local_info = torch.reshape(trgt_local_info, (self.bsz, self.nagents, -1))
+        # eval_local_info = torch.reshape(eval_local_info, (self.bsz, self.nagents, -1))
+        # eval_to_trgt_u_obs_act = self.agent.attention(trgt_local_info, he=eval_local_info, mask=self.agent_id_mask,
+        #                                               calculate_V=True)
+        # eval_to_trgt_u_obs_act = torch.reshape(eval_to_trgt_u_obs_act, (self.bsz * self.nagents, -1))
+        # eval_mf_Q = self.agent.mf_critic(cat_agent_id(eval_to_trgt_u_obs_act))
+        # mf_loss = MSELoss(eval_mf_Q, trgt_mf_Q.detach())
+        # mf_loss.backward()
+        # torch.nn.utils.clip_grad_norm_(self.agent.high_param, self.grad_norm_clip)
+        # self.agent.high_optimizer.step()
+
+        '''方案三'''
+        self.agent.high_optimizer.zero_grad()
+
+        trgt_local_Q = self.agent.local_critic(local_obs)
+        trgt_local_act = onehot_from_logits(trgt_local_Q)
+        trgt_local_info = torch.cat((local_obs, trgt_local_act), dim=-1)
+
+        trgt_u_obs_act = self._get_mf_info_use_attention(trgt_local_info, self.act_dim + self.obs_dim, True)
+        trgt_u_obs_act = torch.reshape(trgt_u_obs_act, (self.bsz * self.nagents, -1))
+        trgt_mf_Q = self.agent.target_mf_critic(trgt_u_obs_act)
+
+        trgt_local_info = torch.reshape(trgt_local_info, (self.bsz, self.nagents, -1))
+        eval_local_info = torch.reshape(eval_local_info, (self.bsz, self.nagents, -1))
+
+        eval_to_trgt_u_obs_act = self.agent.attention(eval_local_info, he=trgt_local_info, mask=self.agent_id_mask,
+                                                      calculate_V=True)
+        # eval_to_trgt_u_obs_act = torch.sum(eval_to_trgt_u_obs_act, dim=0)
+        eval_to_trgt_u_obs_act = torch.reshape(eval_to_trgt_u_obs_act, (self.bsz * self.nagents, -1))
+        eval_mf_Q = self.agent.mf_critic(eval_to_trgt_u_obs_act)
+        mf_loss = MSELoss(eval_mf_Q, trgt_mf_Q.detach())
+        mf_loss.backward()
+        torch.nn.utils.clip_grad_norm_(self.agent.high_param, self.grad_norm_clip)
+        self.agent.high_optimizer.step()
+
+        if logger is not None:
+            logger.add_scalar('total_vf_loss', total_vf_loss, self.niter)
+            logger.add_scalar('mf_loss', mf_loss, self.niter)
+
+
+
+    def update_all_targets(self):
+        """
+        Update all target networks (called after normal updates have been
+        performed for each agent)
+        """
+        soft_update(self.agent.target_local_critic, self.agent.local_critic, self.tau)
+        soft_update(self.agent.target_mf_critic, self.agent.mf_critic, self.tau)
+        self.niter += 1
+
+    def prep_training(self, device='gpu'):
+        self.agent.local_critic.train()
+        self.agent.mf_critic.train()
+        self.agent.target_local_critic.train()
+        self.agent.target_mf_critic.train()
+        self.agent.attention.train()
+
+        self.agent.local_critic.to(self.device)
+        self.agent.mf_critic.to(self.device)
+        self.agent.target_local_critic.to(self.device)
+        self.agent.target_mf_critic.to(self.device)
+        self.agent.attention.to(self.device)
+
+        # if device == 'gpu':
+        #     fn = lambda x: x.cuda()
+        # else:
+        #     fn = lambda x: x.cpu()
+        # if not self.critic_dev == device:
+        #     self.agent.local_critic = fn(self.agent.local_critic)
+        #     self.agent.mf_critic = fn(self.agent.mf_critic)
+        #     self.agent.attention = fn(self.agent.attention)
+        #     self.critic_dev = device
+        # if not self.trgt_critic_dev == device:
+        #     self.agent.target_local_critic = fn(self.agent.target_local_critic)
+        #     self.agent.target_mf_critic = fn(self.agent.target_mf_critic)
+        #     self.trgt_critic_dev = device
+
+    def prep_rollouts(self, device='cpu'):
+
+        self.agent.local_critic.eval()
+        self.agent.local_critic.cpu()
+        # if device == 'gpu':
+        #     fn = lambda x: x.cuda()
+        # else:
+        #     fn = lambda x: x.cpu()
+        # # only need main policy for rollouts
+        # if not self.critic_dev == device:
+        #     self.agent.local_critic = fn(self.agent.local_critic)
+        #     self.critic_dev = device
+
+    def save(self, filename):
+        """
+        Save trained parameters of all agents into one file
+        """
+        device = torch.device("cpu")
+        self.agent.local_critic.eval()
+        self.agent.mf_critic.eval()
+        self.agent.target_local_critic.eval()
+        self.agent.target_mf_critic.eval()
+        self.agent.attention.eval()
+
+        # self.prep_training(device='cpu')  # move parameters to CPU before saving
+        self.agent.local_critic.to(device)
+        self.agent.mf_critic.to(device)
+        self.agent.target_local_critic.to(device)
+        self.agent.target_mf_critic.to(device)
+        self.agent.attention.to(device)
+        save_dict = {'init_dict': self.init_dict,
+                     'agent_params': self.agent.get_params()}
+        torch.save(save_dict, filename)
+
+    @classmethod
+    def init_from_env(cls, env, n_heads, embed_dim, add_agentID, explore,
+                      grad_norm_clip, gamma=0.95, tau=0.01, lr=0.01, hidden_dim=64):
+        """
+        Instantiate instance of this class from multi-agent environment
+        """
+
+
+        obsp = env.observation_space[0]
+        acsp = env.action_space[0]
+
+
+        num_agents = 0
+        if isinstance(acsp, Box):
+            discrete_action = False
+            get_shape = lambda x: x.shape[0]
+        else:  # Discrete
+            discrete_action = True
+            get_shape = lambda x: x.n
+
+        act_dim = get_shape(acsp)
+        obs_dim = obsp.shape[0]
+        attention_input_dim = obs_dim + act_dim
+
+        num_agents = env.n_agents
+        num_in_local_critic = obs_dim
+        num_in_mf_critic = embed_dim
+        if add_agentID:
+            num_in_local_critic += num_agents
+            num_in_mf_critic += num_agents
+        agent_init_params = ({'num_out_local_pol': act_dim,
+                              'num_in_local_critic': num_in_local_critic,
+                              'num_in_mf_critic': num_in_mf_critic,
+                              'n_heads': n_heads,
+                              'embed_dim': embed_dim,
+                              'attention_input_dim': attention_input_dim,
+                              })
+
+        init_dict = {'gamma': gamma, 'tau': tau, 'lr': lr,
+                     'hidden_dim': hidden_dim,
+                     'agent_init_params': agent_init_params,
+                     'discrete_action': discrete_action,
+                     'num_agents': num_agents,
+                     'n_heads': n_heads,
+                     'act_dim': act_dim,
+                     'obs_dim': obs_dim,
+                     'add_agentID': add_agentID,
+                     'explore': explore,
+                     'grad_norm_clip': grad_norm_clip
+                     }
+        instance = cls(**init_dict)
+        instance.init_dict = init_dict
+        return instance
+
+    @classmethod
+    def init_from_save(cls, filename):
+        """
+        Instantiate instance of this class from file created by 'save' method
+        """
+        save_dict = torch.load(filename)
+        instance = cls(**save_dict['init_dict'])
+        instance.init_dict = save_dict['init_dict']
+        # for a, params in zip(instance.agent, save_dict['agent_params']):
+        #     a.load_params(params)
+        instance.agent.load_params(save_dict['agent_params'])
+        return instance

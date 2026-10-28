@@ -1,0 +1,7 @@
+{
+  "period": 0,
+  "agents": [
+    {"agent_id": "WH1_SKU1", "stock": 20, "last_demand": 10, "backlog": 0, "pipeline": []},
+    {"agent_id": "WH1_SKU2", "stock": 10, "last_demand": 5, "backlog": 0, "pipeline": []}
+  ]
+}

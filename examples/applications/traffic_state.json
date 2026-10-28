@@ -1,0 +1,10 @@
+{
+  "intersections": [
+    {
+      "intersection_id": "intersection_1_1",
+      "phase_id": 1,
+      "waiting_vehicles": {"road_0_1_0_0": 0},
+      "vehicles": {"road_0_1_0_0": 0}
+    }
+  ]
+}

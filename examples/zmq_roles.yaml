@@ -1,0 +1,17 @@
+train_batch_size: 2
+train_buffer_size: 8
+update_rate: 1
+hidden_dim: 16
+t_max: 40
+max_updates: 2
+zmq:
+  role: trainer
+  mode: sync
+  job_id: local-demo
+  bind_endpoint: tcp://127.0.0.1:18400
+  trainer_endpoint: tcp://127.0.0.1:18400
+  inference_endpoints: [tcp://127.0.0.1:18401]
+  num_sampling_workers: 1
+  num_inference_workers: 1
+  timeout_ms: 30000
+  startup_timeout_s: 60

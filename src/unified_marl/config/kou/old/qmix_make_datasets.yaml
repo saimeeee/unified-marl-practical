@@ -1,0 +1,31 @@
+# --- QMIX specific parameters ---
+
+# use epsilon greedy action selector
+action_selector: "epsilon_greedy"
+epsilon_start: 1.0
+epsilon_finish: 0.05
+epsilon_anneal_time: 50000
+
+runner: "makedata_runner"
+
+buffer_size: 2000
+
+# update the target network every {} episodes
+target_update_interval: 200
+
+# use the Q_Learner to train
+agent_output_type: "q"
+learner: "q_learner"
+double_q: True
+mixer: "qmix"
+mixing_embed_dim: 32
+hypernet_layers: 2
+hypernet_embed: 64
+
+name: "qmix"
+data_dir0: "/home/limingyang/kouqian_code/MARLHF_for_dataset/dataset_models/smac/2s3z/poor/"
+data_dir1: "/home/limingyang/kouqian_code/MARLHF_for_dataset/dataset_models/smac/2s3z/good/"
+
+dataset_type: "good_200episode_final"
+dataset_size: 200
+save_buffer_dir: "/home/limingyang/kouqian_code/MAOfflineDatasets/SMAC410_balanced/2s3z/"

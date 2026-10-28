@@ -1,0 +1,72 @@
+{
+  "repository": "saimeeee/unified-marl",
+  "private": true,
+  "release_id": 419314591,
+  "tag": "v0.8.0-engineering.1",
+  "url": "https://github.com/saimeeee/unified-marl/releases/tag/v0.8.0-engineering.1",
+  "release_commit": "8103bb8695a7ca7f049aee49d681053f2f1a836e",
+  "source_commit": "1ce92f7d4837c6e365a87ffa9ba0e6824cf482a1",
+  "workflow_run": 39569403057,
+  "workflow_success": true,
+  "all_remote_assets_verified": true,
+  "assets": [
+    {
+      "name": "APPLICATIONS_GUIDE.zh-CN.md",
+      "bytes": 4391,
+      "sha256": "279d0dd3331be494a05e753b42dcab48fd6cb6d953dfb1cf2e968efa06b46f8e",
+      "url": "https://github.com/saimeeee/unified-marl/releases/download/v0.8.0-engineering.1/APPLICATIONS_GUIDE.zh-CN.md"
+    },
+    {
+      "name": "DELIVERY_MANIFEST.json",
+      "bytes": 1976,
+      "sha256": "f6b3873bd68c217539990b6aa8cbaa69ff94c077b99e74c1fffedf1f4bfa0762",
+      "url": "https://github.com/saimeeee/unified-marl/releases/download/v0.8.0-engineering.1/DELIVERY_MANIFEST.json"
+    },
+    {
+      "name": "engineering-templates-and-guides.zip",
+      "bytes": 31440,
+      "sha256": "ee7c4070376d110a8881d9c8d5d4aaad6e99d0f01be886fbe1b80e079c4a9a71",
+      "url": "https://github.com/saimeeee/unified-marl/releases/download/v0.8.0-engineering.1/engineering-templates-and-guides.zip"
+    },
+    {
+      "name": "ENGINEERING_REPORT.md",
+      "bytes": 1591,
+      "sha256": "34761cedfab14f99b2c3f3303eacf8e979903c13fda5605d0a1605417c576ffc",
+      "url": "https://github.com/saimeeee/unified-marl/releases/download/v0.8.0-engineering.1/ENGINEERING_REPORT.md"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 815,
+      "sha256": "b89ac122e13716f25022ff0fab3abbf78ee1d20ffede55f3b775d57c563b7940",
+      "url": "https://github.com/saimeeee/unified-marl/releases/download/v0.8.0-engineering.1/SHA256SUMS.txt"
+    },
+    {
+      "name": "unified-marl-0.8.0-linux-x86_64-cpu-py312-engineering.zip",
+      "bytes": 281317969,
+      "sha256": "abd0c5ce38baec98e87e04e71dfd565e4c017c315463c231c926b6f56d97cb33",
+      "url": "https://github.com/saimeeee/unified-marl/releases/download/v0.8.0-engineering.1/unified-marl-0.8.0-linux-x86_64-cpu-py312-engineering.zip"
+    },
+    {
+      "name": "unified-marl-0.8.0-windows-x64-cpu-py312-engineering.zip",
+      "bytes": 306714441,
+      "sha256": "9019dc89968306b22d8ffba8cf8c71f9c52abceebb7f3373f05b5422d56b211b",
+      "url": "https://github.com/saimeeee/unified-marl/releases/download/v0.8.0-engineering.1/unified-marl-0.8.0-windows-x64-cpu-py312-engineering.zip"
+    },
+    {
+      "name": "unified_marl-0.8.0-py3-none-any.whl",
+      "bytes": 581348,
+      "sha256": "c9a978fbbd6972705b9c03903af2cc6c915c4b6ef1c8f8e25263e07c5e085b67",
+      "url": "https://github.com/saimeeee/unified-marl/releases/download/v0.8.0-engineering.1/unified_marl-0.8.0-py3-none-any.whl"
+    },
+    {
+      "name": "unified_marl-0.8.0.tar.gz",
+      "bytes": 840189,
+      "sha256": "18db6229567dd7b69a364e76c6470ce3da6620826464af04e3332748fd3b1b4f",
+      "url": "https://github.com/saimeeee/unified-marl/releases/download/v0.8.0-engineering.1/unified_marl-0.8.0.tar.gz"
+    }
+  ],
+  "experiments_run": false,
+  "linux_runtime_tests": false,
+  "platform_installers_run": false,
+  "runtime_files_match_wheel": 378
+}

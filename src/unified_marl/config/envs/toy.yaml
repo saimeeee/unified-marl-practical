@@ -1,0 +1,5 @@
+env: toy
+env_args:
+  n_agents: 2
+  episode_limit: 4
+  truncate: false

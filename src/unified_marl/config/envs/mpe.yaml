@@ -1,0 +1,7 @@
+env: mpe
+env_args:
+  scenario: simple_spread
+  n_agents: 3
+  n_landmarks: 3
+  episode_limit: 25
+test_nepisode: 5

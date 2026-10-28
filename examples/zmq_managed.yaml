@@ -1,0 +1,20 @@
+train_batch_size: 2
+train_buffer_size: 8
+update_rate: 1
+hidden_dim: 16
+mini_epochs: 2
+t_max: 40
+max_updates: 2
+zmq:
+  role: managed
+  mode: sync
+  bind_endpoint: tcp://127.0.0.1:0
+  num_sampling_workers: 2
+  num_inference_workers: 1
+  inference_device: cpu
+  sampler_device: cpu
+  timeout_ms: 10000
+  startup_timeout_s: 45
+  shutdown_timeout_s: 5
+  hwm: 2
+  seed_stride: 1000

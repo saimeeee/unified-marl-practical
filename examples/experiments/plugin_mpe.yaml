@@ -1,0 +1,24 @@
+# Teaching loss variant, not an original author method or performance claim.
+schema_version: 1
+name: huber-iql-mpe-plugin
+plugins:
+  - unified_marl.contrib.huber_iql
+algorithm: example/huber_iql
+env: mpe
+seed: 11
+device: cpu
+env_args:
+  scenario: simple_spread
+  n_agents: 3
+  n_landmarks: 3
+  episode_limit: 25
+training:
+  t_max: 96
+  max_updates: 2
+  batch_size: 2
+  buffer_size: 8
+  rnn_hidden_dim: 16
+  huber_delta: 1.0
+evaluation:
+  episodes: 3
+  seed_count: 2

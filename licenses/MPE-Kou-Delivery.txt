@@ -1,0 +1,45 @@
+MPE simple_spread source and adaptation notice
+=============================================
+
+Source: the supplied Kou delivery, embedded MAPT project:
+marl平台代码/寇谦/论文代码及技术文档/论文代码及技术文档/ICQ-MA/src/components/MAPT/mat/envs/mpe/
+
+Included original files and SHA-256 (verified against source_manifest.json):
+core.py
+  0fba3c68d3501dbdda49ce027b926826f5f662bd86930929d9d13ecdf167c04a
+scenario.py
+  1e5af9aaed42f7abcf50f8a3017788860fd0ff4564a9788adce243e8516ccd2f
+scenarios/simple_spread.py
+  214c33aae623f30e89690177c9f482caba2dd92a178313ae61093431c4ce2da9
+
+The new adapter also follows environment.py's default one-hot action mapping,
+agent ID observation features and collaborative sum-reward convention. No
+Gym/rendering source, other scenarios or unrelated assets are included.
+
+No license grant was present beside these delivered MPE source files. This
+notice does not invent or replace a grant; they remain covered by the project's
+existing LicenseRef-Kou-Delivery provenance status. Any upstream rights and
+third-party permissions must be checked before external redistribution.
+
+Adaptations:
+- package-relative imports; an environment-local NumPy RandomState replaces
+  global random calls, preserving the legacy random-number generator family;
+- at exactly coincident colliding particle positions, the source divides by
+  zero; a fixed +x separating direction makes that undefined contact finite.
+  The original expression is unchanged for nonzero distances;
+- a new MultiAgentEnv adapter validates discrete actions, exposes scalar team
+  reward, and represents the finite horizon as a time-limit truncation;
+- the new adapter's central state is the flattened local-observation array,
+  matching the source wrapper's concatenated shared-observation construction.
+
+Unchanged semantics: dt=0.1, damping=0.25, soft contact forces, agent radius
+0.15, force sensitivity=5, reset positions, scenario observations, silent
+communication fields, agent IDs and cooperative reward summation. In
+particular, the delivered reward includes a -1 self-collision baseline per
+agent and counts each physical pair collision for both participating agents.
+Action indices match the source default one-hot path: 0 stay, 1 +x, 2 -x,
+3 +y, 4 -y. The world has no arena walls or clipping to the initial range.
+
+Only the cooperative simple_spread task is exposed. Other MPE scenarios are
+not claimed as supported. NumPy is the only third-party runtime dependency
+of this environment implementation. The original delivery was not modified.

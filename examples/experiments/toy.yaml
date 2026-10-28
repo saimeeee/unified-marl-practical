@@ -1,0 +1,19 @@
+# Small interface/training smoke run; toy rewards are not business results.
+schema_version: 1
+name: qmix-toy-smoke
+algorithm: pymarl/qmix
+env: toy
+seed: 11
+device: cpu
+env_args:
+  n_agents: 2
+  episode_limit: 4
+training:
+  t_max: 24
+  max_updates: 2
+  batch_size: 2
+  buffer_size: 8
+  rnn_hidden_dim: 16
+evaluation:
+  episodes: 3
+  seed_count: 2

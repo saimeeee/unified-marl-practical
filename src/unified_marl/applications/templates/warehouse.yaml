@@ -1,0 +1,27 @@
+# 示例数字仅展示字段格式；替换为你的真实业务数据，不是实验结果。
+schema_version: 1
+application: warehouse
+backend: inventory
+algorithm: mfvfd
+seed: 1
+device: cpu
+execution: local
+env_args:
+  agents_file: warehouse_agents.csv
+  demand_file: warehouse_demand.csv
+  horizon: 4
+  backlog: false
+  reward_scale: 10000.0
+training:
+  t_max: 10000
+  max_updates: 100
+  batch_size: 32
+  buffer_size: 5000
+  num_groups: 2
+  n_heads: 2
+  embed_dim: 64
+  hidden_dim: 64
+  hmf_steps_per_update: 1
+  hmf_num_batch: 1
+  hmf_norm_rewards: false
+output: {}
