@@ -1,0 +1,65 @@
+{
+  "status": "PUBLISHED",
+  "repository": "saimeeee/unified-marl-practical",
+  "visibility": "private",
+  "tag": "v0.9.0.dev1",
+  "url": "https://github.com/saimeeee/unified-marl-practical/releases/tag/v0.9.0.dev1",
+  "release_id": 426375545,
+  "source_commit": "8ed0a3733e0ead0f49b0aebc62e460c46944ac92",
+  "published_at": "2026-10-28T07:40:25Z",
+  "prerelease": true,
+  "remote_hashes_verified": true,
+  "download_hashes_verified": [
+    "ADDING_ALGORITHM.zh-CN.md",
+    "PRACTICAL_V1_GUIDE.zh-CN.md",
+    "PRACTICAL_V1_REPORT.md",
+    "SHA256SUMS.txt",
+    "unified-marl-practical-0.9.0.dev1-source.zip",
+    "unified_marl-0.9.0.dev1-py3-none-any.whl",
+    "validation-summary.json"
+  ],
+  "assets": [
+    {
+      "name": "ADDING_ALGORITHM.zh-CN.md",
+      "bytes": 10939,
+      "sha256": "a5b4a0ab7826c9610e0bd1583d181f017abcf2e43f22b6b7f3ea635e53956614"
+    },
+    {
+      "name": "PRACTICAL_V1_GUIDE.zh-CN.md",
+      "bytes": 10339,
+      "sha256": "8239146b7c69b0cd1231e4eea8d356cdcb47bea2c01726c07b599528a4cabf00"
+    },
+    {
+      "name": "PRACTICAL_V1_REPORT.md",
+      "bytes": 6901,
+      "sha256": "df1d41da28f1e09ad6a84ff3c387c9ab113e0b072bc56ff3f5e4769c8c99851a"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 589,
+      "sha256": "e3182574725018462f00981df32b9872d1bced42a74b2b85feedc70328091b6c"
+    },
+    {
+      "name": "unified-marl-practical-0.9.0.dev1-source.zip",
+      "bytes": 1159276,
+      "sha256": "7afdac60a9ae18ea4928c107dbaa580e3c39c659a78ec44caa360a5b983a0587"
+    },
+    {
+      "name": "unified_marl-0.9.0.dev1-py3-none-any.whl",
+      "bytes": 606570,
+      "sha256": "2c564a1df7fd0fc24112dfd6ef0d76b9132266956ba6823be17685231caa3f5a"
+    },
+    {
+      "name": "validation-summary.json",
+      "bytes": 2204,
+      "sha256": "74055a3b44bb2b489b19af509253b3c7806e3400cefdf60406f90b6b414633db"
+    }
+  ],
+  "ci": {
+    "url": "https://github.com/saimeeee/unified-marl-practical/actions/runs/40651414339",
+    "conclusion": "success",
+    "passed": 98,
+    "skipped": 1,
+    "source_commit": "8ed0a3733e0ead0f49b0aebc62e460c46944ac92"
+  }
+}

@@ -1,3 +1,9 @@
+# 实用首版已发布到独立私有仓库
+
+0.9.0.dev1 已上传 [saimeeee/unified-marl-practical](https://github.com/saimeeee/unified-marl-practical)，7份附件摘要及实际下载均核对通过，GitHub Actions成功。见 [独立仓库发布回执](PUBLICATION_STATUS_090.md)。原 saimeeee/unified-marl 未改动；以下仅为原仓库历史发布记录。
+
+---
+
 # 当前发布状态：0.8.2已发布
 
 [v0.8.2-engineering.1](https://github.com/saimeeee/unified-marl/releases/tag/v0.8.2-engineering.1)已正式发布，Actions成功；9份附件的远端摘要及实际下载SHA256全部通过。源码提交0c5f2d34bf977a2e75ca5635b16ba5a64f20dbb1，仓库public未改动。具体命令和回执见PUBLICATION_STATUS_082.md。下面早期“private/待连接/待发布”等内容为历史准备记录，以本段和实际回执为准。

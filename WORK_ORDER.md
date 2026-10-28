@@ -75,3 +75,5 @@
 2026-10-28：用户明确授权基于现有 unified-marl 实施实用首版，环境与算法解耦，支持通过配置将新算法用于多个环境；特色方法和剩余环境以后逐步接入。本轮包含必要本地短训练/回归、真实CityFlow既有容器验证、本地wheel与中文文档，不发布远端。当前完成范围见 docs/PRACTICAL_V1_REPORT.md。
 
 2026-10-28：用户先要求上传GitHub，随后明确改为“新建仓库上传”。以最新指令为准，创建独立私有仓库 saimeeee/unified-marl-practical，上传0.9.0.dev1源码、示例、文档及已验收wheel，原仓库不改动。发布记录见 docs/PUBLICATION_STATUS_090.md。
+
+上述新建仓库上传已完成：private仓库、v0.9.0.dev1预发布和7附件均核实；实际下载SHA-256逐项一致；GitHub Actions 98 passed、1 skipped。源码标签8ed0a3733e0ead0f49b0aebc62e460c46944ac92。详情见 docs/PUBLICATION_STATUS_090.md。

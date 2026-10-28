@@ -4,7 +4,7 @@
 
 [使用指南](docs/PRACTICAL_V1_GUIDE.zh-CN.md) · [新增算法](docs/ADDING_ALGORITHM.zh-CN.md) · [验收报告](docs/PRACTICAL_V1_REPORT.md) · [发布状态](docs/PUBLICATION_STATUS_090.md) · [本版说明](docs/releases/v0.9.0.dev1.md)
 
-本仓库为 [`saimeeee/unified-marl-practical`](https://github.com/saimeeee/unified-marl-practical)，是私有仓库；目标标签为 `v0.9.0.dev1`。标签和附件是否已可用，以[发布回执](docs/PUBLICATION_STATUS_090.md)为准。需要相应 GitHub 账号的访问权限。
+本仓库为 [`saimeeee/unified-marl-practical`](https://github.com/saimeeee/unified-marl-practical)，是私有仓库；[v0.9.0.dev1 预发布和安装包](https://github.com/saimeeee/unified-marl-practical/releases/tag/v0.9.0.dev1) 已上传，7份附件下载校验通过。GitHub Actions 首版专项测试为98 passed、1 skipped，详见[发布回执](docs/PUBLICATION_STATUS_090.md)。需要相应 GitHub 账号的访问权限。
 
 ## 安装
 
