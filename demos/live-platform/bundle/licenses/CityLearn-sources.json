@@ -1,0 +1,66 @@
+{
+  "citylearn_tag": "v1.0.0",
+  "files": [
+    {
+      "file": "assets/citylearn-v1/Climate_Zone_1/building_attributes.json",
+      "url": "https://raw.githubusercontent.com/intelligent-environments-lab/CityLearn/v1.0.0/data/Climate_Zone_1/building_attributes.json",
+      "bytes": 7739,
+      "sha256": "e4f204e7fcc4f303d10d1ff49fcca64d45b70cc40938864b4e772b03b2cd58d4"
+    },
+    {
+      "file": "assets/citylearn-v1/Climate_Zone_1/weather_data.csv",
+      "url": "https://raw.githubusercontent.com/intelligent-environments-lab/CityLearn/v1.0.0/data/Climate_Zone_1/weather_data.csv",
+      "bytes": 832966,
+      "sha256": "6e2c0e3178e4fa9d9e952b04b19babfc0db470c467d98d447c5be9438c5a99cb"
+    },
+    {
+      "file": "assets/citylearn-v1/Climate_Zone_1/solar_generation_1kW.csv",
+      "url": "https://raw.githubusercontent.com/intelligent-environments-lab/CityLearn/v1.0.0/data/Climate_Zone_1/solar_generation_1kW.csv",
+      "bytes": 111666,
+      "sha256": "f347709f9f2d202b1ed4a1f6f0563719ea6d8cef012d3b85c765ae8dfe38c816"
+    },
+    {
+      "file": "assets/citylearn-v1/Climate_Zone_1/Building_1.csv",
+      "url": "https://raw.githubusercontent.com/intelligent-environments-lab/CityLearn/v1.0.0/data/Climate_Zone_1/Building_1.csv",
+      "bytes": 332940,
+      "sha256": "b207e084b8eeb1b1e75f0b7fa6573ba9b2878893030b195f4631a81a5a877707"
+    },
+    {
+      "file": "assets/citylearn-v1/Climate_Zone_1/Building_2.csv",
+      "url": "https://raw.githubusercontent.com/intelligent-environments-lab/CityLearn/v1.0.0/data/Climate_Zone_1/Building_2.csv",
+      "bytes": 348230,
+      "sha256": "7af1f329905f93ff7b82a8606dea8164f6d897b46f11caf547a29053b383b73f"
+    },
+    {
+      "file": "assets/citylearn-v1/Climate_Zone_1/Building_5.csv",
+      "url": "https://raw.githubusercontent.com/intelligent-environments-lab/CityLearn/v1.0.0/data/Climate_Zone_1/Building_5.csv",
+      "bytes": 337756,
+      "sha256": "647b1ad4ea8641b8126072bf3227fd006ff622ebf6581ba4a4046cb2bd6e0d93"
+    },
+    {
+      "file": "assets/citylearn-v1/Climate_Zone_1/Building_6.csv",
+      "url": "https://raw.githubusercontent.com/intelligent-environments-lab/CityLearn/v1.0.0/data/Climate_Zone_1/Building_6.csv",
+      "bytes": 337919,
+      "sha256": "d86d94828651a94b302c9c549739b4fc6e5abfa2362be6e6c888644fd99a4d94"
+    },
+    {
+      "file": "assets/citylearn-v1/Climate_Zone_1/Building_7.csv",
+      "url": "https://raw.githubusercontent.com/intelligent-environments-lab/CityLearn/v1.0.0/data/Climate_Zone_1/Building_7.csv",
+      "bytes": 338346,
+      "sha256": "f5b30a5be03a4f901520c9ed930ada44e85e54eebb687cf78a2996dcf049819a"
+    },
+    {
+      "file": "assets/citylearn-v1/Climate_Zone_1/Building_8.csv",
+      "url": "https://raw.githubusercontent.com/intelligent-environments-lab/CityLearn/v1.0.0/data/Climate_Zone_1/Building_8.csv",
+      "bytes": 335603,
+      "sha256": "e4ac1b635a9a209601107e64e89a4d19c9df9ea2f2e575505f0fd31c373a0021"
+    },
+    {
+      "file": "assets/citylearn-v1/Climate_Zone_1/Building_9.csv",
+      "url": "https://raw.githubusercontent.com/intelligent-environments-lab/CityLearn/v1.0.0/data/Climate_Zone_1/Building_9.csv",
+      "bytes": 335087,
+      "sha256": "11f4997aefddeb43db7d9cf0c1799ee7b654a541185d414d15fa6d66fcbe1183"
+    }
+  ],
+  "scope": "Public replacement data, not original SADMA experiment data"
+}

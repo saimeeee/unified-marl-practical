@@ -1,0 +1,7 @@
+{
+  "source_file": "CityLearn v1.0.0/Climate_Zone_1/building_attributes.json",
+  "source_sha256": "e4f204e7fcc4f303d10d1ff49fcca64d45b70cc40938864b4e772b03b2cd58d4",
+  "runtime_sha256": "9768c916548ff8212d753ee679535dbc28ef9b5d26a05142ea6b3ae1588a6dba",
+  "trailing_decimal_tokens_normalized": 2,
+  "meaning": "JSON lexical syntax only: N. becomes N.0; all numeric values preserved; original files unchanged"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "id": "warehouse-20261028",
+      "scenario": "warehouse",
+      "label": "库存补货",
+      "algorithm": "wang_hmf/mfvfd",
+      "training": "1000 次更新",
+      "detail": "4 个库存智能体 · 合成需求",
+      "note": "当前需求满足率低于规则基线，供观察策略行为。",
+      "checkpoint": "models/warehouse/policy.pt",
+      "config": "configs/warehouse.yaml"
+    },
+    {
+      "id": "mpe-20261028",
+      "scenario": "mpe",
+      "label": "MPE 协作",
+      "algorithm": "pymarl/qmix",
+      "training": "1000 次更新",
+      "detail": "3 个智能体 · 3 个地标",
+      "note": "地标距离有所改善，严格覆盖率仍低。",
+      "checkpoint": "models/mpe/policy.pt",
+      "config": null
+    },
+    {
+      "id": "traffic-20261028",
+      "scenario": "traffic",
+      "label": "交通信号",
+      "algorithm": "sadma/ppo",
+      "training": "300 次更新",
+      "detail": "CityFlow · 2 × 2 路口",
+      "note": "相位选择受既有绿灯/红灯服务约束；车辆位置来自本机原生引擎。",
+      "checkpoint": "models/traffic/policy.pt",
+      "config": "configs/traffic.yaml"
+    },
+    {
+      "id": "powergrid-20261028",
+      "scenario": "powergrid",
+      "label": "电网储能",
+      "algorithm": "bounded_ppo",
+      "training": "100 次更新",
+      "detail": "33 节点 · 32 栋建筑",
+      "note": "综合奖励未改善，仍有电压越限；使用公开示范数据。",
+      "checkpoint": "models/powergrid/policy.pt",
+      "config": "configs/powergrid.yaml"
+    }
+  ]
+}

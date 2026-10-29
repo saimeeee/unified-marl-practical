@@ -1,0 +1,35 @@
+schema_version: 1
+application: powergrid
+algorithm: bounded_ppo
+seed: 11
+device: cpu
+execution: local
+env_args:
+  data_path: ../assets/powergrid/runtime-data
+  buildings_states_actions_file: ../assets/powergrid/buildings_states_actions.json
+  climate_zone: Climate_Zone_1
+  hourly_timesteps: 4
+  houses_per_node: 1
+  cluster_adjacent_bus_num: 2
+  building_ids:
+  - Building_1
+  - Building_2
+  - Building_5
+  - Building_6
+  - Building_7
+  - Building_8
+  - Building_9
+  episode_limit: 96
+training:
+  updates: 100
+  horizon: 96
+  episodes_per_update: 1
+  mini_epochs: 4
+  hidden_dim: 64
+  lr: 0.0003
+  gamma: 0.99
+  gae_lambda: 0.95
+  eps_clip: 0.2
+  entropy_coef: 0.0
+  critic_coef: 0.5
+output: {}

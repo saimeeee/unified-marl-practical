@@ -22,3 +22,7 @@ wheelhouse/
 *.whl
 .env
 .env.*
+
+# Shipped inference-only demo checkpoints are required for local startup.
+!demos/live-platform/bundle/models/*/policy.pt
+demos/live-platform/local-state/

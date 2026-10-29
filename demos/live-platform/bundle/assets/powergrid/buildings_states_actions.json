@@ -1,0 +1,142 @@
+{
+  "Building_1": {
+    "states": {
+      "hour": true,
+      "t_out": true,
+      "direct_solar_rad": true,
+      "solar_gen": true,
+      "non_shiftable_load": true,
+      "net_electricity_consumption": true,
+      "cooling_storage_soc": true,
+      "dhw_storage_soc": true,
+      "electrical_storage_soc": true
+    },
+    "actions": {
+      "cooling_storage": true,
+      "dhw_storage": true,
+      "pv_curtail": false,
+      "pv_phi": false,
+      "electrical_storage": true
+    }
+  },
+  "Building_2": {
+    "states": {
+      "hour": true,
+      "t_out": true,
+      "direct_solar_rad": true,
+      "solar_gen": true,
+      "non_shiftable_load": true,
+      "net_electricity_consumption": true,
+      "cooling_storage_soc": true,
+      "dhw_storage_soc": true,
+      "electrical_storage_soc": true
+    },
+    "actions": {
+      "cooling_storage": true,
+      "dhw_storage": true,
+      "pv_curtail": false,
+      "pv_phi": false,
+      "electrical_storage": true
+    }
+  },
+  "Building_5": {
+    "states": {
+      "hour": true,
+      "t_out": true,
+      "direct_solar_rad": true,
+      "solar_gen": true,
+      "non_shiftable_load": true,
+      "net_electricity_consumption": true,
+      "cooling_storage_soc": true,
+      "dhw_storage_soc": true,
+      "electrical_storage_soc": true
+    },
+    "actions": {
+      "cooling_storage": true,
+      "dhw_storage": true,
+      "pv_curtail": false,
+      "pv_phi": false,
+      "electrical_storage": true
+    }
+  },
+  "Building_6": {
+    "states": {
+      "hour": true,
+      "t_out": true,
+      "direct_solar_rad": true,
+      "solar_gen": true,
+      "non_shiftable_load": true,
+      "net_electricity_consumption": true,
+      "cooling_storage_soc": true,
+      "dhw_storage_soc": true,
+      "electrical_storage_soc": true
+    },
+    "actions": {
+      "cooling_storage": true,
+      "dhw_storage": true,
+      "pv_curtail": false,
+      "pv_phi": false,
+      "electrical_storage": true
+    }
+  },
+  "Building_7": {
+    "states": {
+      "hour": true,
+      "t_out": true,
+      "direct_solar_rad": true,
+      "solar_gen": true,
+      "non_shiftable_load": true,
+      "net_electricity_consumption": true,
+      "cooling_storage_soc": true,
+      "dhw_storage_soc": true,
+      "electrical_storage_soc": true
+    },
+    "actions": {
+      "cooling_storage": true,
+      "dhw_storage": true,
+      "pv_curtail": false,
+      "pv_phi": false,
+      "electrical_storage": true
+    }
+  },
+  "Building_8": {
+    "states": {
+      "hour": true,
+      "t_out": true,
+      "direct_solar_rad": true,
+      "solar_gen": true,
+      "non_shiftable_load": true,
+      "net_electricity_consumption": true,
+      "cooling_storage_soc": true,
+      "dhw_storage_soc": true,
+      "electrical_storage_soc": true
+    },
+    "actions": {
+      "cooling_storage": true,
+      "dhw_storage": true,
+      "pv_curtail": false,
+      "pv_phi": false,
+      "electrical_storage": true
+    }
+  },
+  "Building_9": {
+    "states": {
+      "hour": true,
+      "t_out": true,
+      "direct_solar_rad": true,
+      "solar_gen": true,
+      "non_shiftable_load": true,
+      "net_electricity_consumption": true,
+      "cooling_storage_soc": true,
+      "dhw_storage_soc": true,
+      "electrical_storage_soc": true
+    },
+    "actions": {
+      "cooling_storage": true,
+      "dhw_storage": true,
+      "pv_curtail": false,
+      "pv_phi": false,
+      "electrical_storage": true
+    }
+  }
+}

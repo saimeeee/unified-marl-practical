@@ -1,10 +1,27 @@
-# unified-marl practical · 0.9.0.dev1
+# unified-marl practical · 本地实时仿真平台
+
+**下载 GitHub ZIP，在自己电脑启动网页。** 四个已训练模型、库存/MPE/交通/电网场景数据及 CityFlow 编译源码随仓库提供。模型推理和仿真均在本机CPU执行，不需要云服务器、SSH或显卡。
+
+1. 安装并启动 **Docker Desktop（Linux容器模式/WSL2）**。
+2. 下载本仓库 **Code → Download ZIP**，完整解压。
+3. 双击根目录 **`启动本地平台.cmd`**。首次构建会联网下载环境依赖，完成后打开 `http://127.0.0.1:18765/`。
+4. 选择场景，初始化，再点击开始或单步。使用完双击 **`停止本地平台.cmd`**；运行记录仍保留。
+
+首次构建完成后，可以在没有外部网络的情况下复用本机镜像运行。源码更新后需按[本地平台说明](demos/live-platform/README.zh-CN.md)使用 `-Rebuild` 重建。核心wheel与早期安装包不包含这个完整网页平台，请下载当前源码ZIP或本地平台Release。
+
+当前支持浅色网页、四场景实时画布、开始/暂停/单步/倍速、指标/动作/曲线和轨迹导出。平台运行已有模型，暂不提供网页训练任务和多用户管理。已有模型效果限制保留；能运行不等于策略已收敛。
+
+[完整本地版下载](https://github.com/saimeeee/unified-marl-practical/releases/tag/v0.9.0-local.1) · [本机运行验收](docs/LOCAL_PLATFORM_REPORT.md)
+
+![本机实时仿真界面](docs/images/local-platform.jpg)
+
+## 算法与环境解耦的核心库
 
 基于 PyMARL 风格整合多份 MARL 交付的**实用首版预发布**：算法和环境独立注册，用一份 YAML 选择算法、环境、训练参数和随机种子；新算法作为 Python 插件接入，再在兼容环境中复用。
 
 [使用指南](docs/PRACTICAL_V1_GUIDE.zh-CN.md) · [新增算法](docs/ADDING_ALGORITHM.zh-CN.md) · [验收报告](docs/PRACTICAL_V1_REPORT.md) · [发布状态](docs/PUBLICATION_STATUS_090.md) · [本版说明](docs/releases/v0.9.0.dev1.md)
 
-本仓库为 [`saimeeee/unified-marl-practical`](https://github.com/saimeeee/unified-marl-practical)，是私有仓库；[v0.9.0.dev1 预发布和安装包](https://github.com/saimeeee/unified-marl-practical/releases/tag/v0.9.0.dev1) 已上传，7份附件下载校验通过。GitHub Actions 首版专项测试为98 passed、1 skipped，详见[发布回执](docs/PUBLICATION_STATUS_090.md)。需要相应 GitHub 账号的访问权限。
+本仓库为 [`saimeeee/unified-marl-practical`](https://github.com/saimeeee/unified-marl-practical)，当前为公开仓库。[v0.9.0.dev1 核心库预发布](https://github.com/saimeeee/unified-marl-practical/releases/tag/v0.9.0.dev1)的7份附件及98 passed、1 skipped CI是历史核心库验收，见[发布回执](docs/PUBLICATION_STATUS_090.md)，不等同于本地网页平台验收。
 
 ## 安装
 
@@ -27,7 +44,7 @@ python -m venv .venv
 
 ### 从源码安装
 
-先使用具有仓库权限的 GitHub 账号完成 Git 认证：
+也可以直接克隆公开仓库：
 
 ```powershell
 git clone https://github.com/saimeeee/unified-marl-practical.git

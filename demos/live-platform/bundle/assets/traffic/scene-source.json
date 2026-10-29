@@ -1,0 +1,6 @@
+{
+  "generator": "Official CityFlow grid generator, 2x2 with turns; fixed parameters in prepare_scenes.py",
+  "flow_interval_seconds": 15.0,
+  "adaptation": "Append explicit all-red phase, 1 second clearance; engineering dynamic mask: maximum green 20s and queued-lane service deadline 40s. SADMA PPO loss unchanged.",
+  "source_roadnet_sha256": "ad4ec61e297a718b622dbac5fec9f1c579392820bb764ddb65a7ca307c209414"
+}

@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "config": {
+    "schema_version": 1,
+    "application": "traffic",
+    "backend": "cityflow_engine",
+    "algorithm": "ppo",
+    "seed": 11,
+    "device": "cpu",
+    "execution": "local",
+    "env_args": {
+      "cityflow_config_file": "../../assets/traffic/cityflow.json",
+      "control_interval": 10.0,
+      "yellow_time": 1.0,
+      "episode_limit": 32,
+      "thread_num": 1,
+      "queue_reward_scale": 0.25,
+      "phase_ids": {
+        "intersection_1_1": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "intersection_2_1": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "intersection_1_2": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "intersection_2_2": [
+          0,
+          2,
+          4,
+          6
+        ]
+      },
+      "yellow_phase_ids": {
+        "intersection_1_1": 8,
+        "intersection_2_1": 8,
+        "intersection_1_2": 8,
+        "intersection_2_2": 8
+      },
+      "max_green_time": 20.0,
+      "max_red_time": 40.0
+    },
+    "training": {
+      "t_max": 100000,
+      "max_updates": 300,
+      "max_steps": 10000000,
+      "num_threads": 2,
+      "train_batch_size": 8,
+      "train_buffer_size": 8,
+      "update_rate": 8,
+      "hidden_dim": 128,
+      "mini_epochs": 4,
+      "entropy": 0.01,
+      "lr": 0.0005,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "eps_clip": 0.2,
+      "use_layer_norm": true,
+      "use_orthogonal": true,
+      "use_value_norm": true
+    },
+    "output": {}
+  },
+  "metadata": {
+    "cityflow_config_file": "../../assets/traffic/cityflow.json",
+    "cityflow_root": "../../assets/traffic",
+    "roadnet_file": "../../assets/traffic/roadnet.json",
+    "flow_file": "../../assets/traffic/flow.json",
+    "interval": 1.0,
+    "control_interval": 10.0,
+    "control_steps": 10,
+    "yellow_time": 1.0,
+    "yellow_steps": 1,
+    "episode_limit": 32,
+    "seed": 11,
+    "thread_num": 1,
+    "queue_reward_scale": 0.25,
+    "agent_ids": [
+      "intersection_1_1",
+      "intersection_1_2",
+      "intersection_2_1",
+      "intersection_2_2"
+    ],
+    "phase_ids": {
+      "intersection_1_1": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "intersection_1_2": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "intersection_2_1": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "intersection_2_2": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    "yellow_phase_ids": {
+      "intersection_1_1": 8,
+      "intersection_1_2": 8,
+      "intersection_2_1": 8,
+      "intersection_2_2": 8
+    },
+    "inbound_lane_ids": {
+      "intersection_1_1": [
+        "road_0_1_0_0",
+        "road_0_1_0_1",
+        "road_0_1_0_2",
+        "road_1_0_1_0",
+        "road_1_0_1_1",
+        "road_1_0_1_2",
+        "road_1_2_3_0",
+        "road_1_2_3_1",
+        "road_1_2_3_2",
+        "road_2_1_2_0",
+        "road_2_1_2_1",
+        "road_2_1_2_2"
+      ],
+      "intersection_1_2": [
+        "road_0_2_0_0",
+        "road_0_2_0_1",
+        "road_0_2_0_2",
+        "road_1_1_1_0",
+        "road_1_1_1_1",
+        "road_1_1_1_2",
+        "road_1_3_3_0",
+        "road_1_3_3_1",
+        "road_1_3_3_2",
+        "road_2_2_2_0",
+        "road_2_2_2_1",
+        "road_2_2_2_2"
+      ],
+      "intersection_2_1": [
+        "road_1_1_0_0",
+        "road_1_1_0_1",
+        "road_1_1_0_2",
+        "road_2_0_1_0",
+        "road_2_0_1_1",
+        "road_2_0_1_2",
+        "road_2_2_3_0",
+        "road_2_2_3_1",
+        "road_2_2_3_2",
+        "road_3_1_2_0",
+        "road_3_1_2_1",
+        "road_3_1_2_2"
+      ],
+      "intersection_2_2": [
+        "road_1_2_0_0",
+        "road_1_2_0_1",
+        "road_1_2_0_2",
+        "road_2_1_1_0",
+        "road_2_1_1_1",
+        "road_2_1_1_2",
+        "road_2_3_3_0",
+        "road_2_3_3_1",
+        "road_2_3_3_2",
+        "road_3_2_2_0",
+        "road_3_2_2_1",
+        "road_3_2_2_2"
+      ]
+    },
+    "inbound_lane_lengths": {
+      "intersection_1_1": [
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0
+      ],
+      "intersection_1_2": [
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0
+      ],
+      "intersection_2_1": [
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0
+      ],
+      "intersection_2_2": [
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0,
+        240.0
+      ]
+    },
+    "n_agents": 4,
+    "n_actions": 4,
+    "max_inbound_lanes": 12,
+    "obs_size": 28,
+    "state_size": 112,
+    "rl_traffic_light": true,
+    "max_green_time": 20.0,
+    "max_red_time": 40.0,
+    "phase_inbound_lane_ids": {
+      "intersection_1_1": {
+        "0": [
+          "road_0_1_0_1",
+          "road_0_1_0_2",
+          "road_1_0_1_2",
+          "road_1_2_3_2",
+          "road_2_1_2_1",
+          "road_2_1_2_2"
+        ],
+        "2": [
+          "road_0_1_0_0",
+          "road_0_1_0_2",
+          "road_1_0_1_2",
+          "road_1_2_3_2",
+          "road_2_1_2_0",
+          "road_2_1_2_2"
+        ],
+        "4": [
+          "road_0_1_0_2",
+          "road_1_0_1_1",
+          "road_1_0_1_2",
+          "road_1_2_3_1",
+          "road_1_2_3_2",
+          "road_2_1_2_2"
+        ],
+        "6": [
+          "road_0_1_0_2",
+          "road_1_0_1_0",
+          "road_1_0_1_2",
+          "road_1_2_3_0",
+          "road_1_2_3_2",
+          "road_2_1_2_2"
+        ]
+      },
+      "intersection_1_2": {
+        "0": [
+          "road_0_2_0_1",
+          "road_0_2_0_2",
+          "road_1_1_1_2",
+          "road_1_3_3_2",
+          "road_2_2_2_1",
+          "road_2_2_2_2"
+        ],
+        "2": [
+          "road_0_2_0_0",
+          "road_0_2_0_2",
+          "road_1_1_1_2",
+          "road_1_3_3_2",
+          "road_2_2_2_0",
+          "road_2_2_2_2"
+        ],
+        "4": [
+          "road_0_2_0_2",
+          "road_1_1_1_1",
+          "road_1_1_1_2",
+          "road_1_3_3_1",
+          "road_1_3_3_2",
+          "road_2_2_2_2"
+        ],
+        "6": [
+          "road_0_2_0_2",
+          "road_1_1_1_0",
+          "road_1_1_1_2",
+          "road_1_3_3_0",
+          "road_1_3_3_2",
+          "road_2_2_2_2"
+        ]
+      },
+      "intersection_2_1": {
+        "0": [
+          "road_1_1_0_1",
+          "road_1_1_0_2",
+          "road_2_0_1_2",
+          "road_2_2_3_2",
+          "road_3_1_2_1",
+          "road_3_1_2_2"
+        ],
+        "2": [
+          "road_1_1_0_0",
+          "road_1_1_0_2",
+          "road_2_0_1_2",
+          "road_2_2_3_2",
+          "road_3_1_2_0",
+          "road_3_1_2_2"
+        ],
+        "4": [
+          "road_1_1_0_2",
+          "road_2_0_1_1",
+          "road_2_0_1_2",
+          "road_2_2_3_1",
+          "road_2_2_3_2",
+          "road_3_1_2_2"
+        ],
+        "6": [
+          "road_1_1_0_2",
+          "road_2_0_1_0",
+          "road_2_0_1_2",
+          "road_2_2_3_0",
+          "road_2_2_3_2",
+          "road_3_1_2_2"
+        ]
+      },
+      "intersection_2_2": {
+        "0": [
+          "road_1_2_0_1",
+          "road_1_2_0_2",
+          "road_2_1_1_2",
+          "road_2_3_3_2",
+          "road_3_2_2_1",
+          "road_3_2_2_2"
+        ],
+        "2": [
+          "road_1_2_0_0",
+          "road_1_2_0_2",
+          "road_2_1_1_2",
+          "road_2_3_3_2",
+          "road_3_2_2_0",
+          "road_3_2_2_2"
+        ],
+        "4": [
+          "road_1_2_0_2",
+          "road_2_1_1_1",
+          "road_2_1_1_2",
+          "road_2_3_3_1",
+          "road_2_3_3_2",
+          "road_3_2_2_2"
+        ],
+        "6": [
+          "road_1_2_0_2",
+          "road_2_1_1_0",
+          "road_2_1_1_2",
+          "road_2_3_3_0",
+          "road_2_3_3_2",
+          "road_3_2_2_2"
+        ]
+      }
+    },
+    "roadnet_sha256": "ad4ec61e297a718b622dbac5fec9f1c579392820bb764ddb65a7ca307c209414"
+  },
+  "algorithm": "sadma/ppo",
+  "environment": "traffic_engine"
+}

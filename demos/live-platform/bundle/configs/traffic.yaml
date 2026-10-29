@@ -1,0 +1,61 @@
+schema_version: 1
+application: traffic
+backend: cityflow_engine
+algorithm: ppo
+seed: 11
+device: cpu
+execution: local
+env_args:
+  cityflow_config_file: ../assets/traffic/cityflow.json
+  control_interval: 10.0
+  yellow_time: 1.0
+  episode_limit: 32
+  thread_num: 1
+  queue_reward_scale: 0.25
+  phase_ids:
+    intersection_1_1:
+    - 0
+    - 2
+    - 4
+    - 6
+    intersection_2_1:
+    - 0
+    - 2
+    - 4
+    - 6
+    intersection_1_2:
+    - 0
+    - 2
+    - 4
+    - 6
+    intersection_2_2:
+    - 0
+    - 2
+    - 4
+    - 6
+  yellow_phase_ids:
+    intersection_1_1: 8
+    intersection_2_1: 8
+    intersection_1_2: 8
+    intersection_2_2: 8
+  max_green_time: 20.0
+  max_red_time: 40.0
+training:
+  t_max: 100000
+  max_updates: 300
+  max_steps: 10000000
+  num_threads: 2
+  train_batch_size: 8
+  train_buffer_size: 8
+  update_rate: 8
+  hidden_dim: 128
+  mini_epochs: 4
+  entropy: 0.01
+  lr: 0.0005
+  gamma: 0.99
+  gae_lambda: 0.95
+  eps_clip: 0.2
+  use_layer_norm: true
+  use_orthogonal: true
+  use_value_norm: true
+output: {}

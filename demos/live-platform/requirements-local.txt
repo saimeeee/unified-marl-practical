@@ -1,0 +1,11 @@
+# PyTorch CPU is installed separately from its official CPU wheel index.
+numpy==1.26.4
+PyYAML==6.0.2
+gym==0.26.2
+cloudpickle==3.1.1
+scikit-learn==1.5.2
+scipy==1.13.1
+pandas==2.2.3
+pandapower==2.14.11
+numba==0.61.2
+llvmlite==0.44.0

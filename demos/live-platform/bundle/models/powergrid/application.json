@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "config": {
+    "schema_version": 1,
+    "application": "powergrid",
+    "algorithm": "bounded_ppo",
+    "seed": 11,
+    "device": "cpu",
+    "execution": "local",
+    "env_args": {
+      "data_path": "../../assets/powergrid/runtime-data",
+      "buildings_states_actions_file": "../../assets/powergrid/buildings_states_actions.json",
+      "climate_zone": "Climate_Zone_1",
+      "hourly_timesteps": 4,
+      "houses_per_node": 1,
+      "cluster_adjacent_bus_num": 2,
+      "building_ids": [
+        "Building_1",
+        "Building_2",
+        "Building_5",
+        "Building_6",
+        "Building_7",
+        "Building_8",
+        "Building_9"
+      ],
+      "episode_limit": 96
+    },
+    "training": {
+      "updates": 100,
+      "horizon": 96,
+      "episodes_per_update": 1,
+      "mini_epochs": 4,
+      "hidden_dim": 64,
+      "lr": 0.0003,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "eps_clip": 0.2,
+      "entropy_coef": 0.0,
+      "critic_coef": 0.5
+    },
+    "output": {}
+  },
+  "metadata": {
+    "env_args": {
+      "data_path": "../../assets/powergrid/runtime-data",
+      "buildings_states_actions_file": "../../assets/powergrid/buildings_states_actions.json",
+      "climate_zone": "Climate_Zone_1",
+      "hourly_timesteps": 4,
+      "houses_per_node": 1,
+      "cluster_adjacent_bus_num": 2,
+      "building_ids": [
+        "Building_1",
+        "Building_2",
+        "Building_5",
+        "Building_6",
+        "Building_7",
+        "Building_8",
+        "Building_9"
+      ],
+      "episode_limit": 96
+    },
+    "asset_sha256": {
+      "Building_1.csv": "b207e084b8eeb1b1e75f0b7fa6573ba9b2878893030b195f4631a81a5a877707",
+      "Building_2.csv": "7af1f329905f93ff7b82a8606dea8164f6d897b46f11caf547a29053b383b73f",
+      "Building_5.csv": "647b1ad4ea8641b8126072bf3227fd006ff622ebf6581ba4a4046cb2bd6e0d93",
+      "Building_6.csv": "d86d94828651a94b302c9c549739b4fc6e5abfa2362be6e6c888644fd99a4d94",
+      "Building_7.csv": "f5b30a5be03a4f901520c9ed930ada44e85e54eebb687cf78a2996dcf049819a",
+      "Building_8.csv": "e4ac1b635a9a209601107e64e89a4d19c9df9ea2f2e575505f0fd31c373a0021",
+      "Building_9.csv": "11f4997aefddeb43db7d9cf0c1799ee7b654a541185d414d15fa6d66fcbe1183",
+      "building_attributes.json": "9768c916548ff8212d753ee679535dbc28ef9b5d26a05142ea6b3ae1588a6dba",
+      "solar_generation_1kW.csv": "f347709f9f2d202b1ed4a1f6f0563719ea6d8cef012d3b85c765ae8dfe38c816",
+      "weather_data.csv": "6e2c0e3178e4fa9d9e952b04b19babfc0db470c467d98d447c5be9438c5a99cb"
+    },
+    "building_spec_sha256": "e4d2837c00f28a0127f7167a04316b2ded794e6111b14f18a76510867746d887"
+  },
+  "algorithm": "bounded_ppo",
+  "environment": "powergrid"
+}

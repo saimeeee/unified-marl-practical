@@ -1,0 +1,21 @@
+{
+  "cityflow": {
+    "url": "https://codeload.github.com/cityflow-project/CityFlow/tar.gz/81ee0f47659ca66177a71f81676691c58ee89184",
+    "sha256": "b5658b3607c0e0c95b484fa82d3976180693fbf65948072bab9bfb08e9a3be2d",
+    "bytes": 104697,
+    "commit": "81ee0f47659ca66177a71f81676691c58ee89184"
+  },
+  "rapidjson": {
+    "url": "https://codeload.github.com/cityflow-project/rapidjson/tar.gz/7b3d971b261ab624f745e9450b1620157e39cce5",
+    "sha256": "8a2482957ba8e296543aab4aa43ed71bca517dd96af6e163acf37efbd5190172",
+    "bytes": 119765,
+    "commit": "7b3d971b261ab624f745e9450b1620157e39cce5",
+    "reason": "Exact submodule commit referenced by the fixed CityFlow source; generic v1.1.0 lacks cursorstreamwrapper.h"
+  },
+  "pybind11": {
+    "url": "https://codeload.github.com/pybind/pybind11/tar.gz/refs/tags/v2.13.6",
+    "sha256": "e08cb87f4773da97fa7b5f035de8763abc656d87d5773e62f6da0587d1f0ec20",
+    "bytes": 800804,
+    "reason": "C++ Python 3.12 binding compatibility only; no CityFlow simulation rule changes"
+  }
+}

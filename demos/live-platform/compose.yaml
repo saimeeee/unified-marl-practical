@@ -1,0 +1,37 @@
+name: unified-marl-live
+
+services:
+  platform:
+    image: unified-marl-live:local-v1
+    build:
+      context: ../..
+      dockerfile: demos/live-platform/Dockerfile
+    init: true
+    ports:
+      - "127.0.0.1:${MARL_LOCAL_PORT:-18765}:18765"
+    environment:
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MPLBACKEND: Agg
+    volumes:
+      - ./local-state:/var/lib/unified-marl
+    command:
+      - python
+      - demos/live-platform/start_local.py
+      - --host
+      - 0.0.0.0
+      - --output
+      - /var/lib/unified-marl
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import json,urllib.request; r=json.load(urllib.request.urlopen('http://127.0.0.1:18765/api/catalog',timeout=3)); assert r['mode']=='live_inference'"
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 6
+    stop_grace_period: 15s
+    restart: unless-stopped

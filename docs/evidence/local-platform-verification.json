@@ -1,0 +1,63 @@
+{
+  "scenarios": [
+    {
+      "scenario": "warehouse",
+      "session": "861a331ad08949fab6fe6f2e23a217aa",
+      "status": "completed",
+      "frames": 25,
+      "final_step": 24,
+      "checkpoint_sha256": "8ed1445514f7fa2f990b6aa7e58d01063be8c98a951a6b319d1cd1be070a3364",
+      "initially_paused": true,
+      "single_step_verified": true,
+      "pause_verified": true,
+      "concurrent_export_verified": true
+    },
+    {
+      "scenario": "mpe",
+      "session": "96c777ea05104012a3a4b77ebb9f383c",
+      "status": "completed",
+      "frames": 51,
+      "final_step": 50,
+      "checkpoint_sha256": "eb39b4935a7fb40cdcd9856844cd8c32dd1bd5759544e556f14938283c8c3fc4",
+      "initially_paused": true,
+      "single_step_verified": true,
+      "pause_verified": true,
+      "concurrent_export_verified": true
+    },
+    {
+      "scenario": "traffic",
+      "session": "f63cdbd9a54843e7b9c0b6149971a2ff",
+      "status": "completed",
+      "frames": 354,
+      "final_step": 352,
+      "checkpoint_sha256": "d9163ca36f354cf94df5ca972aa36d105c0b127e263baddc8f959a08717451b8",
+      "initially_paused": true,
+      "single_step_verified": true,
+      "pause_verified": true,
+      "concurrent_export_verified": true
+    },
+    {
+      "scenario": "powergrid",
+      "session": "1c0531a9c6a042e090344bb846181652",
+      "status": "completed",
+      "frames": 97,
+      "final_step": 96,
+      "checkpoint_sha256": "7b8f1e0a3b8c6c78ebf70c12250538c7656b7f58cba44f2776130ea0112374e6",
+      "initially_paused": true,
+      "single_step_verified": true,
+      "pause_verified": true,
+      "concurrent_export_verified": true
+    }
+  ],
+  "invalid_model_rejected": true,
+  "invalid_seed_rejected": true,
+  "cross_origin_rejected": true,
+  "static_path_traversal_rejected": true,
+  "initialization_stop_verified": true,
+  "method": "Actual saved checkpoints and native simulator rollouts through HTTP",
+  "execution": "Local Docker Desktop CPU container",
+  "docker_network": "none",
+  "external_network_available": false,
+  "bundle_files_verified": 671,
+  "source": "Complete portable repository; no training-server volume or SSH"
+}

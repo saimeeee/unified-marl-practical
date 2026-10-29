@@ -1,0 +1,4 @@
+docs/*.svg binary
+
+# Portable bundle integrity: preserve exact bytes on every OS.
+* -text

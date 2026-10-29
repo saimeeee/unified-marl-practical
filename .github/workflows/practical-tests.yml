@@ -9,6 +9,7 @@ on:
       - tools/validate_practical_v1.py
       - examples/**
       - pyproject.toml
+      - demos/live-platform/**
       - .github/workflows/practical-tests.yml
   pull_request:
   workflow_dispatch:
@@ -35,3 +36,7 @@ jobs:
           python -B tools/run_practical_regression.py
           tests/test_experiments.py tests/test_plugins.py tests/test_mpe.py
           tests/test_practical_validation.py -q --tb=short --disable-warnings
+      - name: Verify shipped local-platform bundle and runtime helpers
+        run: |
+          python -B demos/live-platform/prepare_local.py --bundle demos/live-platform/bundle --output /tmp/marl-local-bundle
+          python -B -m unittest discover -s demos/live-platform -p test_runtime.py -v
