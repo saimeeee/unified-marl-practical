@@ -6,7 +6,7 @@ Windows 使用 Docker Desktop 的 WSL 2/Linux 容器与 Compose v2；容器内�
 
 `bundle/catalog.json` 登记默认模型；`prepare_local.py` 校验 bundle 文件、转换本地路径并生成配置与模型清单。`local-state/` 通过本机目录挂载保存运行、导出和额外模型；停止容器不删除此目录。额外模型采用 `local-state/extra-models.json` 的 `models` 数组，`checkpoint` 与非空 `config` 相对于并限定于该目录。新模型仍须满足对应环境的推理、观测和动作协议，不能仅改算法名称；新环境仍需适配器和画布。
 
-本轮只改变分发、启动与资源定位，复用原训练权重、奖励和环境语义。平台为单会话推理，不是网页训练调度系统。四场景实际运行、本地完整源码归档构建及 GitHub 发布分别记录证据：本次从待发布 Git 索引归档到干净中文目录构建 Docker，公开 Python 3.12 Bookworm 基础镜像、PyTorch 2.6 CPU、随包 CityFlow 源码以及 `pip check` 通过；禁用外网的容器中四场景完整回合与控制检查通过。671 个资源文件校验和四份模型 SHA-256 一致性验证完成，见 `LOCAL_PLATFORM_REPORT.md` 与 `evidence/local-platform-verification.json`。GitHub 发布仍进行中，旧服务器结果保留为独立历史证据。
+本轮只改变分发、启动与资源定位，复用原训练权重、奖励和环境语义。平台为单会话推理，不是网页训练调度系统。四场景实际运行、本地完整源码归档构建及 GitHub 发布分别记录证据：本次从待发布 Git 索引归档到干净中文目录构建 Docker，公开 Python 3.12 Bookworm 基础镜像、PyTorch 2.6 CPU、随包 CityFlow 源码以及 `pip check` 通过；禁用外网的容器中四场景完整回合与控制检查通过。671 个资源文件校验和四份模型 SHA-256 一致性验证完成，见 `LOCAL_PLATFORM_REPORT.md` 与 `evidence/local-platform-verification.json`。`v0.9.0-local.1` 已发布并完成 3 份附件重新下载摘要核对，以及 Code Download ZIP 匿名下载后的 671 项 bundle 校验，见 `PUBLICATION_LOCAL.md`。[GitHub CI run 40802692446](https://github.com/saimeeee/unified-marl-practical/actions/runs/40802692446) 已成功；匿名下载 ZIP 在中文/空格目录中通过入口启动，复用本机已构建镜像完成空记录首屏和交通策略实际运行验证。旧服务器结果保留为独立历史证据。
 
 # 历史：服务器实时可视化增补（2026-10-29）
 

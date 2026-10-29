@@ -7,9 +7,9 @@
 | 完整下载内容 | 源码、四场景模型/资产、CityFlow 源码及校验清单齐全，启动不引用开发机外部路径 | 待发布 Git 索引归档至干净中文目录，Docker 构建与 671 文件校验通过 |
 | 本机运行环境 | Docker CPU 构建与运行；仅本机端口，local-state 本机挂载保留 | 公开基础镜像构建、pip check 和断网容器运行通过；停止不删除数据为启动脚本既定行为 |
 | 四场景实际运行 | 原权重重新加载，完整回合、暂停/单步/导出、初始化停止及非法请求拒绝；与旧服务器证据分开记录 | 本地无外网四场景完整回合及控制检查全部通过，权重 SHA-256 保持一致 |
-| GitHub 下载交付 | 完整源码与 bundle 发布；核对下载内容及中文说明 | 发布进行中，未记完成 |
+| GitHub 下载交付 | 完整源码与 bundle 发布；核对下载内容及中文说明 | v0.9.0-local.1 已发布；3 份附件重新下载摘要一致，Code Download ZIP 匿名下载及 671 项 bundle 校验通过 |
 
-首次镜像构建联网安装依赖；后续复用镜像运行。`docker run --network none` 下的四场景真实推理已通过，验收见 `LOCAL_PLATFORM_REPORT.md` 与 `evidence/local-platform-verification.json`。代码更新通过 `-Rebuild` 重建，额外模型通过 `local-state/extra-models.json` 登记。下一步完成 GitHub 发布和下载核对，保留模型效果边界及既有未完成项；平台仍为单会话推理，不发起网页训练。
+首次镜像构建联网安装依赖；后续复用镜像运行。`docker run --network none` 下的四场景真实推理已通过，验收见 `LOCAL_PLATFORM_REPORT.md` 与 `evidence/local-platform-verification.json`。代码更新通过 `-Rebuild` 重建，额外模型通过 `local-state/extra-models.json` 登记。GitHub 发布和下载核对已完成，回执见 `PUBLICATION_LOCAL.md`；[CI run 40802692446](https://github.com/saimeeee/unified-marl-practical/actions/runs/40802692446) 已成功。匿名下载 ZIP 在中文/空格目录中直接通过入口启动，空记录首屏连接和交通策略实际运行通过，使用已有本机镜像。保留模型效果边界及既有未完成项；平台仍为单会话推理，不发起网页训练。
 
 # 历史任务：服务器实时可视化首版（2026-10-29）
 

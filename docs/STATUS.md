@@ -1,12 +1,12 @@
-# 本机网页平台验收通过，发布进行中（2026-10-29）
+# 本机网页平台验收与发布下载校验通过（2026-10-29）
 
 用户已明确纠正交付目标：从 GitHub 下载完整代码后，在自己的电脑运行网页、模型推理和四场景仿真。本轮改为本机 Docker Desktop Linux 容器中的 CPU 后端，浏览器访问 `http://127.0.0.1:18765/`，不依赖 SSH 或远程服务。保持暖白浅色界面、初始化暂停、开始/暂停/单步/倍速、轨迹导出和历史运行；不增加网页训练任务或多用户调度。
 
 本地启动脚本、Docker 构建入口与 `bundle/` 已准备，bundle 包含库存、MPE、CityFlow 交通和电网的既有模型、场景配置与数据，以及 CityFlow 源码。`prepare_local.py` 校验资源清单并生成本机配置；运行数据写入 `local-state/`，停止容器保留数据。模型与环境仍分别登记，兼容的新模型可经 `extra-models.json` 接入。首次构建联网安装 CPU 依赖，后续复用镜像运行。
 
-**当前状态：本地构建与四场景离线运行验收通过，GitHub 发布进行中。** 从待发布 Git 索引归档到干净中文目录，使用公开 `python:3.12-slim-bookworm`、PyTorch 2.6 CPU 及随包 CityFlow 源码构建，`pip check` 通过。以 `docker run --network none` 执行四个真实完整回合：库存 25 帧/24 步、MPE 51 帧/50 步、交通 354 帧/352 物理秒/32 次决策、电网 97 帧/96 控制步。初始暂停、单步、暂停保持、并发导出、初始化停止和非法请求拒绝均通过；671 个 bundle 文件完成校验，四份模型 SHA-256 与原训练产物一致。
+**当前状态：本地构建与四场景离线运行验收通过，GitHub 已发布并完成下载校验。** 从待发布 Git 索引归档到干净中文目录，使用公开 `python:3.12-slim-bookworm`、PyTorch 2.6 CPU 及随包 CityFlow 源码构建，`pip check` 通过。以 `docker run --network none` 执行四个真实完整回合：库存 25 帧/24 步、MPE 51 帧/50 步、交通 354 帧/352 物理秒/32 次决策、电网 97 帧/96 控制步。初始暂停、单步、暂停保持、并发导出、初始化停止和非法请求拒绝均通过；671 个 bundle 文件完成校验，四份模型 SHA-256 与原训练产物一致。
 
-本次证据独立于下列历史服务器验证，详见 [本地验收报告](LOCAL_PLATFORM_REPORT.md) 和 [可发布验收 JSON](evidence/local-platform-verification.json)；原始记录位于 `results/live-platform-local-20261029/verification.json`。首次构建需要网络，镜像构建后无外网的实际推理已验证。策略效果限制保持，网页仍为单会话推理平台，没有网页训练任务。GitHub 下载交付尚待远端发布与下载核对，不把本地通过写为已发布。操作说明见 [本地平台说明](../demos/live-platform/README.zh-CN.md)。
+本次证据独立于下列历史服务器验证，详见 [本地验收报告](LOCAL_PLATFORM_REPORT.md) 和 [可发布验收 JSON](evidence/local-platform-verification.json)；原始记录位于 `results/live-platform-local-20261029/verification.json`。首次构建需要网络，镜像构建后无外网的实际推理已验证。策略效果限制保持，网页仍为单会话推理平台，没有网页训练任务。已发布 [v0.9.0-local.1](https://github.com/saimeeee/unified-marl-practical/releases/tag/v0.9.0-local.1) 预发布，3 份附件远端摘要及重新下载 SHA-256 一致；Code Download ZIP 匿名下载后 671 项 bundle 校验通过。回执见 [本地平台发布记录](PUBLICATION_LOCAL.md)。[GitHub CI run 40802692446](https://github.com/saimeeee/unified-marl-practical/actions/runs/40802692446) 已成功；匿名下载 ZIP 解压到中文/空格目录后，双击入口启动成功，空记录首屏连接和交通策略实际运行通过（复用已构建的本机镜像）。操作说明见 [本地平台说明](../demos/live-platform/README.zh-CN.md)。
 
 # 历史：服务器实时可视化首版（2026-10-29）
 

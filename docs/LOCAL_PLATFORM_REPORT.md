@@ -1,6 +1,6 @@
 # 本机实时仿真平台验收记录
 
-日期：2026-10-29。**本地构建与四场景无外网运行验收通过；GitHub 发布仍进行中。**
+日期：2026-10-29。**本地构建与四场景无外网运行验收通过；GitHub 已发布并完成下载校验。**
 
 交付目标为从 GitHub 下载完整仓库后，在用户电脑上运行网页、模型推理与环境仿真。源码与 `demos/live-platform/bundle/` 一并交付，包含库存、MPE、CityFlow 交通、电网四场景的原训练模型、配置、数据和 CityFlow 源码。平台使用 Docker Desktop 的 Linux CPU 容器，本机浏览器访问 `http://127.0.0.1:18765/`，无需 SSH 或远程训练机器。
 
@@ -21,7 +21,7 @@
 
 状态帧包含初始化状态；交通另含末尾完成状态帧，帧数不等于模型决策次数。各场景的初始暂停、单步推进、暂停保持和运行中并发导出均通过。初始化时停止、无效模型、无效种子、跨域写请求及静态路径穿越的拒绝检查也通过。
 
-另在实际浏览器中验证全新空记录启动：修复空状态 `receive(null)` 处理后，首次打开正常显示已连接并可初始化，交通单步和 8 倍速完整运行通过。8 项 runtime 单元回归也在交付容器内通过。网页验证截图保存在 `results/live-platform-local-20261029/local-traffic.jpg`；此项与无外网容器的 HTTP 自动验收分别记录。
+另在实际浏览器中验证全新空记录启动：API 正常返回 idle 对象，前端对初始化时尚为空的 state 增加保护后，首次打开正常显示已连接并可初始化，交通单步和 8 倍速完整运行通过。8 项 runtime 单元回归也在交付容器内通过。[网页验证截图](images/local-platform.jpg) 已随仓库提供；此项与无外网容器的 HTTP 自动验收分别记录。
 
 原始机器可读结果位于 `results/live-platform-local-20261029/verification.json`；供仓库发布的同内容副本为 [local-platform-verification.json](evidence/local-platform-verification.json)，包含逐场景结果、检查标志、模型摘要及无外网执行信息，不含本机绝对路径。
 
@@ -31,4 +31,4 @@
 
 平台保留浅色界面，是单用户、单运行会话的模型推理与仿真工具；网页不发起训练，没有多用户任务调度。本次验证证明完整本地运行链路，不证明策略收敛或业务效果。库存弱于规则基线、MPE 严格覆盖率低、电网仍有越限且综合奖励未改善等既有效果边界保持。
 
-本机验证独立于早期服务器验证。当前尚不宣称本轮 GitHub 已发布；远端发布回执及下载内容核对需另行记录。
+本机验证独立于早期服务器验证。[v0.9.0-local.1](https://github.com/saimeeee/unified-marl-practical/releases/tag/v0.9.0-local.1) 已发布为预发布，3 份附件的远端摘要及重新下载 SHA-256 核对通过；Code Download ZIP 匿名下载后 671 个 bundle 文件校验通过，见 [发布记录](PUBLICATION_LOCAL.md)。[GitHub CI run 40802692446](https://github.com/saimeeee/unified-marl-practical/actions/runs/40802692446) 已完成且成功。匿名下载的 GitHub ZIP 解压到中文/空格目录后，直接使用入口 CMD（`-NoBrowser`）启动成功；本次复用已构建的本机镜像。浏览器空记录首屏连接正常，下载包中的 CityFlow 策略已实际初始化并运行。
