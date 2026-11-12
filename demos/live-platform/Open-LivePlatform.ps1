@@ -8,6 +8,7 @@ $previousPort = $env:MARL_LOCAL_PORT
 $compose = @('compose', '--project-name', 'unified-marl-live', '--project-directory', $PSScriptRoot,
              '--file', (Join-Path $PSScriptRoot 'compose.yaml'))
 $url = "http://127.0.0.1:$Port/"
+$repository = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 Push-Location $PSScriptRoot
 try {
     if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
@@ -15,9 +16,9 @@ try {
     }
     & docker compose version
     if ($LASTEXITCODE -ne 0) { throw 'Docker Compose v2 is required. Update Docker Desktop.' }
-    $engine = & docker info --format '{{.OSType}}' 2>$null
+    $engine = & docker info --format '{{.OSType}}'
     if ($LASTEXITCODE -ne 0 -or $engine -ne 'linux') {
-        throw 'Start Docker Desktop in Linux-container mode, then retry.'
+        throw 'The Linux Docker engine is not ready. Open Docker Desktop and wait for startup. If it reports a WSL or data-disk error, resolve that error before retrying; this launcher does not reset or delete Docker/WSL data.'
     }
     foreach ($scene in @('warehouse', 'mpe', 'traffic', 'powergrid')) {
         $modelPath = Join-Path $PSScriptRoot "bundle\models\$scene\policy.pt"
@@ -35,10 +36,28 @@ try {
     $imageId = & docker image ls --quiet 'unified-marl-live:local-v1'
     if ($LASTEXITCODE -ne 0) { throw 'Could not list local Docker images.' }
     $hasImage = -not [string]::IsNullOrWhiteSpace(($imageId -join ''))
-    if ($Rebuild -or -not $hasImage) {
+    # Fail before a long build when an unrelated program owns the chosen port.
+    $ownedPorts = & docker ps --filter 'label=com.docker.compose.project=unified-marl-live' --filter 'label=com.docker.compose.service=platform' --format '{{.Ports}}'
+    if ($LASTEXITCODE -ne 0) { throw 'Could not inspect running local containers.' }
+    if (($ownedPorts -join ' ') -notmatch ('127\.0\.0\.1:' + $Port + '->18765/tcp')) {
+        $probe = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Loopback, $Port)
+        try { $probe.Start() }
+        catch { throw "Port $Port is already in use. Close that program or launch with -Port 18766." }
+        finally { $probe.Stop() }
+    }
+    $needsBuild = $Rebuild -or -not $hasImage
+    if ($hasImage -and -not $Rebuild) {
+        & docker run --rm --network none --entrypoint python --mount "type=bind,source=$repository,target=/marl-source,readonly" unified-marl-live:local-v1 /marl-source/demos/live-platform/source_fingerprint.py --check /marl-source
+        $checkExit = $LASTEXITCODE
+        if ($checkExit -gt 1) { throw 'Could not verify this source download against the local image. Check the error above.' }
+        $needsBuild = $checkExit -ne 0
+    }
+    if ($needsBuild) {
         Write-Host 'Building the local CPU environment. The first build downloads dependencies and may take several minutes.'
         & docker @compose build platform
         if ($LASTEXITCODE -ne 0) { throw 'Local image build failed. Read the build error above; no remote server is used.' }
+        & docker run --rm --network none --entrypoint python --mount "type=bind,source=$repository,target=/marl-source,readonly" unified-marl-live:local-v1 /marl-source/demos/live-platform/source_fingerprint.py --check /marl-source
+        if ($LASTEXITCODE -ne 0) { throw 'Source changed during the build or the image is incomplete. Run this launcher again.' }
     }
     Write-Host 'Starting local simulation service...'
     & docker @compose up --detach --no-build platform
@@ -50,7 +69,7 @@ try {
     $deadline = (Get-Date).AddMinutes(3)
     $ready = $false
     while ((Get-Date) -lt $deadline) {
-        $running = & docker inspect --format '{{.State.Running}}' $containerId 2>$null
+        $running = & docker inspect --format '{{.State.Running}}' $containerId
         if ($LASTEXITCODE -ne 0 -or $running -ne 'true') { break }
         try {
             $health = Invoke-RestMethod -Uri ($url + 'api/catalog') -TimeoutSec 3

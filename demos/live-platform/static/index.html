@@ -6,7 +6,21 @@
 <section class="model-panel"><div class="nav-label">运行配置</div><label for="model">已训练模型</label><select id="model"></select><p id="model-training"></p><label for="seed">环境随机种子</label><input id="seed" type="number" value="101" min="0" max="2147483647"><p class="muted">相同模型和种子可复现同一轨迹。</p></section>
 <div class="sidebar-bottom"><span class="dot"></span> 本机仿真服务<small>本地 CPU 推理 · 单会话工作区</small></div></aside>
 <main><header class="topbar"><div><span class="eyebrow"><span></span> WORKSPACE / LIVE SIMULATION</span><h1>实时仿真工作台</h1></div><span class="connection" id="connection">连接服务中</span></header>
-<div class="title-row"><div><h2 id="scene-title">选择仿真场景</h2><p id="scene-detail">加载场景目录…</p></div><span class="mode-pill">已训练策略 · 在线推理</span></div>
+<div class="title-row"><div><h2 id="scene-title">选择仿真场景</h2><p id="scene-detail">加载场景目录…</p></div><span id="policy-mode" class="mode-pill">已训练策略 · 在线推理</span></div>
+<section id="parameters" class="parameter-card" hidden aria-label="交通环境参数">
+<div class="parameter-heading"><div><span class="eyebrow">SCENARIO BUILDER</span><h3>配置你的交通场景</h3><p>调整路网规模与交通需求，观察控制器在不同负载下的表现。</p></div><label class="toggle"><input id="custom-traffic" type="checkbox"><span>自定义场景</span></label></div>
+<div id="parameter-fields" hidden>
+<div class="preset-row"><span>快速配置</span><button data-preset="small" type="button">单路口 · 轻车流</button><button data-preset="standard" type="button">2 × 2 · 训练策略</button><button data-preset="large" type="button">3 × 3 · 压力规则</button><button id="reset-parameters" class="text-button" type="button">恢复默认</button></div>
+<div class="parameter-grid">
+<label>路口行数<input id="traffic-rows" type="number" min="1" max="4" value="2" step="1" required><small>1–4 行</small></label>
+<label>路口列数<input id="traffic-cols" type="number" min="1" max="4" value="2" step="1" required><small>1–4 列</small></label>
+<label>计划车辆总数<input id="traffic-vehicles" type="number" min="0" max="3000" value="400" step="1" required><small>0–3000 辆，逐批进入路网</small></label>
+<label>信号决策次数<input id="traffic-decisions" type="number" min="8" max="180" value="32" step="1" required><small>8–180 次，每次约 10–11 秒</small></label>
+<label>信号控制器<select id="traffic-controller"><option value="trained">已训练 PPO · 仅 2 × 2</option><option value="pressure">压力规则 · 支持不同路网</option></select><small>规则控制器不使用模型权重</small></label>
+</div>
+</div>
+<div class="parameter-summary"><span id="parameter-summary">原训练场景 · 2 × 2 路口 · 固定车流配置</span><span id="parameter-hint">初始化后参数锁定，结束本次运行后可调整。</span></div>
+</section>
 <section class="controls" aria-label="运行控制"><button id="init" class="primary">初始化场景</button><button id="play" disabled>▶ 开始运行</button><button id="pause" disabled>Ⅱ 暂停</button><button id="step" disabled>单步 →</button><button id="stop" disabled>结束</button><div class="speed"><label for="speed">推进速度</label><select id="speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option></select></div><a id="export" class="download disabled" href="#">↓ 导出轨迹</a></section>
 <div id="error" role="alert" hidden></div><section id="metrics" class="metrics" aria-label="实时指标"></section>
 <div class="workspace"><section class="scene-card"><div class="panel-heading"><div><span class="dot"></span><strong>场景视图</strong><span id="status" class="status">等待初始化</span></div><span id="clock">—</span></div><div class="canvas-wrap"><canvas id="scene" width="1120" height="640" aria-label="实时仿真画面"></canvas><div id="empty"><span class="empty-orbit" aria-hidden="true"><i></i><i></i><i></i><b></b></span><h3>让策略在场景中运行</h3><p>初始化后可逐步观察模型动作，或连续运行完整回合。</p></div></div><div class="scene-footer"><span id="source">每一帧由后端仿真状态生成</span><span id="progress">0 步</span></div><div class="progress-track"><div id="progress-bar"></div></div></section>

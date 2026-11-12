@@ -22,8 +22,12 @@ import time
 from urllib.parse import urlparse, parse_qs
 import uuid
 
+from scenarios import SCENARIO_SCHEMA, validate_parameters
+
 HERE = Path(__file__).resolve().parent
 TERMINAL = {"completed", "stopped", "failed"}
+VERSION = "0.9.0-local.2"
+SCENARIOS = ("warehouse", "mpe", "traffic", "powergrid")
 
 
 def now():
@@ -37,7 +41,7 @@ def save(path, value):
 
 
 class Session:
-    def __init__(self, model, seed, speed, root):
+    def __init__(self, model, seed, speed, root, parameters=None):
         self.id = uuid.uuid4().hex
         self.folder = root / self.id
         self.folder.mkdir(parents=True)
@@ -48,12 +52,19 @@ class Session:
         self.touched = time.monotonic()
         self.seq = 0
         self.frame = None
+        self.frame_count = 0
         self.series = []
         self.status = "loading"
         self.error = None
         self.proc = None
         self.started = now()
-        self.request = dict(model=model, seed=seed, session=self.id, created_at=self.started)
+        self.parameters = dict(parameters or {})
+        self.source_model = {k: model[k] for k in ("id", "label", "scenario", "algorithm")}
+        self.effective_controller = self.parameters.get("controller", "trained")
+        self.effective_algorithm = "rule/pressure" if self.effective_controller == "pressure" else model["algorithm"]
+        self.request = dict(model=model, source_model=self.source_model, seed=seed, session=self.id, created_at=self.started,
+                            parameters=self.parameters, effective_controller=self.effective_controller,
+                            effective_algorithm=self.effective_algorithm)
         save(self.folder / "request.json", self.request)
         self.thread = threading.Thread(target=self.run, daemon=True)
         self.thread.start()
@@ -62,8 +73,10 @@ class Session:
         with self.condition:
             return dict(id=self.id, seq=self.seq, status=self.status, mode=self.mode,
                         speed=self.speed, seed=self.request["seed"], error=self.error,
-                        model={k: self.request["model"][k] for k in ("id", "label", "scenario", "algorithm")},
-                        frame=self.frame, series=list(self.series), started_at=self.started)
+                        model={**self.source_model, "algorithm": self.effective_algorithm}, source_model=self.source_model,
+                        parameters=self.parameters, effective_controller=self.effective_controller,
+                        frame=self.frame, frame_count=self.frame_count,
+                        series=list(self.series), started_at=self.started)
 
     def changed(self):
         self.seq += 1
@@ -128,6 +141,7 @@ class Session:
                             trace.write(json.dumps(packet, ensure_ascii=False, allow_nan=False) + "\n")
                             trace.flush()
                             self.frame = packet
+                            self.frame_count += 1
                             self.status = "finalizing" if packet.get("done") else "ready"
                             self.series.append(dict(step=packet["step"], value=packet["chart"]["value"]))
                             self.series = self.series[-1500:]
@@ -195,17 +209,92 @@ class Platform:
         self.lock = threading.Lock()
         self.session = None
 
+    def health(self):
+        """Report local readiness without returning configuration or file paths."""
+        models = []
+        for row in self.models.values():
+            available = all(not row.get(key) or Path(row[key]).is_file() for key in ("checkpoint", "config"))
+            models.append(dict(id=row["id"], scenario=row["scenario"], algorithm=row["algorithm"], available=available))
+        scenes = {scene: any(m["scenario"] == scene and m["available"] for m in models) for scene in SCENARIOS}
+        current = {"status": "idle"}
+        session = self.session
+        if session:
+            state = session.snapshot()
+            current = {key: state[key] for key in ("id", "status", "mode", "seed", "frame_count")}
+            current["scenario"] = state["model"]["scenario"]
+            current["effective_controller"] = state["effective_controller"]
+            current["algorithm"] = state["model"]["algorithm"]
+            current["parameters"] = state["parameters"]
+            current["step"] = state["frame"].get("step") if state["frame"] else None
+        return dict(status="ok" if all(scenes.values()) and all(m["available"] for m in models) else "degraded",
+                    version=VERSION, execution="local", device="cpu", scenarios=scenes, models=models, current=current)
+
+    def history(self):
+        """Read independent results; one damaged run must not hide other runs."""
+        candidates = []
+        for path in self.output.glob("*/result.json"):
+            try:
+                candidates.append((path.stat().st_mtime, path))
+            except OSError:
+                continue
+        rows = []
+        for _, path in sorted(candidates, key=lambda entry: entry[0], reverse=True):
+            try:
+                item = json.loads(path.read_text(encoding="utf-8"))
+                if not isinstance(item, dict) or item.get("id") != path.parent.name or not re.fullmatch(r"[0-9a-f]{32}", item["id"]):
+                    continue
+                model = item.get("model")
+                if not isinstance(model, dict) or not all(isinstance(model.get(k), str) for k in ("id", "label", "scenario", "algorithm")):
+                    continue
+                if item.get("status") not in TERMINAL:
+                    continue
+                frame = item.get("frame") or {}
+                if not isinstance(frame, dict):
+                    continue
+                count = item.get("frame_count")
+                if type(count) is not int or count < 0:
+                    trace = path.parent / "frames.jsonl"
+                    count = 0
+                    if trace.is_file():
+                        with trace.open(encoding="utf-8") as stream:
+                            count = sum(bool(line.strip()) for line in stream)
+                row = {k: item.get(k) for k in ("id", "seed", "status", "started_at", "finished_at")}
+                row["model"] = {k: model[k] for k in ("id", "label", "scenario", "algorithm")}
+                row["parameters"] = item.get("parameters") if isinstance(item.get("parameters"), dict) else {}
+                row["effective_controller"] = item.get("effective_controller", row["parameters"].get("controller", "trained"))
+                original = item.get("source_model", model)
+                row["source_model"] = {k: original.get(k) for k in ("id", "label", "scenario", "algorithm")} if isinstance(original, dict) else row["model"]
+                if row["effective_controller"] == "pressure":
+                    row["model"]["algorithm"] = "rule/pressure"
+                row.update(frame_count=count, last_step=frame.get("step"), metrics=frame.get("metrics", []) if isinstance(frame.get("metrics", []), list) else [],
+                           error=str(item["error"])[:300] if item.get("error") else None)
+                row["duration_seconds"] = None
+                if row["started_at"] and row["finished_at"]:
+                    try:
+                        row["duration_seconds"] = max(0, (datetime.fromisoformat(row["finished_at"]) - datetime.fromisoformat(row["started_at"])).total_seconds())
+                    except (ValueError, TypeError):
+                        pass
+                # Malformed/non-finite persisted values cannot poison the response.
+                json.dumps(row, allow_nan=False)
+                rows.append(row)
+                if len(rows) >= 20:
+                    break
+            except (OSError, ValueError, TypeError, KeyError):
+                continue
+        return rows
+
     def start(self, data):
         model = self.models.get(data.get("model"))
         seed = data.get("seed", 101)
         if model is None or type(seed) is not int or not 0 <= seed <= 2147483647:
             raise ValueError("请选择有效模型，种子为0至2147483647的整数。")
+        parameters = validate_parameters(model["scenario"], data.get("parameters", {}))
         with self.lock:
             if self.session and self.session.status in TERMINAL:
                 self.session.thread.join(timeout=1)
             if self.session and self.session.thread.is_alive():
                 raise ValueError("请先结束当前运行，再切换场景。")
-            self.session = Session(model, seed, 1, self.output)
+            self.session = Session(model, seed, 1, self.output, parameters=parameters)
             return self.session.snapshot()
 
 
@@ -248,6 +337,10 @@ class Handler(BaseHTTPRequestHandler):
         if parsed.path == "/api/catalog":
             return self.send({"models": [{k: v for k, v in row.items() if k not in {"checkpoint", "config"}}
                                           for row in app.models.values()], "mode": "live_inference"})
+        if parsed.path == "/api/health":
+            return self.send(app.health())
+        if parsed.path == "/api/scenarios":
+            return self.send(SCENARIO_SCHEMA)
         if parsed.path == "/api/state":
             session = app.session
             if not session:
@@ -264,11 +357,7 @@ class Handler(BaseHTTPRequestHandler):
                 value = session.snapshot()
             return self.send(value)
         if parsed.path == "/api/history":
-            rows = []
-            for path in sorted(app.output.glob("*/result.json"), key=lambda p: p.stat().st_mtime, reverse=True)[:20]:
-                item = json.loads(path.read_text(encoding="utf-8"))
-                rows.append({k: item.get(k) for k in ("id", "model", "seed", "status", "started_at")})
-            return self.send(rows)
+            return self.send(app.history())
         match = re.fullmatch(r"/api/export/([0-9a-f]{32})", parsed.path)
         if match:
             folder = app.output / match[1]
@@ -278,10 +367,15 @@ class Handler(BaseHTTPRequestHandler):
             # sessions have fully exited before a replacement can be started.
             session = app.session
             lock = session.condition if session and session.id == match[1] else threading.Lock()
-            with lock:
-                raw = (folder / "frames.jsonl").read_text(encoding="utf-8") if (folder / "frames.jsonl").is_file() else ""
-            frames = [json.loads(line) for line in raw.splitlines()]
-            return self.send(json.dumps(dict(request=json.loads((folder / "request.json").read_text(encoding="utf-8")), frames=frames), ensure_ascii=False).encode(), download=match[1]+".json")
+            try:
+                with lock:
+                    raw = (folder / "frames.jsonl").read_text(encoding="utf-8") if (folder / "frames.jsonl").is_file() else ""
+                frames = [json.loads(line) for line in raw.splitlines() if line.strip()]
+                value = dict(request=json.loads((folder / "request.json").read_text(encoding="utf-8")), frames=frames)
+                body = json.dumps(value, ensure_ascii=False, allow_nan=False).encode()
+            except (OSError, ValueError, TypeError):
+                return self.send({"error": "本次轨迹文件无法读取或已损坏，请检查本地运行记录。"}, 422)
+            return self.send(body, download=match[1]+".json")
         return self.send({"error": "Not found"}, 404)
 
     def do_POST(self):

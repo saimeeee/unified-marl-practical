@@ -28,6 +28,7 @@ COPY pyproject.toml README.md LICENSE NOTICE ./
 COPY licenses/ ./licenses/
 COPY src/ ./src/
 COPY demos/live-platform/ ./demos/live-platform/
+RUN python demos/live-platform/source_fingerprint.py --write /opt/unified-marl
 RUN python -m pip install --no-cache-dir --no-build-isolation --no-deps . \
     && python -c "import torch, pandapower, unified_marl; assert not torch.cuda.is_available(); print('CPU runtime ready:', torch.__version__)" \
     && python -m pip check

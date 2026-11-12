@@ -125,7 +125,12 @@ def traffic(request, emit, folder):
     import os
     from unified_marl.applications import traffic as api, load_config
     from unified_marl.envs.traffic_engine import CityFlowEngineEnv
+    from scenarios import prepare_traffic, PressurePolicy
     config = evaluation_config(load_config(request["model"]["config"]), request["seed"], folder)
+    config, scenario = prepare_traffic(config, request.get("parameters", {}), folder)
+    # Retain the resolved application configuration beside generated scene files.
+    from runtime import write_config
+    write_config(folder / "config.yaml", config)
     seed_all(request["seed"])
     source = Path(config["env_args"]["cityflow_config_file"])
     native = json.loads(source.read_text(encoding="utf-8"))
@@ -138,7 +143,8 @@ def traffic(request, emit, folder):
     env = CityFlowEngineEnv(**dict(config["env_args"], cityflow_config_file=str(folder / "live-cityflow.json"), seed=request["seed"]))
     replay = None
     try:
-        policy = api.load_policy(request["model"]["checkpoint"], config=config, device="cpu")
+        policy = (PressurePolicy(env, roadnet) if scenario["controller"] == "pressure" else
+                  api.load_policy(request["model"]["checkpoint"], config=config, device="cpu"))
         policy.reset()
         replay = (folder / "native-replay.txt").open(encoding="utf-8")
         original = env._advance
@@ -148,6 +154,7 @@ def traffic(request, emit, folder):
         def snapshot(done=False):
             queue = sum(env._queue_by_lane.values())
             emit(dict(scene="traffic", step=int(env.get_current_time()), limit=0, done=done,
+                scenario=scenario, policy_source=scenario["policy_source"],
                 decision_step=decisions, decision_limit=env.episode_limit,
                 clock=f"仿真 {env.get_current_time():.0f} s · 决策 {decisions} / {env.episode_limit}",
                 view=dict(roads=roadnet["roads"], intersections=roadnet["intersections"], vehicles=vehicles,
@@ -196,7 +203,9 @@ def main():
     os.dup2(sys.stderr.fileno(), sys.stdout.fileno())
     import torch
     torch.set_num_threads(1)
-    digest = hashlib.sha256(Path(request["model"]["checkpoint"]).read_bytes()).hexdigest()
+    is_rule = (request["model"]["scenario"] == "traffic" and
+               request.get("parameters", {}).get("controller") == "pressure")
+    digest = None if is_rule else hashlib.sha256(Path(request["model"]["checkpoint"]).read_bytes()).hexdigest()
 
     def emit(frame):
         frame["checkpoint_sha256"] = digest

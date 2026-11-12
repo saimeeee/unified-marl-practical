@@ -41,16 +41,51 @@ function choose(scene,force=false){
   if(!force)hiddenSessionId=state?.id??null;
   selected=scene;
   document.querySelectorAll('#scenes button').forEach(b=>b.classList.toggle('active',b.dataset.scene===scene));
-  $('model').replaceChildren(...models.filter(m=>m.scenario===scene).map(m=>{let n=el('option','',m.algorithm);n.value=m.id;return n;}));
+  $('model').replaceChildren(...models.filter(m=>m.scenario===scene).map(m=>{let n=el('option','',m.algorithm+' · '+m.id);n.value=m.id;return n;}));
   details();
   clearView();
   controls();
 }
-function details(){const m=model();if(!m)return;$('scene-title').textContent=m.label;$('scene-detail').textContent=m.detail;$('model-training').textContent=m.training+' · 2026-10-28';$('note').textContent=m.note;}
+function details(){const m=model();if(!m)return;$('scene-title').textContent=m.label;$('scene-detail').textContent=m.detail;$('model-training').textContent=m.training||'自定义模型';$('note').textContent=m.note;updateParameterInfo();}
+const parameterIds=['custom-traffic','traffic-rows','traffic-cols','traffic-vehicles','traffic-decisions','traffic-controller','reset-parameters'];
+function chosenParameters(){
+  if(selected!=='traffic'||!$('custom-traffic').checked)return {};
+  return {rows:$('traffic-rows').valueAsNumber,cols:$('traffic-cols').valueAsNumber,
+    vehicle_count:$('traffic-vehicles').valueAsNumber,decision_limit:$('traffic-decisions').valueAsNumber,
+    controller:$('traffic-controller').value};
+}
+function parameterProblem(){
+  const p=chosenParameters();if(!Object.keys(p).length)return '';
+  for(const [key,min,max] of [['rows',1,4],['cols',1,4],['vehicle_count',0,3000],['decision_limit',8,180]]){
+    if(!Number.isInteger(p[key])||p[key]<min||p[key]>max)return '请输入范围内的整数，所有参数都需填写。';
+  }
+  if(p.controller==='trained'&&(p.rows!==2||p.cols!==2))return '现有 PPO 权重仅兼容 2 × 2 路口。请改用压力规则，或恢复 2 × 2。';
+  return '';
+}
+function updateParameterInfo(){
+  $('parameters').hidden=selected!=='traffic';
+  $('parameter-fields').hidden=!$('custom-traffic').checked;
+  const p=chosenParameters(),custom=Object.keys(p).length>0,problem=parameterProblem();
+  $('parameter-summary').textContent=custom?`${p.rows||'—'} × ${p.cols||'—'} · ${p.rows*p.cols||'—'} 个路口 · 计划 ${p.vehicle_count??'—'} 辆 · ${p.decision_limit||'—'} 次决策`:'原训练场景 · 2 × 2 路口 · 固定车流配置';
+  $('parameter-hint').textContent=problem||(custom?'计划车辆会在运行过程中逐批生成，实际在网车辆数随进出变化。':'初始化后参数锁定，结束本次运行后可调整。');
+  $('parameters').classList.toggle('invalid',!!problem);
+  const pressure=custom&&p.controller==='pressure';
+  $('policy-mode').textContent=pressure?'压力规则 · 实时控制':'已训练策略 · 在线推理';
+  $('policy-mode').classList.toggle('rule-mode',pressure);
+  $('note').textContent=pressure?'当前使用压力规则控制信号，不加载 PPO 权重。路网和车辆需求为本次运行独立生成。':(model()?.note||'');
+}
+function applySessionParameters(next){
+  if(next.model?.scenario!=='traffic')return;
+  const p=next.parameters||{};$('custom-traffic').checked=Object.keys(p).length>0;
+  if(Object.keys(p).length){for(const [id,key] of [['traffic-rows','rows'],['traffic-cols','cols'],['traffic-vehicles','vehicle_count'],['traffic-decisions','decision_limit'],['traffic-controller','controller']])$(id).value=String(p[key]);}
+  updateParameterInfo();
+}
 function metricCard(label,value,unit){let card=el('div','metric');card.append(el('div','metric-label',label));let val=el('div','metric-value',value);val.append(el('small','',unit));card.append(val);return card;}
 function controls(){
   const a=active(),matching=visibleSession()&&!busy,ready=connected&&matching&&state?.status==='ready';
-  $('init').disabled=a||busy||!connected;
+  $('init').disabled=a||busy||!connected||!!parameterProblem();
+  for(const id of parameterIds)$(id).disabled=!!a||busy;
+  document.querySelectorAll('[data-preset]').forEach(b=>b.disabled=!!a||busy);
   for(let id of ['model','seed'])$(id).disabled=a||busy;
   document.querySelectorAll('#scenes button').forEach(b=>b.disabled=a||busy);
   $('play').disabled=!ready||state?.mode!=='paused';
@@ -86,7 +121,7 @@ function receive(next){
   if(newSession&&previousId)retiredSessionIds.add(previousId);
   state=next;connected=true;
   $('connection').textContent='● 服务已连接';$('connection').classList.remove('offline');
-  if(newSession)clearView(next.status==='loading');
+  if(newSession){clearView(next.status==='loading');applySessionParameters(next);}
   if(next.model&&active())syncActiveSelection(next);
   controls();
   if(!visibleSession(next))return;
@@ -123,15 +158,44 @@ async function command(op){
 }
 $('init').onclick=async()=>{
   if(active()||busy)return;
-  const request={model:$('model').value,seed:Number($('seed').value)};
+  const issue=parameterProblem();if(issue){error(issue);return;}
+  const seed=$('seed').valueAsNumber;if(!Number.isInteger(seed)||seed<0||seed>2147483647){error('环境随机种子需为 0 至 2147483647 的整数。');return;}
+  const request={model:$('model').value,seed,parameters:chosenParameters()};
   busy=true;hiddenSessionId=state?.id??null;clearView(true);controls();
   try{receive(await api('/api/start',request));}
   catch(e){clearView();error(e.message);}
   finally{busy=false;controls();}
 };
 function resetSelection(){hiddenSessionId=state?.id??null;details();clearView();controls();}
+for(const id of parameterIds){if(id==='reset-parameters')continue;$(id).addEventListener('change',()=>{resetSelection();updateParameterInfo();});}
+$('reset-parameters').onclick=()=>{$('custom-traffic').checked=false;resetSelection();};
+document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{const p={small:[1,1,80,16,'pressure'],standard:[2,2,400,32,'trained'],large:[3,3,900,48,'pressure']}[b.dataset.preset];$('custom-traffic').checked=true;['traffic-rows','traffic-cols','traffic-vehicles','traffic-decisions','traffic-controller'].forEach((id,i)=>$(id).value=p[i]);resetSelection();});
 $('play').onclick=()=>command('run');$('pause').onclick=()=>command('pause');$('step').onclick=()=>command('step');$('stop').onclick=()=>command('stop');$('speed').onchange=()=>command('speed');$('model').onchange=resetSelection;$('seed').onchange=resetSelection;$('refresh-history').onclick=history;
-async function history(){try{const rows=await api('/api/history');$('history').replaceChildren(...rows.map(r=>{let n=el('div','history-row');n.append(el('span','',r.model.label+' · '+r.model.algorithm),el('span','',new Date(r.started_at).toLocaleString('zh-CN')),el('span','','seed '+r.seed),el('span','',({completed:'回合完成',stopped:'手动结束',failed:'失败'})[r.status]||r.status));let a=el('a','','下载轨迹 ↓');a.href='/api/export/'+r.id;n.append(a);return n;}));if(!rows.length)$('history').append(el('div','history-row','尚无已结束的运行。'));}catch(e){error(e.message);}}
+async function history(){
+  try{
+    const rows=await api('/api/history');
+    $('history').replaceChildren(...rows.map(r=>{
+      const n=el('div','history-row'),identity=el('div','history-detail');
+      identity.append(el('span','',r.model.label+' · '+r.model.algorithm),el('small','',new Date(r.started_at).toLocaleString('zh-CN')+' · seed '+r.seed));
+      const detail=el('div','history-detail'),p=r.parameters||{};
+      detail.append(el('span','',Object.keys(p).length?`${p.rows} × ${p.cols} 路口 · 计划 ${p.vehicle_count} 辆`:'原训练场景'));
+      detail.append(el('small','',`${r.frame_count??'—'} 帧 · ${r.last_step??'—'} 步${r.duration_seconds!=null?' · '+fmt(r.duration_seconds,1)+' 秒用时':''}`));
+      const status=el('span','run-state',({completed:'回合完成',stopped:'手动结束',failed:'运行失败'})[r.status]||r.status);
+      if(r.error)status.title=r.error;
+      const reuse=el('button','reuse','复用配置');reuse.disabled=!!active()||busy;
+      reuse.onclick=()=>{
+        if(active()||busy)return;
+        const source=r.source_model||r.model;
+        if(!models.some(m=>m.id===source.id)){error('原模型已不在当前清单中，请选择可用模型。');return;}
+        choose(source.scenario);$('model').value=source.id;$('seed').value=r.seed;
+        if(source.scenario==='traffic')applySessionParameters({model:source,parameters:p});
+        resetSelection();$('parameters').scrollIntoView({block:'center',behavior:'smooth'});
+      };
+      const a=el('a','','下载轨迹 ↓');a.href='/api/export/'+r.id;n.append(identity,detail,status,reuse,a);return n;
+    }));
+    if(!rows.length)$('history').append(el('div','history-row','完成一次运行后，场景参数与轨迹会保存在这里。'));
+  }catch(e){error(e.message);}
+}
 const canvas=$('scene'),ctx=canvas.getContext('2d'),W=1120,H=640;
 function text(x,y,t,size=17,color='#514e49',align='left'){ctx.fillStyle=color;ctx.font=`${size}px "Microsoft YaHei",system-ui`;ctx.textAlign=align;ctx.fillText(t,x,y);ctx.textAlign='left';}
 function line(points,color='#c4c0b6',width=2){ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke();}
