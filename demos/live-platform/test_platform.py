@@ -1,5 +1,6 @@
 """Persistence and HTTP contract checks; no simulator dependencies required."""
 import copy
+import io
 from http.server import ThreadingHTTPServer
 import json
 import os
@@ -7,6 +8,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import threading
 import unittest
+import zipfile
 from unittest.mock import patch
 import urllib.error
 import urllib.request
@@ -194,6 +196,45 @@ class PlatformChecks(unittest.TestCase):
         self.assertIn('error', json.load(error.exception))
         with urllib.request.urlopen(url+'/api/history') as response:
             self.assertEqual(len(json.load(response)), 1)
+
+    def test_http_training_export_has_assets_and_never_starts_a_worker(self):
+        from scenarios import HERE
+        import yaml
+        self.app.models['traffic']['config'] = str(HERE / 'bundle/configs/traffic.yaml')
+        url = self.start_http()
+        data = dict(model='traffic', algorithm='pymarl/vdn', seed=101,
+                    parameters=dict(rows=3, cols=1, vehicle_count=19, decision_limit=8, controller='trained'))
+        request = urllib.request.Request(url+'/api/training/export', data=json.dumps(data).encode(),
+                                         headers={'Content-Type': 'application/json'})
+        with urllib.request.urlopen(request) as response:
+            self.assertEqual(response.headers.get_content_type(), 'application/zip')
+            with zipfile.ZipFile(io.BytesIO(response.read())) as archive:
+                experiment = yaml.safe_load(archive.read('experiment.yaml'))
+                self.assertEqual(experiment['algorithm'], 'pymarl/vdn')
+                self.assertEqual(len(json.loads(archive.read('scenario/flow.json'))), 19)
+        self.assertIsNone(self.app.session)
+        self.assertEqual(list(self.app.output.iterdir()), [])
+
+    def test_registered_traffic_rejects_scene_replacement_but_allows_rule(self):
+        self.app.models['traffic']['inference_protocol'] = 'generic_traffic_v1'
+        with patch('server.Session') as session:
+            with self.assertRaises(ValueError):
+                self.app.start(dict(model='traffic', parameters={'rows': 2}))
+            session.assert_not_called()
+        with patch('server.Session.run', return_value=None):
+            state = self.app.start(dict(model='traffic', parameters={'controller': 'pressure'}))
+            self.app.session.thread.join(2)
+        self.assertEqual(state['model']['algorithm'], 'rule/pressure')
+        self.assertEqual(state['parameters'], {'controller': 'pressure'})
+
+    def test_http_compare_rejects_bad_inputs_without_crashing_server(self):
+        url = self.start_http()
+        request = urllib.request.Request(url+'/api/compare', data=json.dumps({'ids': ['../bad', 'a'*32]}).encode(),
+                                         headers={'Content-Type': 'application/json'})
+        with self.assertRaises(urllib.error.HTTPError) as error:
+            urllib.request.urlopen(request)
+        self.assertEqual(error.exception.code, 400)
+        self.assertIn('error', json.load(error.exception))
 
 
 if __name__ == '__main__':

@@ -74,6 +74,8 @@ docker compose down
 
 ## 添加同环境的新模型
 
+对于核心实验入口训练出的 **MPE、traffic_engine** 的 QMIX、VDN、SADMA PPO 模型，现在可使用 `training_bridge.py register` 自动检查和登记；网页提供交通训练包下载和同场景结果对比。具体命令、Docker 内操作及独立测试场景见 [训练流程说明](../../docs/TRAINING_WORKFLOW.zh-CN.md)。下面的手工登记方式继续用于其他兼容模型。
+
 `worker.py` 定义四个环境的状态获取、模型加载和逐步仿真适配器，`runtime.py` 提供运行所需的公共逻辑；`server.py` 管理会话、控制、导出与工作进程；`static/` 消费状态 JSON 并展示画面。模型清单与环境配置独立于前端。
 
 默认模型来自 `bundle/catalog.json`。启动时，`prepare_local.py` 校验 bundle 文件并生成本机可用的配置与 `local-state/models.json`。**不要直接修改生成的 `models.json`**，下次启动会重新生成。

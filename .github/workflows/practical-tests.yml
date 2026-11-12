@@ -39,4 +39,54 @@ jobs:
       - name: Verify shipped local-platform bundle and runtime helpers
         run: |
           python -B demos/live-platform/prepare_local.py --bundle demos/live-platform/bundle --output /tmp/marl-local-bundle
-          python -B -m unittest discover -s demos/live-platform -p test_runtime.py -v
+          python -B -m unittest discover -s demos/live-platform -p 'test_*.py' -v
+      - name: Verify CPU training, registration and same-scene MPE comparison
+        run: python -B demos/live-platform/verify_training_loop.py --output reports/training-loop
+      - name: Save training-loop verification and worker logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: training-loop-verification
+          path: |
+            reports/training-loop/verification.json
+            reports/training-loop/state/runs/*/worker.log
+          if-no-files-found: warn
+          retention-days: 14
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check platform JavaScript syntax
+        run: node --check demos/live-platform/static/app.js
+  native-traffic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONPATH: src
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install CPU runtime and build the bundled CityFlow source
+        run: |
+          python -m pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==1.26.4 PyYAML==6.0.2 setuptools==80.9.0 wheel==0.45.1 cmake==3.31.6
+          python -m pip install --no-deps --no-build-isolation -e .
+          python -m pip install --no-deps --no-build-isolation ./demos/live-platform/bundle/vendor/CityFlow
+          python -c "import cityflow; print('Native CityFlow:', cityflow.__file__)"
+      - name: Check custom traffic through real HTTP sessions and native workers
+        run: python -B demos/live-platform/verify_custom_traffic.py --output reports/custom-traffic
+      - name: Save native traffic verification and worker logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-traffic-verification
+          path: |
+            reports/custom-traffic/verification.json
+            reports/custom-traffic/runs/*/worker.log
+          if-no-files-found: warn
+          retention-days: 14

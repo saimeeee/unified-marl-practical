@@ -61,7 +61,7 @@ class Session:
         self.parameters = dict(parameters or {})
         self.source_model = {k: model[k] for k in ("id", "label", "scenario", "algorithm")}
         self.effective_controller = self.parameters.get("controller", "trained")
-        self.effective_algorithm = "rule/pressure" if self.effective_controller == "pressure" else model["algorithm"]
+        self.effective_algorithm = {'pressure': 'rule/pressure', 'greedy': 'rule/greedy_landmark'}.get(self.effective_controller, model['algorithm'])
         self.request = dict(model=model, source_model=self.source_model, seed=seed, session=self.id, created_at=self.started,
                             parameters=self.parameters, effective_controller=self.effective_controller,
                             effective_algorithm=self.effective_algorithm)
@@ -264,8 +264,9 @@ class Platform:
                 row["effective_controller"] = item.get("effective_controller", row["parameters"].get("controller", "trained"))
                 original = item.get("source_model", model)
                 row["source_model"] = {k: original.get(k) for k in ("id", "label", "scenario", "algorithm")} if isinstance(original, dict) else row["model"]
-                if row["effective_controller"] == "pressure":
-                    row["model"]["algorithm"] = "rule/pressure"
+                if row["effective_controller"] in {'pressure', 'greedy'}:
+                    row["model"]["algorithm"] = {'pressure': 'rule/pressure', 'greedy': 'rule/greedy_landmark'}[row['effective_controller']]
+                row['comparison_key'] = frame.get('comparison_key')
                 row.update(frame_count=count, last_step=frame.get("step"), metrics=frame.get("metrics", []) if isinstance(frame.get("metrics", []), list) else [],
                            error=str(item["error"])[:300] if item.get("error") else None)
                 row["duration_seconds"] = None
@@ -288,7 +289,13 @@ class Platform:
         seed = data.get("seed", 101)
         if model is None or type(seed) is not int or not 0 <= seed <= 2147483647:
             raise ValueError("请选择有效模型，种子为0至2147483647的整数。")
-        parameters = validate_parameters(model["scenario"], data.get("parameters", {}))
+        raw = data.get('parameters', {})
+        if model.get('inference_protocol') == 'generic_traffic_v1':
+            if raw not in ({}, {'controller': 'pressure'}):
+                raise ValueError('登记的交通模型使用其训练场景；仅可选择同场景压力规则对照。')
+            parameters = dict(raw)
+        else:
+            parameters = validate_parameters(model["scenario"], raw)
         with self.lock:
             if self.session and self.session.status in TERMINAL:
                 self.session.thread.join(timeout=1)
@@ -393,6 +400,19 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Expected JSON object")
             if self.path == "/api/start":
                 return self.send(self.server.app.start(data), 201)
+            if self.path == '/api/training/export':
+                from training_bridge import export_traffic_training
+                model = self.server.app.models.get(data.get('model'))
+                if model is None or model.get('scenario') != 'traffic':
+                    raise ValueError('请选择交通模型作为场景模板。')
+                if model.get('inference_protocol') == 'generic_traffic_v1':
+                    raise ValueError('请使用随包交通场景导出新训练包。登记模型请复用其原训练包。')
+                body = export_traffic_training(model, data.get('parameters', {}),
+                                               seed=data.get('seed', 101), algorithm=data.get('algorithm', 'pymarl/qmix'))
+                return self.send(body, content_type='application/zip', download='traffic-training.zip')
+            if self.path == '/api/compare':
+                from comparison import compare_runs
+                return self.send(compare_runs(self.server.app.output, data.get('ids')))
             if self.path == "/api/control":
                 session = self.server.app.session
                 if not session or data.get("id") != session.id:

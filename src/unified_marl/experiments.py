@@ -144,9 +144,14 @@ def _paths(env_args, path_keys, base):
     return result
 
 
-def _evaluation(value, training_seeds):
+def _evaluation(value, training_seeds, base):
     result = _mapping(value, "evaluation")
-    _unknown(result, {"episodes", "seeds", "seed_count"}, "evaluation")
+    _unknown(result, {"episodes", "seeds", "seed_count", "env_args", "path_keys"}, "evaluation")
+    env_args = _mapping(result.get("env_args", {}), "evaluation.env_args")
+    if "seed" in env_args:
+        raise ValueError("Set evaluation.seeds, not evaluation.env_args.seed")
+    path_keys = result.get("path_keys", [])
+    env_args = _paths(env_args, path_keys, base)
     episodes = result.get("episodes", 5)
     if type(episodes) is not int or episodes < 1:
         raise ValueError("evaluation.episodes must be a positive integer")
@@ -168,7 +173,7 @@ def _evaluation(value, training_seeds):
                 seeds.append(candidate)
                 used.add(candidate)
             candidate = (candidate + 1) % 2**32
-    return {"episodes": episodes, "seeds": seeds}
+    return {"episodes": episodes, "seeds": seeds, "env_args": env_args, "path_keys": deepcopy(path_keys)}
 
 
 def _normalise(value, base, training_seeds=None):
@@ -191,7 +196,7 @@ def _normalise(value, base, training_seeds=None):
         "seed": seed,
         "plugins": _plugins(value.get("plugins", [])),
         "path_keys": deepcopy(value.get("path_keys", [])),
-        "evaluation": _evaluation(value.get("evaluation", {}), training_seeds or [seed]),
+        "evaluation": _evaluation(value.get("evaluation", {}), training_seeds or [seed], base),
     }
 
 
@@ -273,13 +278,46 @@ def _resolve(spec, source, overrides=None):
     return resolved, effective_env, effective_overrides, raw_overrides
 
 
+def _evaluation_config(spec, config):
+    """Apply explicit held-out scene overrides without changing the environment."""
+    result = deepcopy(config)
+    result["env_args"] = merge(config["env_args"], spec["evaluation"]["env_args"])
+    result["seed"] = spec["evaluation"]["seeds"][0]
+    result["env_args"]["seed"] = result["seed"]
+    return result
+
+
+def _environment_metadata(config):
+    from .envs import make_env, validate_compatibility
+
+    validate_compatibility(config)
+    env = make_env(config["env"], **config["env_args"])
+    try:
+        info = env.get_env_info()
+        validate_compatibility(config, info)
+        return info
+    finally:
+        env.close()
+
+
+def _evaluation_metadata(config, evaluation_config, training_info=None):
+    """Mirror evaluate()'s strict metadata contract before spending on training."""
+    training_info = _environment_metadata(config) if training_info is None else training_info
+    evaluation_info = _environment_metadata(evaluation_config)
+    if evaluation_info != training_info:
+        changed = sorted(key for key in set(training_info) | set(evaluation_info)
+                         if training_info.get(key) != evaluation_info.get(key))
+        raise ValueError("Evaluation environment metadata differs from training: " + ", ".join(changed))
+    return evaluation_info
+
+
 def check_experiment(path, instantiate=False, overrides=None):
     """Resolve configuration and capabilities, optionally create/close an env.
 
     Imports the YAML's explicitly selected trusted plugin modules. Neither mode
     performs training or calls step(); construction may load external assets.
     """
-    from .envs import SPECS, make_env, validate_compatibility
+    from .envs import SPECS, validate_compatibility
     from .registry import get_algorithm_spec
 
     if type(instantiate) is not bool:
@@ -288,23 +326,24 @@ def check_experiment(path, instantiate=False, overrides=None):
     spec = load_experiment(source)
     config, _, _, _ = _resolve(spec, source, overrides)
     validate_compatibility(config)
+    evaluation_config = _evaluation_config(spec, config)
+    validate_compatibility(evaluation_config)
     algorithm = get_algorithm_spec(config["algorithm"])
     required = (algorithm.required_capabilities if algorithm else
                 ("discrete", "fixed_agents", "team_reward", "global_state", "action_mask"))
     result = {"status": "success", "algorithm": config["algorithm"], "env": config["env"],
-              "config": config, "evaluation": spec["evaluation"],
+              "config": config, "evaluation": spec["evaluation"], "evaluation_config": evaluation_config,
               "validation_level": "environment_metadata" if instantiate else "configuration",
               "training_executed": False, "instantiated": instantiate,
               "capabilities": {"required": list(required), "available": list(SPECS[config["env"]].capabilities),
                                "compatible": True}}
     if instantiate:
-        env = make_env(config["env"], **config["env_args"])
-        try:
-            info = env.get_env_info()
-            validate_compatibility(config, info)
-            result["env_info"] = info
-        finally:
-            env.close()
+        info = _environment_metadata(config)
+        result["env_info"] = info
+        if spec["evaluation"]["env_args"]:
+            result["evaluation_env_info"] = _evaluation_metadata(config, evaluation_config, info)
+        else:
+            result["evaluation_env_info"] = deepcopy(info)
     return result
 
 
@@ -321,13 +360,24 @@ def _execute(spec, source, directory, overrides=None):
         result["resolved_env"] = resolved["env"]
         result["env_args"] = effective_env
         result["overrides"] = raw_overrides
+        evaluation_config = _evaluation_config(spec, resolved)
+        evaluation_env = {key: value for key, value in evaluation_config["env_args"].items() if key != "seed"}
+        result["evaluation_env_args"] = evaluation_env
+        evaluation_receipt = {"env": evaluation_config["env"], "env_args": evaluation_env,
+                              "episodes": spec["evaluation"]["episodes"], "seeds": spec["evaluation"]["seeds"],
+                              "overrides": spec["evaluation"]["env_args"], "metadata_checked": False}
+        _write(directory / "evaluation.json", evaluation_receipt)
+        if spec["evaluation"]["env_args"]:
+            evaluation_receipt["env_info"] = _evaluation_metadata(resolved, evaluation_config)
+            evaluation_receipt["metadata_checked"] = True
+            _write(directory / "evaluation.json", evaluation_receipt)
         trained = train(spec["algorithm"], spec["env"], effective_env,
                         config={**spec["training"], "plugins": spec["plugins"]}, overrides=effective_overrides,
                         output_dir=directory, device=spec["device"], seed=spec["seed"])
         result["train"] = _jsonable(trained)
         checkpoint = result["train"]["checkpoint"]
         for eval_seed in spec["evaluation"]["seeds"]:
-            evaluated = evaluate(checkpoint, env=spec["env"], env_args=effective_env,
+            evaluated = evaluate(checkpoint, env=spec["env"], env_args=evaluation_env,
                                  episodes=spec["evaluation"]["episodes"], device=spec["device"], seed=eval_seed)
             result["evaluations"].append({"seed": eval_seed, **_jsonable(evaluated)})
         seed_means = [item["return_mean"] for item in result["evaluations"]]
@@ -419,7 +469,7 @@ def run_suite(path, output_dir=None):
     seeds = [_seed(v, "seeds") for v in _sequence(value.get("seeds"), "seeds")]
     if len(set(seeds)) != len(seeds):
         raise ValueError("suite.seeds must be unique")
-    evaluation = _evaluation(value.get("evaluation", {}), seeds)
+    evaluation = _evaluation(value.get("evaluation", {}), seeds, source.parent)
     common_training = _mapping(value.get("training", {}), "training")
     specs = []
     for (ai, algorithm), (ei, env), seed in itertools.product(enumerate(algorithms), enumerate(envs), seeds):

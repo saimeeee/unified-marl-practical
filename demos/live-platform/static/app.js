@@ -47,15 +47,18 @@ function choose(scene,force=false){
   controls();
 }
 function details(){const m=model();if(!m)return;$('scene-title').textContent=m.label;$('scene-detail').textContent=m.detail;$('model-training').textContent=m.training||'自定义模型';$('note').textContent=m.note;updateParameterInfo();}
-const parameterIds=['custom-traffic','traffic-rows','traffic-cols','traffic-vehicles','traffic-decisions','traffic-controller','reset-parameters'];
+const parameterIds=['custom-traffic','traffic-rows','traffic-cols','traffic-vehicles','traffic-decisions','traffic-controller','reset-parameters','mpe-controller','registered-controller'];
+function registeredTraffic(){return model()?.inference_protocol==='generic_traffic_v1';}
 function chosenParameters(){
+  if(selected==='mpe')return $('mpe-controller').value==='greedy'?{controller:'greedy'}:{};
+  if(selected==='traffic'&&registeredTraffic())return $('registered-controller').value==='pressure'?{controller:'pressure'}:{};
   if(selected!=='traffic'||!$('custom-traffic').checked)return {};
   return {rows:$('traffic-rows').valueAsNumber,cols:$('traffic-cols').valueAsNumber,
     vehicle_count:$('traffic-vehicles').valueAsNumber,decision_limit:$('traffic-decisions').valueAsNumber,
     controller:$('traffic-controller').value};
 }
 function parameterProblem(){
-  const p=chosenParameters();if(!Object.keys(p).length)return '';
+  const p=chosenParameters();if(!Object.keys(p).length||selected!=='traffic'||registeredTraffic())return '';
   for(const [key,min,max] of [['rows',1,4],['cols',1,4],['vehicle_count',0,3000],['decision_limit',8,180]]){
     if(!Number.isInteger(p[key])||p[key]<min||p[key]>max)return '请输入范围内的整数，所有参数都需填写。';
   }
@@ -63,9 +66,12 @@ function parameterProblem(){
   return '';
 }
 function updateParameterInfo(){
-  $('parameters').hidden=selected!=='traffic';
+  $('parameters').hidden=selected!=='traffic'||registeredTraffic();
+  $('mpe-parameters').hidden=selected!=='mpe';
+  $('registered-parameters').hidden=selected!=='traffic'||!registeredTraffic();
   $('parameter-fields').hidden=!$('custom-traffic').checked;
   const p=chosenParameters(),custom=Object.keys(p).length>0,problem=parameterProblem();
+  $('scene-detail').textContent=selected==='traffic'&&!registeredTraffic()&&custom?`CityFlow · ${p.rows} × ${p.cols} 路口 · 计划 ${p.vehicle_count} 辆`:(model()?.detail||'');
   $('parameter-summary').textContent=custom?`${p.rows||'—'} × ${p.cols||'—'} · ${p.rows*p.cols||'—'} 个路口 · 计划 ${p.vehicle_count??'—'} 辆 · ${p.decision_limit||'—'} 次决策`:'原训练场景 · 2 × 2 路口 · 固定车流配置';
   $('parameter-hint').textContent=problem||(custom?'计划车辆会在运行过程中逐批生成，实际在网车辆数随进出变化。':'初始化后参数锁定，结束本次运行后可调整。');
   $('parameters').classList.toggle('invalid',!!problem);
@@ -73,9 +79,15 @@ function updateParameterInfo(){
   $('policy-mode').textContent=pressure?'压力规则 · 实时控制':'已训练策略 · 在线推理';
   $('policy-mode').classList.toggle('rule-mode',pressure);
   $('note').textContent=pressure?'当前使用压力规则控制信号，不加载 PPO 权重。路网和车辆需求为本次运行独立生成。':(model()?.note||'');
+  if(p.controller==='greedy'){
+    $('policy-mode').textContent='贪心地标规则 · 对照基线';$('policy-mode').classList.add('rule-mode');
+    $('note').textContent='集中式贪心规则使用所有智能体和地标的位置，不使用训练策略。单回合对比不代表训练效果结论。';
+  }else if(pressure&&registeredTraffic())$('note').textContent='压力规则使用登记模型的同一路网和车流，不使用训练策略。';
 }
 function applySessionParameters(next){
+  if(next.model?.scenario==='mpe'){$('mpe-controller').value=next.parameters?.controller==='greedy'?'greedy':'trained';updateParameterInfo();return;}
   if(next.model?.scenario!=='traffic')return;
+  if(models.find(m=>m.id===next.model.id)?.inference_protocol==='generic_traffic_v1'){$('registered-controller').value=next.parameters?.controller==='pressure'?'pressure':'trained';updateParameterInfo();return;}
   const p=next.parameters||{};$('custom-traffic').checked=Object.keys(p).length>0;
   if(Object.keys(p).length){for(const [id,key] of [['traffic-rows','rows'],['traffic-cols','cols'],['traffic-vehicles','vehicle_count'],['traffic-decisions','decision_limit'],['traffic-controller','controller']])$(id).value=String(p[key]);}
   updateParameterInfo();
@@ -86,6 +98,8 @@ function controls(){
   $('init').disabled=a||busy||!connected||!!parameterProblem();
   for(const id of parameterIds)$(id).disabled=!!a||busy;
   document.querySelectorAll('[data-preset]').forEach(b=>b.disabled=!!a||busy);
+  $('training-export').disabled=!!a||busy||!connected;
+  $('training-algorithm').disabled=!!a||busy;
   for(let id of ['model','seed'])$(id).disabled=a||busy;
   document.querySelectorAll('#scenes button').forEach(b=>b.disabled=a||busy);
   $('play').disabled=!ready||state?.mode!=='paused';
@@ -121,8 +135,9 @@ function receive(next){
   if(newSession&&previousId)retiredSessionIds.add(previousId);
   state=next;connected=true;
   $('connection').textContent='● 服务已连接';$('connection').classList.remove('offline');
-  if(newSession){clearView(next.status==='loading');applySessionParameters(next);}
+  if(newSession)clearView(next.status==='loading');
   if(next.model&&active())syncActiveSelection(next);
+  if(newSession)applySessionParameters(next);
   controls();
   if(!visibleSession(next))return;
   const statuses={idle:'等待初始化',loading:'加载模型与环境…',finalizing:'正在保存结果…',ready:next.mode==='running'?'运行中':next.mode==='stopping'?'正在结束':'已暂停',completed:'回合完成',stopped:'已结束',failed:'运行失败'};
@@ -171,14 +186,36 @@ for(const id of parameterIds){if(id==='reset-parameters')continue;$(id).addEvent
 $('reset-parameters').onclick=()=>{$('custom-traffic').checked=false;resetSelection();};
 document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{const p={small:[1,1,80,16,'pressure'],standard:[2,2,400,32,'trained'],large:[3,3,900,48,'pressure']}[b.dataset.preset];$('custom-traffic').checked=true;['traffic-rows','traffic-cols','traffic-vehicles','traffic-decisions','traffic-controller'].forEach((id,i)=>$(id).value=p[i]);resetSelection();});
 $('play').onclick=()=>command('run');$('pause').onclick=()=>command('pause');$('step').onclick=()=>command('step');$('stop').onclick=()=>command('stop');$('speed').onchange=()=>command('speed');$('model').onchange=resetSelection;$('seed').onchange=resetSelection;$('refresh-history').onclick=history;
+const comparedIds=new Set();
+$('training-export').onclick=async()=>{
+  try{
+    error('');$('training-export').disabled=true;
+    const response=await fetch('/api/training/export',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:$('model').value,seed:$('seed').valueAsNumber,parameters:chosenParameters(),algorithm:$('training-algorithm').value})});
+    if(!response.ok)throw Error((await response.json()).error||'训练包生成失败');
+    const url=URL.createObjectURL(await response.blob()),a=el('a');a.href=url;a.download='traffic-training.zip';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    $('training-feedback').textContent='训练包已下载。默认预算用于验证流程；正式实验请调整训练预算及独立测试场景。';
+  }catch(e){error(e.message);}finally{controls();}
+};
+$('compare-runs').onclick=async()=>{
+  try{
+    error('');const result=await api('/api/compare',{ids:[...comparedIds]});
+    const box=$('comparison');box.hidden=false;box.replaceChildren(el('h3','',`${labels[result.scene]} · 相同场景 · seed ${result.seed}`));
+    const table=el('table'),head=el('tr');head.append(el('th','','模型 / 控制器'),...result.runs[0].metrics.map(m=>el('th','',m.label)),el('th','','物理步数'));
+    const thead=el('thead');thead.append(head);table.append(thead);const body=el('tbody');
+    result.runs.forEach(r=>{const row=el('tr');row.append(el('td','',r.model.algorithm+' · '+r.model.id),...r.metrics.map(m=>el('td','',fmt(m.value,4)+(m.unit?' '+m.unit:''))),el('td','',String(r.physical_steps)));body.append(row);});
+    table.append(body);box.append(table,el('p','muted',result.note));box.scrollIntoView({block:'nearest',behavior:'smooth'});
+  }catch(e){$('comparison').hidden=true;error(e.message);}
+};
 async function history(){
   try{
     const rows=await api('/api/history');
+    for(const id of comparedIds)if(!rows.some(r=>r.id===id))comparedIds.delete(id);
     $('history').replaceChildren(...rows.map(r=>{
       const n=el('div','history-row'),identity=el('div','history-detail');
-      identity.append(el('span','',r.model.label+' · '+r.model.algorithm),el('small','',new Date(r.started_at).toLocaleString('zh-CN')+' · seed '+r.seed));
+      const check=el('input');check.type='checkbox';check.checked=comparedIds.has(r.id);check.disabled=r.status!=='completed'||!r.comparison_key;check.setAttribute('aria-label','选择对比 '+r.model.algorithm+' '+r.id);check.onchange=()=>check.checked?comparedIds.add(r.id):comparedIds.delete(r.id);
+      const name=el('label','compare-choice');name.append(check,document.createTextNode(r.model.label+' · '+r.model.algorithm));identity.append(name,el('small','',new Date(r.started_at).toLocaleString('zh-CN')+' · seed '+r.seed));
       const detail=el('div','history-detail'),p=r.parameters||{};
-      detail.append(el('span','',Object.keys(p).length?`${p.rows} × ${p.cols} 路口 · 计划 ${p.vehicle_count} 辆`:'原训练场景'));
+      detail.append(el('span','',p.rows?`${p.rows} × ${p.cols} 路口 · 计划 ${p.vehicle_count} 辆`:p.controller==='greedy'?'贪心地标规则':p.controller==='pressure'?'原场景压力规则':'模型配套场景'));
       detail.append(el('small','',`${r.frame_count??'—'} 帧 · ${r.last_step??'—'} 步${r.duration_seconds!=null?' · '+fmt(r.duration_seconds,1)+' 秒用时':''}`));
       const status=el('span','run-state',({completed:'回合完成',stopped:'手动结束',failed:'运行失败'})[r.status]||r.status);
       if(r.error)status.title=r.error;
@@ -188,8 +225,8 @@ async function history(){
         const source=r.source_model||r.model;
         if(!models.some(m=>m.id===source.id)){error('原模型已不在当前清单中，请选择可用模型。');return;}
         choose(source.scenario);$('model').value=source.id;$('seed').value=r.seed;
-        if(source.scenario==='traffic')applySessionParameters({model:source,parameters:p});
-        resetSelection();$('parameters').scrollIntoView({block:'center',behavior:'smooth'});
+        applySessionParameters({model:source,parameters:p});
+        resetSelection();$('init').scrollIntoView({block:'center',behavior:'smooth'});
       };
       const a=el('a','','下载轨迹 ↓');a.href='/api/export/'+r.id;n.append(identity,detail,status,reuse,a);return n;
     }));
@@ -202,9 +239,9 @@ function line(points,color='#c4c0b6',width=2){ctx.beginPath();points.forEach((p,
 function circle(x,y,r,color,stroke){ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke();}}
 function box(x,y,w,h,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,10);ctx.fillStyle=fill;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke();}}
 function drawScene(f){ctx.clearRect(0,0,W,H);ctx.fillStyle='#faf9f5';ctx.fillRect(0,0,W,H);ctx.strokeStyle='#efede6';ctx.lineWidth=1;for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}if(!f)return;({warehouse:drawWarehouse,mpe:drawMpe,traffic:drawTraffic,powergrid:drawGrid})[f.scene](f.view);}
-function drawWarehouse(v){v.agents.forEach((a,i)=>{const x=35+(i%2)*550,y=28+Math.floor(i/2)*300,c=colors[i];box(x,y,510,278,'#ffffff','#e3dfd5');text(x+22,y+34,a.agent_id,20,c);text(x+487,y+33,'容量 '+fmt(a.capacity,0),13,'#7c776d','right');for(let row=0;row<3;row++)for(let col=0;col<10;col++){let filled=(row*10+col)/30<a.stock/a.capacity;box(x+23+col*34,y+61+row*37,25,26,filled?c:'#eeece5');}text(x+400,y+106,fmt(a.stock,0),42,c,'center');text(x+400,y+136,'当前库存 / 件',13,'#7d786d','center');line([[x+22,y+191],[x+487,y+191]],'#e7e3da',1);text(x+22,y+221,'本期需求 '+fmt(a.demand??a.last_demand,0),16);text(x+260,y+221,'本期销售 '+fmt(a.sales||0,0),16);text(x+22,y+254,'下单补货 '+fmt(a.executed_order||0,0),16,c);text(x+260,y+254,'在途 '+fmt(a.in_transit,0),16);});}
+function drawWarehouse(v){v.agents.forEach((a,i)=>{const x=35+(i%2)*550,y=28+Math.floor(i/2)*300,c=colors[i % colors.length];box(x,y,510,278,'#ffffff','#e3dfd5');text(x+22,y+34,a.agent_id,20,c);text(x+487,y+33,'容量 '+fmt(a.capacity,0),13,'#7c776d','right');for(let row=0;row<3;row++)for(let col=0;col<10;col++){let filled=(row*10+col)/30<a.stock/a.capacity;box(x+23+col*34,y+61+row*37,25,26,filled?c:'#eeece5');}text(x+400,y+106,fmt(a.stock,0),42,c,'center');text(x+400,y+136,'当前库存 / 件',13,'#7d786d','center');line([[x+22,y+191],[x+487,y+191]],'#e7e3da',1);text(x+22,y+221,'本期需求 '+fmt(a.demand??a.last_demand,0),16);text(x+260,y+221,'本期销售 '+fmt(a.sales||0,0),16);text(x+22,y+254,'下单补货 '+fmt(a.executed_order||0,0),16,c);text(x+260,y+254,'在途 '+fmt(a.in_transit,0),16);});}
 function transform(points,pad=65){const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);let xmin=Math.min(...xs),xmax=Math.max(...xs),ymin=Math.min(...ys),ymax=Math.max(...ys);let scale=Math.min((W-pad*2)/Math.max(.1,xmax-xmin),(H-pad*2)/Math.max(.1,ymax-ymin));return p=>[W/2+(p[0]-(xmin+xmax)/2)*scale,H/2-(p[1]-(ymin+ymax)/2)*scale];}
-function drawMpe(v){const bound=Math.max(1.3,...[...v.agents,...v.landmarks].flatMap(a=>a.position.map(Math.abs)))+.15,s=(H-120)/(2*bound),xy=p=>[W/2+p[0]*s,H/2-p[1]*s];text(30,35,'协作覆盖 · 中心距离 < 0.10',17);v.landmarks.forEach((a,i)=>{let [x,y]=xy(a.position),covered=v.nearest_landmark_distances[i]<.1;circle(x,y,.1*s,covered?'#d8eee2':'#ece8df',covered?'#27866d':'#999082');line([[x-8,y],[x+8,y]],'#9c9385',2);line([[x,y-8],[x,y+8]],'#9c9385',2);text(x,y+40,'地标 '+(i+1),14,'#787064','center');});v.agents.forEach((a,i)=>{let [x,y]=xy(a.position),nearest=v.landmarks.reduce((best,l)=>Math.hypot(l.position[0]-a.position[0],l.position[1]-a.position[1])<Math.hypot(best.position[0]-a.position[0],best.position[1]-a.position[1])?l:best);ctx.setLineDash([5,6]);line([[x,y],xy(nearest.position)],colors[i]+'60',1);ctx.setLineDash([]);circle(x,y,Math.max(12,a.radius*s),colors[i]+'22',colors[i]);circle(x,y,5,colors[i]);line([[x,y],[x+a.velocity[0]*s*.15,y-a.velocity[1]*s*.15]],colors[i],3);text(x,y-24,'A'+(i+1),16,colors[i],'center');});v.collision_pairs.forEach(([i,j])=>line([xy(v.agents[i].position),xy(v.agents[j].position)],'#ce6548',4));text(30,H-25,'箭头：当前速度方向    虚线：最近地标    红线：碰撞',14,'#81796d');}
+function drawMpe(v){const bound=Math.max(1.3,...[...v.agents,...v.landmarks].flatMap(a=>a.position.map(Math.abs)))+.15,s=(H-120)/(2*bound),xy=p=>[W/2+p[0]*s,H/2-p[1]*s];text(30,35,'协作覆盖 · 中心距离 < 0.10',17);v.landmarks.forEach((a,i)=>{let [x,y]=xy(a.position),covered=v.nearest_landmark_distances[i]<.1;circle(x,y,.1*s,covered?'#d8eee2':'#ece8df',covered?'#27866d':'#999082');line([[x-8,y],[x+8,y]],'#9c9385',2);line([[x,y-8],[x,y+8]],'#9c9385',2);text(x,y+40,'地标 '+(i+1),14,'#787064','center');});v.agents.forEach((a,i)=>{let [x,y]=xy(a.position),nearest=v.landmarks.reduce((best,l)=>Math.hypot(l.position[0]-a.position[0],l.position[1]-a.position[1])<Math.hypot(best.position[0]-a.position[0],best.position[1]-a.position[1])?l:best);ctx.setLineDash([5,6]);line([[x,y],xy(nearest.position)],colors[i % colors.length]+'60',1);ctx.setLineDash([]);circle(x,y,Math.max(12,a.radius*s),colors[i % colors.length]+'22',colors[i % colors.length]);circle(x,y,5,colors[i % colors.length]);line([[x,y],[x+a.velocity[0]*s*.15,y-a.velocity[1]*s*.15]],colors[i % colors.length],3);text(x,y-24,'A'+(i+1),16,colors[i % colors.length],'center');});v.collision_pairs.forEach(([i,j])=>line([xy(v.agents[i].position),xy(v.agents[j].position)],'#ce6548',4));text(30,H-25,'箭头：当前速度方向    虚线：最近地标    红线：碰撞',14,'#81796d');}
 function drawTraffic(v){let points=v.roads.flatMap(r=>r.points.map(p=>[p.x,p.y])),xy=transform(points,55);v.roads.forEach(r=>{const p=r.points.map(p=>xy([p.x,p.y]));line(p,'#d9d5ca',17);ctx.setLineDash([5,7]);line(p,'#ffffff',1);ctx.setLineDash([]);});v.intersections.filter(i=>!i.virtual).forEach((it,i)=>{let [x,y]=xy([it.point.x,it.point.y]);box(x-21,y-21,42,42,'#c9c4b8');let phase=v.phases[it.id];circle(x+26,y-26,5,phase===8?'#ce6548':'#27866d');text(x,y-42,`路口 ${i+1} · 相位 ${phase??'—'}`,13,'#655e54','center');});v.vehicles.forEach(a=>{let[x,y]=xy([a.x,a.y]);ctx.save();ctx.translate(x,y);ctx.rotate(-a.angle);ctx.fillStyle='#287f68';ctx.fillRect(-4,-2,8,4);ctx.restore();});text(24,30,'原生车辆位置 · 每个显示步推进 1 秒',16);text(24,H-20,'信号服务约束保持训练配置；车辆运动由 CityFlow 计算。',13,'#81796d');}
 function drawGrid(v){const xy=transform(v.buses.map(b=>[b.x,b.y]),90),positions=Object.fromEntries(v.buses.map(b=>[b.id,xy([b.x,b.y])])),max=Math.max(.01,...v.line_power.map(Math.abs));v.lines.forEach((l,i)=>line([positions[l.source],positions[l.target]],'#b3b7a9',2+3*Math.abs(v.line_power[i])/max));v.buses.forEach((b,i)=>{let[x,y]=positions[b.id],value=v.voltage[i],c=value<.95||value>1.05?'#ce6548':'#27866d';circle(x,y,14,c+'1f',c);text(x,y+5,b.id+1,12,c,'center');text(x,y-23,value.toFixed(3),12,'#7c766c','center');});text(25,32,'33 节点配电网 · 节点颜色表示电压',16);circle(32,H-31,5,'#27866d');text(46,H-26,'0.95–1.05 p.u.',14);circle(222,H-31,5,'#ce6548');text(236,H-26,'电压越限',14);text(W-25,H-26,'线宽：有功功率绝对值',14,'#81796d','right');}
 function drawChart(series){let c=$('chart'),g=c.getContext('2d'),w=c.width,h=c.height;g.clearRect(0,0,w,h);if(!series?.length)return;let values=series.map(r=>r.value),lo=Math.min(...values),hi=Math.max(...values),range=Math.max(1e-9,hi-lo);g.strokeStyle='#e8e4db';g.lineWidth=1;for(let y=45;y<h-10;y+=50){g.beginPath();g.moveTo(30,y);g.lineTo(w-25,y);g.stroke();}const p=values.map((v,i)=>[30+i*(w-55)/Math.max(1,values.length-1),h-25-(v-lo)/range*(h-70)]);if(hi===lo)p.forEach(a=>a[1]=h/2);g.beginPath();p.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.strokeStyle='#27866d';g.lineWidth=3;g.stroke();g.lineTo(p[p.length-1][0],h-20);g.lineTo(30,h-20);g.closePath();const grad=g.createLinearGradient(0,20,0,h);grad.addColorStop(0,'#27866d25');grad.addColorStop(1,'#27866d00');g.fillStyle=grad;g.fill();$('chart-min').textContent='最低 '+fmt(lo);$('chart-max').textContent='最高 '+fmt(hi);}
