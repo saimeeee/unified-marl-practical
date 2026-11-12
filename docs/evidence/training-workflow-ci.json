@@ -1,0 +1,197 @@
+{
+  "date": "2026-11-12",
+  "tested_source_commit": "e1c6c4ef235abada7053f89b67ab4b06c2010d50",
+  "merge_commit": "65dc81a30076e97e356c349eeef3560cc8ff28ac",
+  "verified_tree": "77a4854f41c5c490daf56e957697be4bf65a70bf",
+  "workflow_url": "https://github.com/saimeeee/unified-marl-practical/actions/runs/43200090637",
+  "jobs": {
+    "practical": "success",
+    "native_traffic": "success"
+  },
+  "core_regression": {
+    "passed": 111,
+    "skipped": 1
+  },
+  "platform_tests": {
+    "passed": 45
+  },
+  "mpe_training_loop": {
+    "algorithms": [
+      "pymarl/qmix",
+      "pymarl/vdn"
+    ],
+    "updates_per_model": 2,
+    "registration_preserves_checkpoint": true,
+    "live_same_scene_comparison_with_greedy_rule": "passed",
+    "different_seed_comparison_rejected": true
+  },
+  "native_cases": [
+    {
+      "name": "pressure-1x1",
+      "status": "passed",
+      "session": "b73e47cc8c59411385c3a216d5cec9ef",
+      "parameters": {
+        "rows": 1,
+        "cols": 1,
+        "vehicle_count": 80,
+        "decision_limit": 8,
+        "controller": "pressure"
+      },
+      "frames": 86,
+      "final_physical_second": 84,
+      "checkpoint_sha256": null,
+      "initial_pause": true,
+      "single_step": true,
+      "pause": true,
+      "concurrent_export": true,
+      "history_reload": true,
+      "worker_reaped": true
+    },
+    {
+      "name": "pressure-2x3",
+      "status": "passed",
+      "session": "a95e66f46f8a47c68b3d9ff7b66d800e",
+      "parameters": {
+        "rows": 2,
+        "cols": 3,
+        "vehicle_count": 300,
+        "decision_limit": 8,
+        "controller": "pressure"
+      },
+      "frames": 87,
+      "final_physical_second": 85,
+      "checkpoint_sha256": null,
+      "initial_pause": true,
+      "single_step": true,
+      "pause": true,
+      "concurrent_export": true,
+      "history_reload": true,
+      "worker_reaped": true
+    },
+    {
+      "name": "pressure-3x3",
+      "status": "passed",
+      "session": "4af687b239d848ee80f992c13ad0f14e",
+      "parameters": {
+        "rows": 3,
+        "cols": 3,
+        "vehicle_count": 400,
+        "decision_limit": 8,
+        "controller": "pressure"
+      },
+      "frames": 87,
+      "final_physical_second": 85,
+      "checkpoint_sha256": null,
+      "initial_pause": true,
+      "single_step": true,
+      "pause": true,
+      "concurrent_export": true,
+      "history_reload": true,
+      "worker_reaped": true
+    },
+    {
+      "name": "pressure-4x4",
+      "status": "passed",
+      "session": "f26fefb0132f464cb49a947cd5283bda",
+      "parameters": {
+        "rows": 4,
+        "cols": 4,
+        "vehicle_count": 800,
+        "decision_limit": 8,
+        "controller": "pressure"
+      },
+      "frames": 87,
+      "final_physical_second": 85,
+      "checkpoint_sha256": null,
+      "initial_pause": true,
+      "single_step": true,
+      "pause": true,
+      "concurrent_export": true,
+      "history_reload": true,
+      "worker_reaped": true
+    },
+    {
+      "name": "pressure-zero",
+      "status": "passed",
+      "session": "9db07d4b37084884a8101f3819b8d220",
+      "parameters": {
+        "rows": 1,
+        "cols": 1,
+        "vehicle_count": 0,
+        "decision_limit": 8,
+        "controller": "pressure"
+      },
+      "frames": 82,
+      "final_physical_second": 80,
+      "checkpoint_sha256": null,
+      "initial_pause": true,
+      "single_step": true,
+      "pause": true,
+      "concurrent_export": true,
+      "history_reload": true,
+      "worker_reaped": true
+    },
+    {
+      "name": "pressure-high",
+      "status": "passed",
+      "session": "14e08e49ddab4981a1ca4b98fac08a4f",
+      "parameters": {
+        "rows": 2,
+        "cols": 2,
+        "vehicle_count": 3000,
+        "decision_limit": 8,
+        "controller": "pressure"
+      },
+      "frames": 87,
+      "final_physical_second": 85,
+      "checkpoint_sha256": null,
+      "initial_pause": true,
+      "single_step": true,
+      "pause": true,
+      "concurrent_export": true,
+      "history_reload": true,
+      "worker_reaped": true
+    },
+    {
+      "name": "trained-2x2",
+      "status": "passed",
+      "session": "6cadf53ba6794f42a920c0c78c454711",
+      "parameters": {
+        "rows": 2,
+        "cols": 2,
+        "vehicle_count": 100,
+        "decision_limit": 8,
+        "controller": "trained"
+      },
+      "frames": 90,
+      "final_physical_second": 88,
+      "checkpoint_sha256": "d9163ca36f354cf94df5ca972aa36d105c0b127e263baddc8f959a08717451b8",
+      "initial_pause": true,
+      "single_step": true,
+      "pause": true,
+      "concurrent_export": true,
+      "history_reload": true,
+      "worker_reaped": true
+    }
+  ],
+  "traffic_training_loop": {
+    "rows": 1,
+    "cols": 2,
+    "planned_vehicles": 80,
+    "decision_limit": 8,
+    "algorithm": "pymarl/qmix",
+    "updates": 2,
+    "export_train_register_infer_compare": "passed",
+    "inference_after_original_scene_moved": "passed"
+  },
+  "browser_checks": [
+    "3x3 VDN training ZIP download",
+    "registered MPE model selection",
+    "greedy baseline single step",
+    "active session reload recovery",
+    "complete rollout",
+    "three-way comparison table",
+    "no console errors"
+  ],
+  "scope": "Short CPU pipeline verification, not convergence or algorithm-quality claims. Local Docker/WSL not repaired and local image not rebuilt."
+}

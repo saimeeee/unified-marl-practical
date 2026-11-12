@@ -76,4 +76,6 @@ evaluation:
 
 GitHub Actions 运行所有平台测试、核心实验回归、MPE 闭环，并在独立 Linux 任务编译随包 CityFlow。原生任务覆盖 7 种网格/车流组合，以及非 2×2 路网的导出、短训练、登记、推理和规则对比；报告作为 Actions artifacts 保存。原生验证是否通过，以对应提交的 Actions 结果为准。
 
+2026-11-12 [CI run 43200090637](https://github.com/saimeeee/unified-marl-practical/actions/runs/43200090637) 两项任务均成功：核心回归 111 passed、1 skipped，平台 45 项通过，MPE CPU 闭环和 7 种原生交通情况通过；1×2 路网的 QMIX 两次更新、登记后摆脱原场景路径的实时推理及压力规则对比通过。[PR #1](https://github.com/saimeeee/unified-marl-practical/pull/1) 已合并，合并树与被验证源码一致。[持久验收摘要](evidence/training-workflow-ci.json)保留测试范围；完整工作进程日志在 Actions artifacts 中保留 14 天。
+
 本轮未统一电网连续动作训练入口，也未完成长时间效果训练；四场景原有模型效果边界保持。
