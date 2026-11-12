@@ -29,6 +29,8 @@ def validate_parameters(scenario, raw):
         raise ValueError("场景参数必须为对象。")
     if not raw:
         return {}
+    if scenario == "mpe" and raw == {"controller": "greedy"}:
+        return dict(raw)
     if scenario != "traffic":
         raise ValueError("当前可自定义交通环境；其他场景请使用已训练配置。")
     if set(raw) - set(TRAFFIC_DEFAULTS):

@@ -1,4 +1,4 @@
-"""Orchestration unit tests use mocked backends, not real training evidence."""
+"""Orchestration contracts plus one bounded, real held-out inventory regression."""
 import csv
 import json
 from pathlib import Path
@@ -71,6 +71,10 @@ def test_paths_are_explicit_and_relative_to_yaml(tmp_path, monkeypatch):
     ({"evaluation": {"seeds": [7]}}, "disjoint"),
     ({"evaluation": {"seeds": []}}, "nonempty"),
     ({"evaluation": {"episodes": 0}}, "positive"),
+    ({"evaluation": {"env_args": {"seed": 101}}}, "evaluation.seeds"),
+    ({"evaluation": {"env_args": []}}, "evaluation.env_args must"),
+    ({"evaluation": {"path_keys": ["missing"]}}, "does not exist"),
+    ({"evaluation": {"env": "mpe"}}, "Unknown evaluation"),
     ({"schema_version": True}, "schema_version"),
 ])
 def test_invalid_experiment_rejected(tmp_path, changes, match):
@@ -270,3 +274,121 @@ def test_configuration_cannot_silently_replace_environment(tmp_path, backend, mo
     with pytest.raises(ValueError, match="substitution is forbidden"):
         ex.check_experiment(path)
     assert not backend["train"]
+
+
+def test_evaluation_paths_resolve_independently_and_preserve_training(tmp_path, monkeypatch):
+    path = write_yaml(tmp_path, single(env_args={"demand_file": "train.csv"}, evaluation={
+        "env_args": {"demand_file": "test.csv", "nested": {"weights": "test/policy.pt"}},
+        "path_keys": ["nested.weights"], "seeds": [101]}))
+    monkeypatch.chdir(tmp_path.parent)
+    spec = ex.load_experiment(path)
+    assert spec["env_args"]["demand_file"] == str(tmp_path / "train.csv")
+    assert spec["evaluation"]["env_args"]["demand_file"] == str(tmp_path / "test.csv")
+    assert spec["evaluation"]["env_args"]["nested"]["weights"] == str(tmp_path / "test/policy.pt")
+
+
+def test_evaluation_overrides_merge_after_training_overrides_and_are_saved(tmp_path, backend):
+    path = write_yaml(tmp_path, single(env_args={"n_agents": 2, "truncate": False},
+                                     evaluation={"env_args": {"truncate": True}, "seeds": [101, 102]}))
+    result = ex.run_experiment(path, tmp_path / "run", overrides={"env_args.mask_actions": False})
+    assert backend["train"][0][2] == {"n_agents": 2, "truncate": False, "mask_actions": False}
+    expected = {"n_agents": 2, "truncate": True, "mask_actions": False}
+    assert all(call[1]["env_args"] == expected for call in backend["evaluate"])
+    assert [call[1]["seed"] for call in backend["evaluate"]] == [101, 102]
+    assert result["evaluation_env_args"] == expected
+    receipt = json.loads((tmp_path / "run/evaluation.json").read_text())
+    assert receipt["env_args"] == expected and receipt["metadata_checked"] is True
+    assert receipt["seeds"] == [101, 102]
+    assert receipt["env_info"]["n_agents"] == 2
+
+
+@pytest.mark.parametrize("evaluation, message", [
+    ({"n_agents": 3}, "metadata differs"),
+    ({"episode_limit": 17}, "metadata differs"),
+    ({"demand_file": "test.csv"}, "demand_file"),
+])
+def test_incompatible_evaluation_fails_before_training(tmp_path, backend, evaluation, message):
+    path = write_yaml(tmp_path, single(evaluation={"env_args": evaluation}))
+    with pytest.raises(ex.ExperimentRunError, match=message) as caught:
+        ex.run_experiment(path, tmp_path / "run")
+    assert caught.value.result["status"] == "failed"
+    assert not backend["train"] and not backend["evaluate"]
+    receipt = json.loads((tmp_path / "run/evaluation.json").read_text())
+    assert receipt["metadata_checked"] is False
+
+
+def test_configuration_check_exposes_evaluation_without_constructing(tmp_path, backend, monkeypatch):
+    import unified_marl.envs as envs
+
+    def unexpected(*args, **kwargs):
+        pytest.fail("configuration-only checks must not construct either environment")
+
+    monkeypatch.setattr(envs, "make_env", unexpected)
+    path = write_yaml(tmp_path, single(env_args={"n_agents": 2}, evaluation={"env_args": {"truncate": True}}))
+    result = ex.check_experiment(path)
+    assert result["evaluation_config"]["env_args"]["truncate"] is True
+    assert result["evaluation_config"]["env_args"]["n_agents"] == 2
+    assert result["evaluation_config"]["env_args"]["seed"] != result["config"]["env_args"]["seed"]
+
+
+def test_instantiated_evaluation_check_closes_both_on_mismatch(tmp_path, backend, monkeypatch):
+    import unified_marl.envs as envs
+    closed = []
+
+    class MetadataOnlyEnv:
+        def __init__(self, n_agents):
+            self.n_agents = n_agents
+
+        def get_env_info(self):
+            return dict(n_agents=self.n_agents, n_actions=3, state_shape=4, obs_shape=2, episode_limit=4)
+
+        def close(self):
+            closed.append(self.n_agents)
+
+        def step(self, actions):
+            pytest.fail("metadata checks must not step")
+
+    monkeypatch.setattr(envs, "make_env", lambda name, **kwargs: MetadataOnlyEnv(kwargs.get("n_agents", 2)))
+    path = write_yaml(tmp_path, single(evaluation={"env_args": {"n_agents": 3}}))
+    with pytest.raises(ValueError, match="metadata differs"):
+        ex.check_experiment(path, instantiate=True)
+    assert closed == [2, 3]
+
+
+def test_suite_shared_evaluation_rejects_unsupported_environment_before_its_training(tmp_path, backend):
+    path = write_yaml(tmp_path, dict(algorithms=["pymarl/qmix"], envs=["toy", "mpe"], seeds=[7],
+                                     evaluation={"env_args": {"truncate": True}, "seeds": [101]}))
+    result = ex.run_suite(path, tmp_path / "suite")
+    assert result["status"] == "partial_failure"
+    assert result["runs"][0]["evaluation_env_args"]["truncate"] is True
+    assert "truncate" in result["runs"][1]["error"]["message"]
+    assert [call[1] for call in backend["train"]] == ["toy"]
+
+
+def test_actual_inventory_uses_held_out_demand_without_rewriting_checkpoint(tmp_path):
+    import torch
+    from unified_marl.checkpoints import read_checkpoint
+
+    (tmp_path / "agents.csv").write_text(
+        "agent_id,warehouse_id,sku_id,initial_stock,capacity,mean_demand,lead_time,unit_price,unit_cost,holding_cost,shortage_cost\n"
+        "a,w,s,100,100,10,0,2,0,0,0\n", encoding="utf-8")
+    for name, demand in (("train.csv", 0), ("held-out.csv", 10)):
+        (tmp_path / name).write_text("period,agent_id,demand\n" +
+                                    "".join(f"{period},a,{demand}\n" for period in range(4)), encoding="utf-8")
+    path = write_yaml(tmp_path, single(algorithm="pymarl/vdn", env="inventory",
+        env_args={"agents_file": "agents.csv", "demand_file": "train.csv", "horizon": 4,
+                  "action_multipliers": [0, 1]},
+        training={"t_max": 8, "max_updates": 1, "batch_size": 1, "buffer_size": 2, "rnn_hidden_dim": 8},
+        evaluation={"env_args": {"demand_file": "held-out.csv"}, "episodes": 1, "seeds": [101]}))
+    threads = torch.get_num_threads()
+    torch.set_num_threads(1)
+    try:
+        result = ex.run_experiment(path, tmp_path / "run")
+        assert result["train"]["updates"] == 1
+        assert result["evaluations"][0]["returns"] == [80.0]
+        original = ex.evaluate(result["train"]["checkpoint"], episodes=1, seed=101)
+        assert original.returns == [0.0]
+        checkpoint = read_checkpoint(result["train"]["checkpoint"], "cpu")
+        assert checkpoint["config"]["env_args"]["demand_file"] == str(tmp_path / "train.csv")
+    finally:
+        torch.set_num_threads(threads)

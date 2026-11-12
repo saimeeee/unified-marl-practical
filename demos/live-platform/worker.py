@@ -59,20 +59,26 @@ def mpe(request, emit, folder):
     from unified_marl import load_policy
     from unified_marl.envs import make_env
     from unified_marl.checkpoints import read_checkpoint
+    from comparison import scene_signature, GreedyLandmarkPolicy
     seed_all(request["seed"])
     payload = read_checkpoint(request["model"]["checkpoint"], "cpu")
     env = make_env("mpe", **dict(payload["config"]["env_args"], seed=request["seed"]))
     try:
         env.reset()
-        policy = load_policy(request["model"]["checkpoint"], device="cpu")
+        is_rule = request.get("parameters", {}).get("controller") == "greedy"
+        policy = GreedyLandmarkPolicy(env) if is_rule else load_policy(request["model"]["checkpoint"], device="cpu")
+        key = scene_signature('mpe', dict(scenario=env.scenario_name, n_agents=env.n_agents,
+                                         n_landmarks=env.n_landmarks, episode_limit=env.episode_limit,
+                                         physics='delivered_simple_spread_v1', coverage_radius=.1))
         policy.reset()
         reward, total, collisions, actions = 0., 0., 0, None
         for step in range(env.episode_limit + 1):
             row = world_snapshot(env, step, reward, total, actions, .1, collisions)
             emit(dict(scene="mpe", step=step, limit=env.episode_limit, done=step == env.episode_limit,
+                comparison_key=key, policy_source='greedy_rule' if is_rule else 'trained_checkpoint',
                 clock=f"物理时间 {row['physical_time']:.1f} s", view=row,
                 metrics=[metric("累计奖励", total), metric("地标距离", row["mean_nearest_landmark_distance"]),
-                         metric("覆盖地标", row["covered_landmarks"], "/ 3"), metric("累计碰撞", collisions)],
+                         metric("覆盖地标", row["covered_landmarks"], f"/ {env.n_landmarks}"), metric("累计碰撞", collisions)],
                 chart=dict(label="最近地标平均距离", value=row["mean_nearest_landmark_distance"]),
                 actions=[] if actions is None else [dict(agent=f"智能体 {i+1}", action=["不施力", "向右", "向左", "向上", "向下"][int(a)]) for i,a in enumerate(actions)]))
             if step == env.episode_limit:
@@ -126,8 +132,16 @@ def traffic(request, emit, folder):
     from unified_marl.applications import traffic as api, load_config
     from unified_marl.envs.traffic_engine import CityFlowEngineEnv
     from scenarios import prepare_traffic, PressurePolicy
+    from comparison import traffic_signature
     config = evaluation_config(load_config(request["model"]["config"]), request["seed"], folder)
-    config, scenario = prepare_traffic(config, request.get("parameters", {}), folder)
+    generic = request['model'].get('inference_protocol') == 'generic_traffic_v1'
+    if generic:
+        controller = request.get('parameters', {}).get('controller', 'trained')
+        scenario = dict(custom=False, controller=controller,
+                        policy_source='pressure_rule' if controller == 'pressure' else 'trained_checkpoint')
+    else:
+        config, scenario = prepare_traffic(config, request.get("parameters", {}), folder)
+    key = traffic_signature(config)
     # Retain the resolved application configuration beside generated scene files.
     from runtime import write_config
     write_config(folder / "config.yaml", config)
@@ -143,8 +157,13 @@ def traffic(request, emit, folder):
     env = CityFlowEngineEnv(**dict(config["env_args"], cityflow_config_file=str(folder / "live-cityflow.json"), seed=request["seed"]))
     replay = None
     try:
-        policy = (PressurePolicy(env, roadnet) if scenario["controller"] == "pressure" else
-                  api.load_policy(request["model"]["checkpoint"], config=config, device="cpu"))
+        if scenario['controller'] == 'pressure':
+            policy = PressurePolicy(env, roadnet)
+        elif generic:
+            from training_bridge import load_registered_traffic_policy
+            policy = load_registered_traffic_policy(request['model'], env, config)
+        else:
+            policy = api.load_policy(request["model"]["checkpoint"], config=config, device="cpu")
         policy.reset()
         replay = (folder / "native-replay.txt").open(encoding="utf-8")
         original = env._advance
@@ -155,6 +174,7 @@ def traffic(request, emit, folder):
             queue = sum(env._queue_by_lane.values())
             emit(dict(scene="traffic", step=int(env.get_current_time()), limit=0, done=done,
                 scenario=scenario, policy_source=scenario["policy_source"],
+                comparison_key=key,
                 decision_step=decisions, decision_limit=env.episode_limit,
                 clock=f"仿真 {env.get_current_time():.0f} s · 决策 {decisions} / {env.episode_limit}",
                 view=dict(roads=roadnet["roads"], intersections=roadnet["intersections"], vehicles=vehicles,
@@ -203,8 +223,7 @@ def main():
     os.dup2(sys.stderr.fileno(), sys.stdout.fileno())
     import torch
     torch.set_num_threads(1)
-    is_rule = (request["model"]["scenario"] == "traffic" and
-               request.get("parameters", {}).get("controller") == "pressure")
+    is_rule = request.get("parameters", {}).get("controller") in {'pressure', 'greedy'}
     digest = None if is_rule else hashlib.sha256(Path(request["model"]["checkpoint"]).read_bytes()).hexdigest()
 
     def emit(frame):

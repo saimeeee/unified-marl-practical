@@ -17,7 +17,7 @@ python -m unified_marl run examples/experiments/mpe.yaml
 python -m unified_marl run examples/experiments/inventory.yaml
 ```
 
-`check` 默认导入 YAML 明确选择的插件，校验配置与声明的能力，不构造仿真器。加 `--instantiate` 后会构造环境、读取维度并关闭环境；它不执行动作或训练。因此默认检查成功不代表外部仿真器及其数据已经安装，构造检查成功也不等于训练已通过。
+`check` 默认导入 YAML 明确选择的插件，校验配置与声明的能力，不构造仿真器。加 `--instantiate` 后会构造环境、读取维度并关闭环境；指定独立评估参数时也检查评估环境，确认其元数据与训练环境相同。它不执行动作或训练。因此默认检查成功不代表外部仿真器及其数据已经安装，构造检查成功也不等于训练已通过。
 
 | 环境名 | 实际内容 | 首版使用边界 |
 |---|---|---|
@@ -72,6 +72,8 @@ evaluation:
 | `evaluation.episodes` | 每个评估 seed 的回合数，默认 `5` |
 | `evaluation.seed_count` | 自动生成的评估 seed 数，默认 `1` |
 | `evaluation.seeds` | 显式评估 seed 列表；与 `seed_count` 二选一 |
+| `evaluation.env_args` | 可选的独立测试场景参数，覆盖最终训练环境参数，例如测试需求 CSV；不改变环境类型 |
+| `evaluation.path_keys` | `evaluation.env_args` 内额外路径字段，点号写法；路径相对于实验 YAML 所在目录 |
 | `path_keys` | `env_args` 内额外的路径字段名，可使用点号访问嵌套字段 |
 
 示例预算只用于快速检查端到端训练。`max_updates` 限制更新次数，`t_max` 限制采样步数；先到哪个就停止，回合采样可能使实际步数越过步数边界。预算不足以填满训练 batch 时不会产生更新，应增加预算或减小 batch，而不是把“没有训练”记作成功。
@@ -141,6 +143,31 @@ evaluation:
 
 自动评估 seeds 是确定性生成的，与整个 suite 的所有训练 seeds 都不同。各组合使用相同评估 seeds 便于同场景比较。显式评估 seeds 也必须唯一，并与全部训练 seeds 不相交。仅换 seed 不会自动将库存 CSV 划分为训练集/测试集；如果环境数据固定，独立 seed 不能代替独立测试数据。
 
+### 独立测试数据与场景
+
+使用 `evaluation.env_args` 显式指定测试数据。下面片段在训练配置原有参数之上，只替换评估的需求文件；`agents_file`、`horizon`、动作集合等继续沿用训练配置：
+
+```yaml
+env: inventory
+env_args:
+  agents_file: data/agents.csv
+  demand_file: data/train-demand.csv
+  horizon: 24
+evaluation:
+  episodes: 5
+  seeds: [1001, 1002]
+  env_args:
+    demand_file: data/test-demand.csv
+```
+
+训练与测试文件需要用户事先独立准备；平台不会自动切分数据或判断数据是否泄漏。交通可在评估参数中指定另一份 `cityflow_config_file` 来使用测试车流，但须保留相同路网、智能体顺序、动作语义与观测结构。仅维度相同不足以证明这些业务语义相同。
+
+评估参数在训练 YAML 和命令行的训练环境覆盖项合并完成后生效，不修改训练文件或 checkpoint 中保存的训练配置。已知路径字段（如 `demand_file`）自动按实验 YAML 的目录解析，额外路径用 `evaluation.path_keys` 显式声明。评估 seed 只通过 `evaluation.seeds` / `seed_count` 指定，禁止写入 `evaluation.env_args.seed`。
+
+有独立评估参数时，执行 `run` / `run-suite` 会在各次训练前构造并关闭训练与评估环境，核对完整 `env_info`，不调用 step。这沿用当前 checkpoint 评估的严格协议，智能体数、动作数、观测/状态维度和回合长度等元数据必须保持一致；未知参数、缺少文件或元数据不匹配会在该次训练开始前失败。未指定评估覆盖时保留原有训练路径。
+
+`run-suite` 顶层 `evaluation.env_args` 对矩阵中每个环境条目应用同一份覆盖。环境特有字段不自动忽略：例如将 `demand_file` 应用到 MPE 会使该组合在训练前失败，矩阵仍继续其他组合。需要不同领域的专用测试文件时，应分别编写 suite；同一领域的多个算法可以共享一个测试配置，确保公平比较。
+
 矩阵汇总只计算同一算法条目、同一环境条目下的训练 seed 均值与总体标准差；不把 MPE 与库存的奖励混为一个总分，也不生成跨环境排名。统计范围和有效/失败运行数均写入结果。
 
 ## 5. 查看、复现和继续运行
@@ -151,11 +178,12 @@ evaluation:
 |---|---|
 | `experiment.json` | 规范化后的实验意图、绝对数据路径、训练/评估 seeds |
 | `config.json` | 训练实际使用的完整合并配置，包括插件模块与环境参数 |
+| `evaluation.json` | 实际评估环境参数、覆盖项、评估 seeds、回合数及训练前元数据校验结果 |
 | `metrics.jsonl` | 训练统计 |
 | `policy.pt` | 推理/评估模型及配置 |
 | `training.pt` | 学习器、优化器、回放与 RNG 等训练状态 |
 | `result.json` | 底层训练结果 |
-| `experiment_result.json` | 单实验状态、覆盖参数、训练结果、各评估 seed 结果及耗时 |
+| `experiment_result.json` | 单实验状态、训练/评估实际参数、训练结果、各评估 seed 结果及耗时 |
 | `suite.json` / `suite_result.json` / `suite_result.csv` | 原始矩阵配置、完整运行状态与可表格阅读的汇总 |
 
 单实验失败会保存错误类型和消息并返回非零退出状态；矩阵继续执行剩余组合，最终标记 `success`、`partial_failure` 或 `failed`。中断会保存 `interrupted`。失败目录会保留已有证据，不会伪造 checkpoint 或换用另一个环境。

@@ -13,6 +13,8 @@
 
 当前支持浅色网页、四场景实时画布、开始/暂停/单步/倍速、指标/动作/曲线和轨迹导出。平台运行已有模型，暂不提供网页训练任务和多用户管理。已有模型效果限制保留；能运行不等于策略已收敛。
 
+**训练与展示流程更新**：网页可下载交通训练配置包；核心实验支持独立评估数据；MPE/交通训练产物可通过命令自动登记进平台；历史记录支持同场景、同种子的模型与规则对比。[操作说明与验证范围](docs/TRAINING_WORKFLOW.zh-CN.md)。
+
 [完整本地版下载](https://github.com/saimeeee/unified-marl-practical/releases/tag/v0.9.0-local.1) · [本机运行验收](docs/LOCAL_PLATFORM_REPORT.md)
 
 ![本机实时仿真界面](docs/images/local-platform.jpg)
